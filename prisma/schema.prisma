@@ -1,0 +1,241 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum Size {
+  A4
+  A3
+}
+
+enum Finish {
+  MATTE
+  GLOSS
+}
+
+enum Paper {
+  GSM_170
+  GSM_250
+  GSM_300
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  PLACED
+  PROCESSING
+  PRINTED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  COD
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String?
+  email         String         @unique
+  phone         String?
+  passwordHash  String?
+  role          Role           @default(CUSTOMER)
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  addresses     Address[]
+  cart          Cart?
+  orders        Order[]
+  customDesigns CustomDesign[]
+
+  @@index([email])
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName  String
+  phone     String
+  line1     String
+  line2     String?
+  city      String
+  state     String
+  pincode   String
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+
+  @@index([slug])
+}
+
+model Product {
+  id           String           @id @default(cuid())
+  title        String
+  slug         String           @unique
+  description  String
+  categoryId   String
+  category     Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  images       String[]
+  tags         String[]
+  isActive     Boolean          @default(true)
+  isFeatured   Boolean          @default(false)
+  isCustomBase Boolean          @default(false)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  variants     ProductVariant[]
+
+  @@index([slug])
+  @@index([categoryId])
+}
+
+model ProductVariant {
+  id         String      @id @default(cuid())
+  productId  String
+  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  size       Size
+  finish     Finish      @default(GLOSS)
+  paper      Paper       @default(GSM_300)
+  pricePaise Int
+  stock      Int         @default(50)
+  sku        String      @unique
+
+  cartItems  CartItem[]
+  orderItems OrderItem[]
+
+  @@unique([productId, size, finish, paper])
+  @@index([productId])
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id             String          @id @default(cuid())
+  cartId         String
+  cart           Cart            @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  variantId      String
+  variant        ProductVariant  @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  quantity       Int             @default(1)
+  customDesignId String?
+  customDesign   CustomDesign?   @relation(fields: [customDesignId], references: [id], onDelete: SetNull)
+  createdAt      DateTime        @default(now())
+
+  @@unique([cartId, variantId, customDesignId])
+  @@index([cartId])
+  @@index([variantId])
+}
+
+model CustomDesign {
+  id               String         @id @default(cuid())
+  userId           String?
+  user             User?          @relation(fields: [userId], references: [id], onDelete: SetNull)
+  originalImageUrl String
+  croppedImageUrl  String
+  size             Size
+  finish           Finish         @default(GLOSS)
+  paper            Paper          @default(GSM_300)
+  caption          String?
+  cropData         Json
+  width            Int
+  height           Int
+  createdAt        DateTime       @default(now())
+
+  cartItems        CartItem[]
+  orderItems       OrderItem[]
+
+  @@index([userId])
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique
+  userId          String
+  user            User          @relation(fields: [userId], references: [id], onDelete: Restrict)
+  status          OrderStatus   @default(PLACED)
+  paymentMethod   PaymentMethod @default(COD)
+  paymentStatus   PaymentStatus @default(UNPAID)
+  subtotalPaise   Int
+  shippingPaise   Int
+  codFeePaise     Int           @default(0)
+  discountPaise   Int           @default(0)
+  totalPaise      Int
+  shippingAddress Json
+  trackingNumber  String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  items           OrderItem[]
+
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+}
+
+model OrderItem {
+  id             String          @id @default(cuid())
+  orderId        String
+  order          Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variantId      String?
+  variant        ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+  productTitle   String
+  variantLabel   String
+  unitPricePaise Int
+  quantity       Int
+  customDesignId String?
+  customDesign   CustomDesign?   @relation(fields: [customDesignId], references: [id], onDelete: SetNull)
+  imageUrl       String
+
+  @@index([orderId])
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,11 @@
+1. add to cart button is not working 
+2. Toggle to A3 button is also not working 
+3. Remove the buyer feedback
+4. All the three buttons (search , login and cart) are not working in the top right corner of the navbar
+5. Remove printed in the bengaluru and delhi 
+6. Cannot able to select the custom image for the custom poster and not able to test even
+7. Mark the studio location as IIT Patna, Bihar
+8. Make sure all the endpoints are working and stored in the backend database
+9. Make sure that the authorization and authentication is working properly 
+10. Also the cart and place order is also working properly
+11. Also we have to configure the supabase and cloudinary to store the data of the customers and the posters and then also to categorize the posters into different categories.  
