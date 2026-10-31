@@ -10,7 +10,8 @@ test.describe("Camino Issues Verification Suite", () => {
     const footer = page.locator("footer");
     await expect(footer).toContainText("100% Free Pan-India");
 
-    // 2. Add an item (A4 for ₹70) to cart
+    // 2. Add an item (A4 for ₹70) to cart from shop page
+    await page.goto("http://localhost:3000/shop");
     const addToCartBtn = page.locator("[id^='add-to-cart-btn-']").first();
     await addToCartBtn.click();
 
@@ -83,7 +84,7 @@ test.describe("Camino Issues Verification Suite", () => {
 
   test("Issue 4: Only Gloss finish available (No Matte finish)", async ({ page }) => {
     // 1. Check product detail view
-    await page.goto("http://localhost:3000/product/solitude-in-neo-tokyo");
+    await page.goto("http://localhost:3000/product/sports-cr7-aerial-elevation-flight-1");
     await expect(page.locator("text=Premium Vibrant Gloss Finish")).toBeVisible();
     await expect(page.locator("text=Velvet Matte")).toHaveCount(0);
     await expect(page.locator("button:has-text('Matte')")).toHaveCount(0);
@@ -117,8 +118,8 @@ test.describe("Camino Issues Verification Suite", () => {
     await page.click("button[type='submit']");
     await page.waitForTimeout(1000);
 
-    // 2. Go home and add A4 poster to cart
-    await page.goto("http://localhost:3000");
+    // 2. Go to shop and add A4 poster to cart
+    await page.goto("http://localhost:3000/shop");
     const addToCartBtn = page.locator("[id^='add-to-cart-btn-']").first();
     await addToCartBtn.click();
 

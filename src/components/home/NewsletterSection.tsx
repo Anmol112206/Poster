@@ -37,7 +37,7 @@ export default function NewsletterSection() {
           Get notified when new poster prints arrive.
         </h2>
         <p className="mt-3 text-sm text-[#6B665E]">
-          We curate small-batch prints every month. No spam, just fresh anime, cinema, and minimalist artwork drops.
+          We curate small-batch prints every month. No spam, just fresh anime, marvel, sports, and motivational artwork drops.
         </p>
 
         {subscribed ? (

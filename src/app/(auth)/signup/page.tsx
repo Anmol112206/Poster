@@ -89,10 +89,9 @@ export default function SignupPage() {
     setSubmitting(false);
 
     if (signInRes?.error) {
-      router.push("/login?registered=true");
+      window.location.href = "/login?registered=true";
     } else {
-      router.push("/account/orders");
-      router.refresh();
+      window.location.href = "/account/orders";
     }
   };
 

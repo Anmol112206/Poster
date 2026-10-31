@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import {
   ShoppingBag,
@@ -9,12 +10,151 @@ import {
   Menu,
   X,
   Palette,
-  Compass,
   Package,
   LogOut,
   ShieldAlert,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+
+const CATEGORIES = [
+  { name: "Sports", slug: "sports" },
+  { name: "God", slug: "god" },
+  { name: "Anime", slug: "anime" },
+  { name: "Marvel", slug: "marvel" },
+  { name: "Motivation", slug: "motivation" },
+];
+
+function useActiveNavigation() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  let activeCategory: string | null = null;
+  let isShopAll = false;
+  let isCustom = false;
+
+  if (pathname === "/custom") {
+    isCustom = true;
+  } else if (pathname === "/shop") {
+    const cat = searchParams.get("category")?.toLowerCase() || null;
+    if (cat) {
+      activeCategory = cat;
+    } else {
+      isShopAll = true;
+    }
+  } else if (pathname.startsWith("/product/")) {
+    const slug = pathname.replace("/product/", "").toLowerCase();
+    if (slug.startsWith("sports-")) activeCategory = "sports";
+    else if (slug.startsWith("god-")) activeCategory = "god";
+    else if (slug.startsWith("anime-")) activeCategory = "anime";
+    else if (slug.startsWith("marvel-")) activeCategory = "marvel";
+    else if (slug.startsWith("motivation-")) activeCategory = "motivation";
+  }
+
+  return { activeCategory, isShopAll, isCustom };
+}
+
+function DesktopNav() {
+  const { activeCategory, isShopAll, isCustom } = useActiveNavigation();
+
+  return (
+    <nav className="hidden items-center gap-1.5 text-sm font-medium text-[#1A1A1A] lg:flex">
+      <Link
+        href="/shop"
+        className={`px-3 py-1.5 rounded transition-all ${
+          isShopAll
+            ? "bg-[#1A1A1A] text-white font-semibold shadow-xs"
+            : "text-[#1A1A1A] hover:text-[#C8501E] hover:bg-[#EAE5DC]"
+        }`}
+      >
+        Shop Posters
+      </Link>
+
+      <Link
+        href="/custom"
+        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded transition-all font-semibold ${
+          isCustom
+            ? "bg-[#C8501E] text-white shadow-xs"
+            : "text-[#C8501E] hover:bg-[#EAE5DC]"
+        }`}
+      >
+        <Palette className="h-4 w-4" />
+        Custom Poster
+      </Link>
+
+      {CATEGORIES.map((cat) => {
+        const isActive = activeCategory === cat.slug;
+        return (
+          <Link
+            key={cat.slug}
+            href={`/shop?category=${cat.slug}`}
+            className={`px-3 py-1.5 rounded transition-all ${
+              isActive
+                ? "bg-[#1A1A1A] text-white font-semibold shadow-xs"
+                : "text-[#1A1A1A] hover:text-[#C8501E] hover:bg-[#EAE5DC]"
+            }`}
+          >
+            {cat.name}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
+function MobileCategoryNav({ onClose }: { onClose: () => void }) {
+  const { activeCategory, isShopAll, isCustom } = useActiveNavigation();
+
+  return (
+    <div className="flex flex-col space-y-2">
+      <Link
+        href="/shop"
+        onClick={onClose}
+        className={`px-3 py-2 rounded text-sm transition-colors ${
+          isShopAll
+            ? "bg-[#1A1A1A] text-white font-semibold"
+            : "text-[#1A1A1A] hover:bg-[#F6F3EE] hover:text-[#C8501E]"
+        }`}
+      >
+        All Wall Posters
+      </Link>
+
+      <Link
+        href="/custom"
+        onClick={onClose}
+        className={`flex items-center gap-2 px-3 py-2 rounded text-sm font-semibold transition-colors ${
+          isCustom
+            ? "bg-[#C8501E] text-white"
+            : "text-[#C8501E] hover:bg-[#F6F3EE]"
+        }`}
+      >
+        <Palette className="h-4 w-4" />
+        Design Custom Poster
+      </Link>
+
+      <div className="border-t border-[#DDD7CC] pt-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-[#6B665E]">
+        Categories
+      </div>
+
+      {CATEGORIES.map((cat) => {
+        const isActive = activeCategory === cat.slug;
+        return (
+          <Link
+            key={cat.slug}
+            href={`/shop?category=${cat.slug}`}
+            onClick={onClose}
+            className={`px-3 py-2 rounded text-sm transition-colors ${
+              isActive
+                ? "bg-[#1A1A1A] text-white font-semibold"
+                : "text-[#1A1A1A] hover:bg-[#F6F3EE] hover:text-[#C8501E]"
+            }`}
+          >
+            {cat.name}
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function Header() {
   const { data: session } = useSession();
@@ -25,7 +165,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#DDD7CC] bg-[#F6F3EE]/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         {/* Left: Mobile Menu & Desktop Nav */}
         <div className="flex items-center gap-6">
           <button
@@ -41,27 +181,16 @@ export default function Header() {
             Camino
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm font-medium text-[#1A1A1A] lg:flex">
-            <Link href="/shop" className="transition-colors hover:text-[#C8501E]">
-              Shop Posters
-            </Link>
-            <Link
-              href="/custom"
-              className="inline-flex items-center gap-1.5 text-[#C8501E] font-semibold transition-colors hover:text-[#B34416]"
-            >
-              <Palette className="h-4 w-4" />
-              Custom Poster
-            </Link>
-            <Link href="/shop?category=anime" className="transition-colors hover:text-[#C8501E]">
-              Anime
-            </Link>
-            <Link href="/shop?category=movies" className="transition-colors hover:text-[#C8501E]">
-              Cinema
-            </Link>
-            <Link href="/shop?category=minimal-art" className="transition-colors hover:text-[#C8501E]">
-              Minimal
-            </Link>
-          </nav>
+          <Suspense
+            fallback={
+              <nav className="hidden items-center gap-2 text-sm font-medium text-[#1A1A1A] lg:flex">
+                <Link href="/shop" className="px-3 py-1.5">Shop Posters</Link>
+                <Link href="/custom" className="px-3 py-1.5 text-[#C8501E]">Custom Poster</Link>
+              </nav>
+            }
+          >
+            <DesktopNav />
+          </Suspense>
         </div>
 
         {/* Right Actions: Login / Account, Cart */}
@@ -174,59 +303,10 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="border-t border-[#DDD7CC] bg-white px-6 py-6 lg:hidden">
           <nav className="flex flex-col space-y-4 text-base font-medium text-[#1A1A1A]">
-            <Link
-              href="/shop"
-              onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-[#C8501E]"
-            >
-              All Wall Posters
-            </Link>
-            <Link
-              href="/custom"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-[#C8501E] font-semibold flex items-center gap-2"
-            >
-              <Palette className="h-4 w-4" />
-              Design Custom Poster
-            </Link>
-            <div className="border-t border-[#DDD7CC] pt-4 text-xs font-semibold uppercase tracking-wider text-[#6B665E]">
-              Featured Categories
-            </div>
-            <Link
-              href="/shop?category=anime"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-sm pl-2 hover:text-[#C8501E]"
-            >
-              Anime & Manga
-            </Link>
-            <Link
-              href="/shop?category=movies"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-sm pl-2 hover:text-[#C8501E]"
-            >
-              Cinema & Cult Films
-            </Link>
-            <Link
-              href="/shop?category=minimal-art"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-sm pl-2 hover:text-[#C8501E]"
-            >
-              Minimalist Art
-            </Link>
-            <Link
-              href="/shop?category=motivational"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-sm pl-2 hover:text-[#C8501E]"
-            >
-              Motivational & Typography
-            </Link>
-            <Link
-              href="/shop?category=cars"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-sm pl-2 hover:text-[#C8501E]"
-            >
-              Automotive & Speed
-            </Link>
+            <Suspense fallback={null}>
+              <MobileCategoryNav onClose={() => setMobileMenuOpen(false)} />
+            </Suspense>
+
             <div className="border-t border-[#DDD7CC] pt-4 flex flex-col gap-2">
               {session?.user ? (
                 <>

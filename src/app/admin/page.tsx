@@ -12,6 +12,7 @@ import {
   ArrowRight,
   Truck,
   Plus,
+  Mail,
 } from "lucide-react";
 
 export default async function AdminDashboardPage() {
@@ -33,21 +34,33 @@ export default async function AdminDashboardPage() {
     createdAt: Date;
     user: { name: string | null; email: string };
   }> = [];
+  let supportMessages: Array<{
+    id: string;
+    name: string;
+    email: string;
+    message: string;
+    createdAt: Date;
+  }> = [];
 
   try {
-    const [orders, count] = await Promise.all([
+    const [orders, count, messages] = await Promise.all([
       prisma.order.findMany({
         take: 10,
         orderBy: { createdAt: "desc" },
         include: { user: { select: { name: true, email: true } } },
       }),
       prisma.product.count(),
+      prisma.contactMessage.findMany({
+        take: 10,
+        orderBy: { createdAt: "desc" },
+      }),
     ]);
 
     totalOrdersCount = orders.length;
     totalRevenuePaise = orders.reduce((sum, o) => sum + o.totalPaise, 0);
     productsCount = count || 24;
     recentOrders = orders;
+    supportMessages = messages;
   } catch {
     // If DB offline, mock demo stats
     totalOrdersCount = 14;
@@ -114,7 +127,7 @@ export default async function AdminDashboardPage() {
             <ShoppingBag className="h-4 w-4 text-[#C8501E]" />
           </div>
           <p className="mt-2 font-serif text-3xl font-bold text-[#1A1A1A]">{productsCount}</p>
-          <p className="mt-1 text-xs text-[#6B665E]">8 Categories + Custom Base</p>
+          <p className="mt-1 text-xs text-[#6B665E]">5 Categories + Custom Base</p>
         </div>
 
         <div className="rounded border border-[#DDD7CC] bg-white p-6 shadow-xs">
@@ -170,6 +183,60 @@ export default async function AdminDashboardPage() {
                       <span className="rounded bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 text-[11px] font-semibold">
                         {ord.status}
                       </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {/* Customer Support Messages */}
+      <div className="mt-10 rounded border border-[#DDD7CC] bg-white p-6 shadow-xs">
+        <div className="flex items-center justify-between border-b border-[#DDD7CC] pb-4">
+          <div className="flex items-center gap-2">
+            <Mail className="h-4 w-4 text-[#C8501E]" />
+            <h2 className="font-serif text-lg font-bold text-[#1A1A1A]">
+              Customer Support Inquiries ({supportMessages.length})
+            </h2>
+          </div>
+          <span className="text-xs text-[#6B665E]">Direct from Supabase database</span>
+        </div>
+
+        {supportMessages.length === 0 ? (
+          <div className="py-12 text-center text-xs text-[#6B665E]">
+            No support inquiries received yet. Inquiries submitted via the Contact form will appear here.
+          </div>
+        ) : (
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-left text-xs">
+              <thead>
+                <tr className="border-b border-[#DDD7CC] text-[#6B665E] uppercase tracking-wider">
+                  <th className="py-2.5">Date</th>
+                  <th className="py-2.5">Customer</th>
+                  <th className="py-2.5">Email</th>
+                  <th className="py-2.5">Message / Inquiry</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#DDD7CC]">
+                {supportMessages.map((msg) => (
+                  <tr key={msg.id} className="hover:bg-[#F6F3EE]">
+                    <td className="py-3 text-[#6B665E] whitespace-nowrap">
+                      {new Date(msg.createdAt).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </td>
+                    <td className="py-3 font-semibold text-[#1A1A1A] whitespace-nowrap">
+                      {msg.name}
+                    </td>
+                    <td className="py-3 font-mono text-[#6B665E] whitespace-nowrap">
+                      {msg.email}
+                    </td>
+                    <td className="py-3 text-[#1A1A1A] max-w-md">
+                      <p className="line-clamp-2 leading-relaxed">{msg.message}</p>
                     </td>
                   </tr>
                 ))}

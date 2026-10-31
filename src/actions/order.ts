@@ -57,21 +57,33 @@ export async function placeOrder(formData: unknown): Promise<ApiResponse<{ order
     // Attempt DB transaction
     try {
       const order = await prisma.$transaction(async (tx) => {
-        // Save address to user profile if checked
+        // Save address to user profile ONLY if unique for this user
         if (saveAddress) {
-          await tx.address.create({
-            data: {
+          const normPincode = address.pincode.trim();
+          const existingAddress = await tx.address.findFirst({
+            where: {
               userId,
-              fullName: address.fullName,
-              phone: address.phone,
-              line1: address.line1,
-              line2: address.line2,
-              city: address.city,
-              state: address.state,
-              pincode: address.pincode,
-              isDefault: address.isDefault,
+              pincode: normPincode,
+              line1: { equals: address.line1.trim(), mode: "insensitive" },
+              city: { equals: address.city.trim(), mode: "insensitive" },
             },
           });
+
+          if (!existingAddress) {
+            await tx.address.create({
+              data: {
+                userId,
+                fullName: address.fullName.trim(),
+                phone: address.phone.trim(),
+                line1: address.line1.trim(),
+                line2: address.line2?.trim() || null,
+                city: address.city.trim(),
+                state: address.state.trim(),
+                pincode: normPincode,
+                isDefault: address.isDefault,
+              },
+            });
+          }
         }
 
         // Create Order
@@ -99,6 +111,30 @@ export async function placeOrder(formData: unknown): Promise<ApiResponse<{ order
             },
           },
         });
+
+        // Record custom designs in Supabase CustomDesign table
+        for (const i of verifiedItems) {
+          if (i.customDesignId && (i.customThumbnail || i.imageUrl)) {
+            const artworkUrl = i.customThumbnail || i.imageUrl;
+            try {
+              await tx.customDesign.create({
+                data: {
+                  userId,
+                  originalImageUrl: artworkUrl,
+                  croppedImageUrl: artworkUrl,
+                  size: i.size === "A3" ? "A3" : "A4",
+                  finish: "GLOSS",
+                  paper: "GSM_300",
+                  cropData: {},
+                  width: 2480,
+                  height: 3508,
+                },
+              });
+            } catch (cdErr) {
+              console.warn("Failed to create CustomDesign entry:", cdErr);
+            }
+          }
+        }
 
         // Clear user's DB cart if present
         const userCart = await tx.cart.findUnique({ where: { userId } });

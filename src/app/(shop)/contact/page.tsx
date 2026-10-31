@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Mail, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { sendContactMessageAction } from "@/actions/contact";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
@@ -16,11 +17,19 @@ export default function ContactPage() {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate sending message
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setLoading(false);
-    setSent(true);
-    toast.success("Thank you for your message! Our studio team will respond within 24 hours.");
+    try {
+      const res = await sendContactMessageAction({ name, email, message });
+      if (res.success) {
+        setSent(true);
+        toast.success("Thank you for your message! Our studio team will respond within 24 hours.");
+      } else {
+        toast.error(res.error.message || "Failed to send message. Please try again.");
+      }
+    } catch {
+      toast.error("Failed to connect to support server. Please email support@camino.store directly.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

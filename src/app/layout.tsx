@@ -40,7 +40,9 @@ export default function RootLayout({
         </AppProviders>
         <Toaster
           position="bottom-right"
+          duration={2000}
           toastOptions={{
+            duration: 2000,
             style: {
               background: "#1A1A1A",
               color: "#F6F3EE",

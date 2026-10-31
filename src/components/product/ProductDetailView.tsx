@@ -154,10 +154,15 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
       {/* Right Column: Title, Configurator, Add to Cart */}
       <div className="lg:col-span-5 flex flex-col justify-between">
         <div>
-          {/* Category & Tags */}
+          {/* Identity & Badges */}
           <div className="flex items-center gap-2">
+            {product.catalogCode && (
+              <span className="rounded bg-[#1A1A1A] text-white px-2.5 py-0.5 font-mono text-xs font-bold tracking-wider">
+                {product.catalogCode}
+              </span>
+            )}
             <span className="text-xs font-semibold uppercase tracking-wider text-[#C8501E]">
-              {product.categoryName}
+              {product.categoryName} Collection
             </span>
             <span className="text-xs text-[#6B665E]">•</span>
             <span className="text-xs text-emerald-700 font-medium">In Stock</span>
@@ -176,9 +181,29 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
             </span>
           </div>
 
-          <p className="mt-4 text-sm text-[#6B665E] leading-relaxed">
-            {product.description}
-          </p>
+          {/* Archival Specification Card for Discrimination */}
+          <div className="mt-5 rounded border border-[#DDD7CC] bg-[#FAF8F5] p-3.5 text-xs space-y-2">
+            <div className="flex justify-between border-b border-[#DDD7CC] pb-1.5 font-mono">
+              <span className="text-[#6B665E]">Catalog Code:</span>
+              <span className="font-bold text-[#1A1A1A]">{product.catalogCode || "CAMINO-EDITION"}</span>
+            </div>
+            <div className="flex justify-between border-b border-[#DDD7CC] pb-1.5">
+              <span className="text-[#6B665E]">Series:</span>
+              <span className="font-medium text-[#1A1A1A]">{product.categoryName} Series Print</span>
+            </div>
+            <div className="flex justify-between border-b border-[#DDD7CC] pb-1.5">
+              <span className="text-[#6B665E]">Paper Weight:</span>
+              <span className="font-medium text-[#1A1A1A]">300 GSM Heavyweight Archival Cardstock</span>
+            </div>
+            <div className="flex justify-between border-b border-[#DDD7CC] pb-1.5">
+              <span className="text-[#6B665E]">Surface Finish:</span>
+              <span className="font-medium text-[#1A1A1A]">Vibrant High-Chroma Gloss</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-[#6B665E]">Aspect Ratio:</span>
+              <span className="font-medium text-[#1A1A1A]">ISO 216 Standard (1 : 1.414)</span>
+            </div>
+          </div>
 
           <hr className="my-6 border-[#DDD7CC]" />
 

@@ -37,18 +37,28 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/shop?category=sports" className="hover:text-[#C8501E] transition-colors">
+                  Sports
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop?category=god" className="hover:text-[#C8501E] transition-colors">
+                  God & Devotional
+                </Link>
+              </li>
+              <li>
                 <Link href="/shop?category=anime" className="hover:text-[#C8501E] transition-colors">
-                  Anime & Manga
+                  Anime
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=movies" className="hover:text-[#C8501E] transition-colors">
-                  Cinema & Cult
+                <Link href="/shop?category=marvel" className="hover:text-[#C8501E] transition-colors">
+                  Marvel
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=minimal-art" className="hover:text-[#C8501E] transition-colors">
-                  Minimalist Art
+                <Link href="/shop?category=motivation" className="hover:text-[#C8501E] transition-colors">
+                  Motivation
                 </Link>
               </li>
             </ul>
@@ -103,16 +113,6 @@ export default function Footer() {
               </li>
               <li>
                 <span className="text-xs text-[#6B665E] block">Payment: Cash on Delivery</span>
-              </li>
-              <li className="pt-2">
-                <Link href="/terms" className="text-xs text-[#6B665E] hover:underline">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-xs text-[#6B665E] hover:underline">
-                  Privacy Policy
-                </Link>
               </li>
             </ul>
           </div>

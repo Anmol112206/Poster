@@ -1,162 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Palette, Layers, Box, CheckCircle2, Star, Sparkles } from "lucide-react";
-import ProductCard from "@/components/product/ProductCard";
 import NewsletterSection from "@/components/home/NewsletterSection";
-import { prisma, withDbTimeout } from "@/lib/prisma";
-
-// Fallback featured posters in case DB connection is not initialized during local static build
-const fallbackProducts = [
-  {
-    id: "prod_1",
-    title: "Solitude in Neo-Tokyo",
-    slug: "solitude-in-neo-tokyo",
-    categoryName: "Anime & Manga",
-    imageUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1000&auto=format&fit=crop&q=80",
-    secondaryImageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&auto=format&fit=crop&q=80",
-    a4VariantId: "var_neo_a4",
-    a3VariantId: "var_neo_a3",
-    a4PricePaise: 7000,
-    a3PricePaise: 12000,
-    isFeatured: true,
-  },
-  {
-    id: "prod_2",
-    title: "Interstellar Horizon",
-    slug: "interstellar-horizon",
-    categoryName: "Cinema",
-    imageUrl: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1000&auto=format&fit=crop&q=80",
-    secondaryImageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000&auto=format&fit=crop&q=80",
-    a4VariantId: "var_inter_a4",
-    a3VariantId: "var_inter_a3",
-    a4PricePaise: 7000,
-    a3PricePaise: 12000,
-    isFeatured: true,
-  },
-  {
-    id: "prod_3",
-    title: "Bauhaus Exhibition 1923",
-    slug: "bauhaus-exhibition-1923",
-    categoryName: "Minimal Art",
-    imageUrl: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1000&auto=format&fit=crop&q=80",
-    secondaryImageUrl: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=1000&auto=format&fit=crop&q=80",
-    a4VariantId: "var_bau_a4",
-    a3VariantId: "var_bau_a3",
-    a4PricePaise: 7000,
-    a3PricePaise: 12000,
-    isFeatured: true,
-  },
-  {
-    id: "prod_4",
-    title: "Monza 1967 Grand Prix",
-    slug: "monza-1967-vintage-grand-prix",
-    categoryName: "Automotive",
-    imageUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000&auto=format&fit=crop&q=80",
-    a4VariantId: "var_monza_a4",
-    a3VariantId: "var_monza_a3",
-    a4PricePaise: 7000,
-    a3PricePaise: 12000,
-    isFeatured: true,
-  },
-  {
-    id: "prod_5",
-    title: "Compound Interest & Daily Grit",
-    slug: "compound-interest-daily-grit",
-    categoryName: "Motivational",
-    imageUrl: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1000&auto=format&fit=crop&q=80",
-    a4VariantId: "var_grit_a4",
-    a3VariantId: "var_grit_a3",
-    a4PricePaise: 7000,
-    a3PricePaise: 12000,
-    isFeatured: false,
-  },
-  {
-    id: "prod_6",
-    title: "Misty Pacific Coast Pines",
-    slug: "misty-pacific-coast-pines",
-    categoryName: "Nature",
-    imageUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1000&auto=format&fit=crop&q=80",
-    a4VariantId: "var_pines_a4",
-    a3VariantId: "var_pines_a3",
-    a4PricePaise: 7000,
-    a3PricePaise: 12000,
-    isFeatured: true,
-  },
-  {
-    id: "prod_7",
-    title: "Kind of Blue: Quintet",
-    slug: "kind-of-blue-miles-quintet",
-    categoryName: "Music",
-    imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1000&auto=format&fit=crop&q=80",
-    a4VariantId: "var_jazz_a4",
-    a3VariantId: "var_jazz_a3",
-    a4PricePaise: 7000,
-    a3PricePaise: 12000,
-    isFeatured: false,
-  },
-  {
-    id: "prod_8",
-    title: "New York Iron & Steam",
-    slug: "new-york-iron-and-steam",
-    categoryName: "Travel",
-    imageUrl: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1000&auto=format&fit=crop&q=80",
-    a4VariantId: "var_ny_a4",
-    a3VariantId: "var_ny_a3",
-    a4PricePaise: 7000,
-    a3PricePaise: 12000,
-    isFeatured: true,
-  },
-];
+import HeroCategorySlider from "@/components/home/HeroCategorySlider";
 
 const categories = [
-  { name: "Anime & Manga", slug: "anime", image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&auto=format&fit=crop&q=80" },
-  { name: "Cinema & Cult", slug: "movies", image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=500&auto=format&fit=crop&q=80" },
-  { name: "Minimalist Art", slug: "minimal-art", image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=500&auto=format&fit=crop&q=80" },
-  { name: "Motivational", slug: "motivational", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&auto=format&fit=crop&q=80" },
-  { name: "Automotive", slug: "cars", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&auto=format&fit=crop&q=80" },
-  { name: "Music", slug: "music", image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=80" },
-  { name: "Travel", slug: "travel", image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=500&auto=format&fit=crop&q=80" },
-  { name: "Nature", slug: "nature", image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&auto=format&fit=crop&q=80" },
+  { name: "Sports", slug: "sports", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460181/msd.jpg" },
+  { name: "God", slug: "god", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460221/Untitled_design-84.jpg" },
+  { name: "Anime", slug: "anime", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459551/Untitled_design.jpg" },
+  { name: "Marvel", slug: "marvel", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459827/Wanda_Maximoff__Scarlet_Witch_wallpaper.jpg" },
+  { name: "Motivation", slug: "motivation", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793463267/Untitled_design_4.jpg" },
 ];
 
-export default async function HomePage() {
-  // Attempt to load live products from DB if available
-  let featuredProducts = fallbackProducts;
-  try {
-    const dbProducts = await withDbTimeout(
-      prisma.product.findMany({
-        where: { isActive: true, isCustomBase: false },
-        include: { category: true, variants: true },
-        take: 8,
-        orderBy: { createdAt: "desc" },
-      }),
-      800
-    );
-
-    if (dbProducts.length >= 4) {
-      featuredProducts = dbProducts.map((p) => {
-        const a4Var = p.variants.find((v) => v.size === "A4") || p.variants[0];
-        const a3Var = p.variants.find((v) => v.size === "A3") || p.variants[p.variants.length - 1];
-        return {
-          id: p.id,
-          title: p.title,
-          slug: p.slug,
-          categoryName: p.category.name,
-          categorySlug: p.category.slug,
-          imageUrl: p.images[0] || fallbackProducts[0].imageUrl,
-          secondaryImageUrl: p.images[1],
-          a4VariantId: a4Var ? a4Var.id : `a4_${p.id}`,
-          a3VariantId: a3Var ? a3Var.id : `a3_${p.id}`,
-          a4PricePaise: a4Var ? a4Var.pricePaise : 7000,
-          a3PricePaise: a3Var ? a3Var.pricePaise : 12000,
-          isFeatured: p.isFeatured,
-        };
-      });
-    }
-  } catch {
-    // Graceful fallback to static curation during offline build
-  }
-
+export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* 1. Left-aligned Hero */}
@@ -208,23 +64,9 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Large Hero Poster on Wall Photo */}
+          {/* Interactive 5-Slide Category Slider */}
           <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-md rounded border border-[#DDD7CC] bg-white p-4 shadow-sm">
-              <div className="relative aspect-[1/1.3] overflow-hidden rounded border border-[#DDD7CC] bg-[#ECE7DE]">
-                <Image
-                  src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1000&auto=format&fit=crop&q=80"
-                  alt="Curated A3 Art Print framed on a minimalist concrete wall"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 500px"
-                />
-                <div className="absolute bottom-3 left-3 rounded bg-white/95 px-2.5 py-1 text-[11px] font-medium text-[#1A1A1A] border border-[#DDD7CC]">
-                  A3 Print • ₹120 • Ships Rolled
-                </div>
-              </div>
-            </div>
+            <HeroCategorySlider />
           </div>
         </div>
       </section>
@@ -239,7 +81,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
             {categories.map((cat) => (
               <Link
                 key={cat.slug}
@@ -261,29 +103,6 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* 3. Featured Posters (Uneven / Masonry Grid) */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between border-b border-[#DDD7CC] pb-4">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#C8501E]">
-              Curated Selection
-            </span>
-            <h2 className="mt-1 font-serif text-2xl font-bold text-[#1A1A1A] sm:text-3xl">
-              Featured Wall Posters
-            </h2>
-          </div>
-          <Link href="/shop" className="text-xs font-semibold uppercase tracking-wider text-[#1A1A1A] hover:text-[#C8501E]">
-            Shop All Prints ({featuredProducts.length}+) →
-          </Link>
-        </div>
-
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {featuredProducts.map((p) => (
-            <ProductCard key={p.id} {...p} />
-          ))}
         </div>
       </section>
 
@@ -355,7 +174,7 @@ export default async function HomePage() {
                     </p>
                     <div className="relative aspect-[3/4] overflow-hidden rounded border border-[#DDD7CC] bg-[#ECE7DE]">
                       <Image
-                        src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=600&auto=format&fit=crop&q=80"
+                        src="https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459827/Wanda_Maximoff__Scarlet_Witch_wallpaper.jpg"
                         alt="Uncropped customer artwork"
                         fill
                         className="object-cover"
@@ -370,7 +189,7 @@ export default async function HomePage() {
                     <div className="relative aspect-[1/1.414] overflow-hidden rounded border-2 border-[#1A1A1A] bg-white p-1">
                       <div className="relative h-full w-full overflow-hidden">
                         <Image
-                          src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=600&auto=format&fit=crop&q=80"
+                          src="https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459827/Wanda_Maximoff__Scarlet_Witch_wallpaper.jpg"
                           alt="Cropped A3 poster ready for print"
                           fill
                           className="object-cover"

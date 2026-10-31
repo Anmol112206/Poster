@@ -41,8 +41,7 @@ function LoginForm() {
         toast.error("Incorrect email or password.");
       } else {
         toast.success("Welcome back!");
-        router.push(callbackUrl);
-        router.refresh();
+        window.location.href = callbackUrl;
       }
     } catch (err) {
       console.error(err);

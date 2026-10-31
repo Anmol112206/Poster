@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("🌱 Starting seed...");
+  console.log("🌱 Starting category & catalog reset...");
 
   // 1. Seed Users (Admin & Customer)
   const passwordHash = await bcrypt.hash("Camino@2026!", 12);
@@ -51,60 +51,45 @@ async function main() {
   });
   console.log(`✓ Customer user ready: ${customer.email}`);
 
-  // 2. Seed Categories (8 categories)
-  const categoriesData = [
+  // 2. The 5 Requested Categories
+  const targetCategories = [
     {
-      name: "Anime & Manga",
+      name: "Sports",
+      slug: "sports",
+      description: "Iconic athletic triumphs, football legends, basketball royalty, and stadium adrenaline.",
+      imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&auto=format&fit=crop&q=80",
+    },
+    {
+      name: "God",
+      slug: "god",
+      description: "Sacred Indian deities, divine ethereal transcendence, and timeless spiritual serenity.",
+      imageUrl: "https://images.unsplash.com/photo-1545239351-ef35f43d514b?w=800&auto=format&fit=crop&q=80",
+    },
+    {
+      name: "Anime",
       slug: "anime",
-      description: "Iconic moments and aesthetics from classic and modern Japanese animation.",
+      description: "Iconic moments, shonen intensity, and aesthetic visuals from beloved anime universes.",
       imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop&q=80",
     },
     {
-      name: "Cinema & Cult Films",
-      slug: "movies",
-      description: "Timeless cinematography, minimalist movie stills, and iconic director visions.",
-      imageUrl: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&auto=format&fit=crop&q=80",
+      name: "Marvel",
+      slug: "marvel",
+      description: "Cinematic superhero legends, Avengers assemble moments, and comic-book visual power.",
+      imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=800&auto=format&fit=crop&q=80",
     },
     {
-      name: "Minimalist Art",
-      slug: "minimal-art",
-      description: "Abstract geometries, bauhaus compositions, and thoughtful negative space.",
-      imageUrl: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&auto=format&fit=crop&q=80",
-    },
-    {
-      name: "Motivational & Typography",
-      slug: "motivational",
-      description: "Powerful words, bold typography, and daily morning drive for your work desk.",
+      name: "Motivation",
+      slug: "motivation",
+      description: "Bold Swiss typography, brutalist discipline principles, and relentless founder drive.",
       imageUrl: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80",
-    },
-    {
-      name: "Automotive & Speed",
-      slug: "cars",
-      description: "Legendary motorsport silhouettes, vintage racers, and supercar design language.",
-      imageUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=80",
-    },
-    {
-      name: "Music & Albums",
-      slug: "music",
-      description: "Album covers, vinyl culture, sound waves, and concert energy.",
-      imageUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80",
-    },
-    {
-      name: "Travel & Architecture",
-      slug: "travel",
-      description: "Architectural monuments, coastal wanderlust, and city blueprints worldwide.",
-      imageUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&auto=format&fit=crop&q=80",
-    },
-    {
-      name: "Nature & Botanical",
-      slug: "nature",
-      description: "Serene landscapes, misty pine forests, and macro organic textures.",
-      imageUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&auto=format&fit=crop&q=80",
     },
   ];
 
+  const targetSlugs = targetCategories.map((c) => c.slug);
+
+  // 3. Upsert the 5 new categories
   const categoryMap = new Map<string, string>();
-  for (const cat of categoriesData) {
+  for (const cat of targetCategories) {
     const record = await prisma.category.upsert({
       where: { slug: cat.slug },
       update: { name: cat.name, description: cat.description, imageUrl: cat.imageUrl },
@@ -112,11 +97,104 @@ async function main() {
     });
     categoryMap.set(cat.slug, record.id);
   }
-  console.log(`✓ Seeded ${categoryMap.size} categories`);
+  console.log(`✓ Seeded/Updated 5 categories: ${targetSlugs.join(", ")}`);
 
-  // 3. Seed 24+ Products with all variants
+  // 4. Products for the 5 categories (4 per category = 20 catalog posters)
   const productsData = [
-    // Anime
+    // --- 1. SPORTS ---
+    {
+      title: "CR7 Aerial Elevation",
+      slug: "cr7-aerial-elevation",
+      categorySlug: "sports",
+      description: "Legendary header elevation against deep stadium floodlights with dynamic crimson and black contrast.",
+      images: [
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1000&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["cr7", "football", "ronaldo", "sports", "stadium"],
+      isFeatured: true,
+    },
+    {
+      title: "The Mamba Court: 24",
+      slug: "the-mamba-court-24",
+      categorySlug: "sports",
+      description: "Lakers purple and golden dusk arena court with glowing hoop silhouette. A tribute to pure relentless drive.",
+      images: [
+        "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["basketball", "kobe", "mamba", "nba", "lakers"],
+      isFeatured: false,
+    },
+    {
+      title: "King of the MCG: 82*",
+      slug: "king-of-the-mcg-82",
+      categorySlug: "sports",
+      description: "The iconic Melbourne roar silhouette under electric floodlights and a sea of 90,000 cheering fans.",
+      images: [
+        "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["cricket", "kohli", "mcg", "sports", "legend"],
+      isFeatured: true,
+    },
+    {
+      title: "Monaco Apex: Grand Prix",
+      slug: "monaco-apex-grand-prix",
+      categorySlug: "sports",
+      description: "Formula racing speed and neon asphalt reflections through the legendary hairpin turn.",
+      images: [
+        "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["f1", "racing", "speed", "ferrari", "motorsport"],
+      isFeatured: false,
+    },
+
+    // --- 2. GOD ---
+    {
+      title: "Mahadev: Cosmic Dhyana",
+      slug: "mahadev-cosmic-dhyana",
+      categorySlug: "god",
+      description: "Lord Shiva in profound Himalayan meditation under cosmic nebulae, crescent moon, and golden aura.",
+      images: [
+        "https://images.unsplash.com/photo-1609743522653-52354461eb27?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["shiva", "mahadev", "spiritual", "god", "himalayas", "meditation"],
+      isFeatured: true,
+    },
+    {
+      title: "Shree Ram: Ayodhya Radiance",
+      slug: "shree-ram-ayodhya-radiance",
+      categorySlug: "god",
+      description: "Lord Rama with divine bow and celestial arrow against a glowing saffron and golden horizon.",
+      images: [
+        "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["ram", "ayodhya", "divine", "god", "spiritual", "peace"],
+      isFeatured: false,
+    },
+    {
+      title: "Shree Krishna: Celestial Flute",
+      slug: "shree-krishna-celestial-flute",
+      categorySlug: "god",
+      description: "Lord Krishna playing the bansuri in Vrindavan dusk, bathed in ethereal peacock blue and golden starlight.",
+      images: [
+        "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["krishna", "flute", "vrindavan", "god", "divine", "spiritual"],
+      isFeatured: true,
+    },
+    {
+      title: "Bajrangbali: Mountain Bearer",
+      slug: "bajrangbali-mountain-bearer",
+      categorySlug: "god",
+      description: "Lord Hanuman leaping through tempestuous skies carrying the Sanjeevani mountain with blazing devotion.",
+      images: [
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["hanuman", "bajrangbali", "strength", "devotion", "god"],
+      isFeatured: false,
+    },
+
+    // --- 3. ANIME ---
     {
       title: "Solitude in Neo-Tokyo",
       slug: "solitude-in-neo-tokyo",
@@ -138,7 +216,7 @@ async function main() {
         "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=1000&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1000&auto=format&fit=crop&q=80",
       ],
-      tags: ["samurai", "katana", "sunset", "ink", "japan"],
+      tags: ["samurai", "katana", "sunset", "ink", "anime"],
       isFeatured: false,
     },
     {
@@ -149,261 +227,122 @@ async function main() {
       images: [
         "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1000&auto=format&fit=crop&q=80",
       ],
-      tags: ["gundam", "mech", "blueprint", "scifi"],
+      tags: ["gundam", "mech", "blueprint", "anime", "scifi"],
+      isFeatured: false,
+    },
+    {
+      title: "Domain Expansion: Infinite Void",
+      slug: "domain-expansion-infinite-void",
+      categorySlug: "anime",
+      description: "Cosmic black hole horizons and crystalline dimensional geometry inspired by modern shonen sorcery.",
+      images: [
+        "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["jjk", "gojo", "domain", "anime", "sorcerer"],
       isFeatured: false,
     },
 
-    // Movies
+    // --- 4. MARVEL ---
     {
-      title: "Interstellar Horizon",
-      slug: "interstellar-horizon",
-      categorySlug: "movies",
-      description: "Accretion disk gravitational lensing in deep cosmic void. Inspiring cosmic wonder on archival stock.",
+      title: "Iron Man: Mark 85 Arc Core",
+      slug: "iron-man-mark-85-arc-core",
+      categorySlug: "marvel",
+      description: "Tony Stark's crimson and gold nano-tech armor in low-key lighting with glowing palladium chest reactor.",
       images: [
-        "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1000&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1635863138275-d9b33299680b?w=1000&auto=format&fit=crop&q=80",
       ],
-      tags: ["space", "astronomy", "cosmos", "cinema", "sci-fi"],
+      tags: ["ironman", "marvel", "avengers", "stark", "superhero"],
       isFeatured: true,
     },
     {
-      title: "Overlook Geometric Carpet",
-      slug: "overlook-geometric-carpet",
-      categorySlug: "movies",
-      description: "The hypnotic hexagonal retro textile pattern celebrated in legendary psychological horror.",
+      title: "Spider-Man: Manhattan Freefall",
+      slug: "spider-man-manhattan-freefall",
+      categorySlug: "marvel",
+      description: "The iconic red and blue web-slinger soaring between glass skyscrapers during warm Manhattan twilight.",
       images: [
-        "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1000&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1604200213928-ba3cf4fc8436?w=1000&auto=format&fit=crop&q=80",
       ],
-      tags: ["shining", "kubrick", "retro", "cult-film", "geometric"],
+      tags: ["spiderman", "marvel", "peterparker", "avengers", "nyc"],
+      isFeatured: true,
+    },
+    {
+      title: "Thor: Bring Me Thanos",
+      slug: "thor-bring-me-thanos",
+      categorySlug: "marvel",
+      description: "The God of Thunder descending into Wakanda amidst blinding celestial blue lightning and Stormbreaker.",
+      images: [
+        "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["thor", "marvel", "lightning", "avengers", "asgard"],
       isFeatured: false,
     },
     {
-      title: "Midnight Drive in LA",
-      slug: "midnight-drive-in-la",
-      categorySlug: "movies",
-      description: "Warm sodium highway glows, taillight motion blur, and synthwave mood inspired by neo-noir classics.",
+      title: "Wolverine: Adamantium Slash",
+      slug: "wolverine-adamantium-slash",
+      categorySlug: "marvel",
+      description: "Low-key gritty silhouette of Logan with extended adamantium claws glinting under cold rain.",
       images: [
-        "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=1000&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=1000&auto=format&fit=crop&q=80",
       ],
-      tags: ["drive", "neon", "los-angeles", "cinematic", "night"],
-      isFeatured: true,
-    },
-
-    // Minimal Art
-    {
-      title: "Bauhaus Exhibition 1923",
-      slug: "bauhaus-exhibition-1923",
-      categorySlug: "minimal-art",
-      description: "Geometric harmony with primary vermilion, deep cobalt, and warm parchment negative space.",
-      images: [
-        "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1000&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["bauhaus", "minimal", "modernist", "geometric", "art"],
-      isFeatured: true,
-    },
-    {
-      title: "Dune Curves No. 4",
-      slug: "dune-curves-no-4",
-      categorySlug: "minimal-art",
-      description: "Monochrome sweeping shadow lines across terracotta sand ridges. Peaceful aesthetic statement.",
-      images: [
-        "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["sand", "dune", "monochrome", "curves", "minimal"],
-      isFeatured: false,
-    },
-    {
-      title: "Kyoto Tea Pavilion",
-      slug: "kyoto-tea-pavilion",
-      categorySlug: "minimal-art",
-      description: "Raw cedar wood beams meeting white shoji paper partitions in diffused morning sun.",
-      images: [
-        "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["architecture", "japan", "wood", "zen", "wabi-sabi"],
+      tags: ["wolverine", "xmen", "marvel", "logan", "claws"],
       isFeatured: false,
     },
 
-    // Motivational
+    // --- 5. MOTIVATION ---
     {
       title: "Compound Interest & Daily Grit",
       slug: "compound-interest-daily-grit",
-      categorySlug: "motivational",
-      description: "1.01^365 = 37.8 vs 0.99^365 = 0.03. Elegant typographic presentation on Swiss grid.",
+      categorySlug: "motivation",
+      description: "Minimalist black-and-cream typography charting the exponential mathematics of 1% daily improvement.",
       images: [
         "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1000&auto=format&fit=crop&q=80",
       ],
-      tags: ["typography", "mindset", "focus", "discipline", "study"],
+      tags: ["compounding", "habits", "grit", "productivity", "typography"],
       isFeatured: true,
     },
     {
       title: "Ship Over Perfect",
       slug: "ship-over-perfect",
-      categorySlug: "motivational",
-      description: "Bold editorial blackletter manifesto for builders, coders, and startup creators.",
+      categorySlug: "motivation",
+      description: "Brutalist manifesto poster for builders, coders, and founders. Stark typography on dark obsidian slate.",
+      images: [
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["startup", "builder", "founders", "discipline", "ship"],
+      isFeatured: false,
+    },
+    {
+      title: "The 4:00 AM Solitude",
+      slug: "the-4am-solitude",
+      categorySlug: "motivation",
+      description: "Minimalist glowing typography celebrating early morning silence before the rest of the world wakes up.",
+      images: [
+        "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000&auto=format&fit=crop&q=80",
+      ],
+      tags: ["routine", "focus", "earlymorning", "discipline"],
+      isFeatured: false,
+    },
+    {
+      title: "Discipline Equals Freedom",
+      slug: "discipline-equals-freedom",
+      categorySlug: "motivation",
+      description: "Bold typographic quote exploring how radical self-discipline unlocks ultimate personal independence.",
       images: [
         "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&auto=format&fit=crop&q=80",
       ],
-      tags: ["startup", "builder", "coding", "manifesto"],
-      isFeatured: false,
-    },
-    {
-      title: "Deep Work Zone",
-      slug: "deep-work-zone",
-      categorySlug: "motivational",
-      description: "Clean brutalist typography statement designed to hang directly behind or above your screen.",
-      images: [
-        "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["office", "deep-work", "minimalist", "focus"],
-      isFeatured: false,
-    },
-
-    // Cars
-    {
-      title: "Monza 1967 Vintage Grand Prix",
-      slug: "monza-1967-vintage-grand-prix",
-      categorySlug: "cars",
-      description: "Classic Italian racing red tubular chassis racer rounding the high-banking curve.",
-      images: [
-        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["f1", "vintage", "monza", "motorsport", "classic-cars"],
-      isFeatured: true,
-    },
-    {
-      title: "Porsche 911 Turbo Silhouette",
-      slug: "porsche-911-turbo-silhouette",
-      categorySlug: "cars",
-      description: "The unmistakable whale-tail rear profile rendered in stark high-contrast studio rim lighting.",
-      images: [
-        "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["porsche", "supercar", "black-and-white", "automotive"],
-      isFeatured: false,
-    },
-    {
-      title: "Midnight Tokyo Expressway Racer",
-      slug: "midnight-tokyo-expressway-racer",
-      categorySlug: "cars",
-      description: "Wangan Bayshore route long exposure blur featuring iconic 90s JDM silhouette.",
-      images: [
-        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["jdm", "tokyo", "street-racing", "wangan"],
-      isFeatured: false,
-    },
-
-    // Music
-    {
-      title: "Analog Waveforms & Tubes",
-      slug: "analog-waveforms-tubes",
-      categorySlug: "music",
-      description: "Warm amber glow of vacuum tubes and reel-to-reel magnetic tape recording console.",
-      images: [
-        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["vinyl", "audio", "vintage", "analog", "hifi"],
-      isFeatured: false,
-    },
-    {
-      title: "Kind of Blue: Miles Quintet",
-      slug: "kind-of-blue-miles-quintet",
-      categorySlug: "music",
-      description: "Candid vintage smoke, brass trumpet bell, and modal jazz recording session atmosphere.",
-      images: [
-        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["jazz", "trumpet", "monochrome", "classic"],
-      isFeatured: true,
-    },
-    {
-      title: "Festival Crowd at Golden Hour",
-      slug: "festival-crowd-at-golden-hour",
-      categorySlug: "music",
-      description: "Hands raised towards the stage lights as sunset mist settles across the music festival grounds.",
-      images: [
-        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["concert", "festival", "energy", "crowd"],
-      isFeatured: false,
-    },
-
-    // Travel
-    {
-      title: "Santorini Cliffside Domes",
-      slug: "santorini-cliffside-domes",
-      categorySlug: "travel",
-      description: "Cobalt blue domes and whitewashed Aegean stone stairs overlooking azure caldera waters.",
-      images: [
-        "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["greece", "santorini", "travel", "mediterranean", "coastal"],
-      isFeatured: false,
-    },
-    {
-      title: "New York Iron & Steam",
-      slug: "new-york-iron-and-steam",
-      categorySlug: "travel",
-      description: "Flatiron building cutting through winter morning mist with yellow cab foreground accent.",
-      images: [
-        "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["new-york", "architecture", "urban", "monochrome"],
-      isFeatured: true,
-    },
-    {
-      title: "Fushimi Inari Torii Pathway",
-      slug: "fushimi-inari-torii-pathway",
-      categorySlug: "travel",
-      description: "Endless thousand vermilion torii gates winding through ancient cedar moss forests in Kyoto.",
-      images: [
-        "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["kyoto", "japan", "torii", "shrine", "spiritual"],
-      isFeatured: false,
-    },
-
-    // Nature
-    {
-      title: "Misty Pacific Coast Pines",
-      slug: "misty-pacific-coast-pines",
-      categorySlug: "nature",
-      description: "Moody layered fog rolling over old-growth Douglas firs along the Oregon coastline.",
-      images: [
-        "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["forest", "mist", "moody", "pacific", "green"],
-      isFeatured: true,
-    },
-    {
-      title: "Dolomite Jagged Peaks",
-      slug: "dolomite-jagged-peaks",
-      categorySlug: "nature",
-      description: "Alpenglow touching the jagged limestone spires of Seceda in northern Italy.",
-      images: [
-        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["mountains", "alps", "hiking", "adventure", "dolomites"],
-      isFeatured: false,
-    },
-    {
-      title: "Monstera Botanical Venation",
-      slug: "monstera-botanical-venation",
-      categorySlug: "nature",
-      description: "Macro botanical photography capturing chlorophyll light translucence and cellular geometry.",
-      images: [
-        "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1000&auto=format&fit=crop&q=80",
-      ],
-      tags: ["botanical", "plants", "macro", "minimal", "greenery"],
+      tags: ["discipline", "freedom", "mindset", "success"],
       isFeatured: false,
     },
   ];
 
+  // 5. Upsert all products
+  const seededProductSlugs: string[] = [];
+
   for (const p of productsData) {
     const categoryId = categoryMap.get(p.categorySlug);
     if (!categoryId) continue;
+
+    seededProductSlugs.push(p.slug);
 
     const product = await prisma.product.upsert({
       where: { slug: p.slug },
@@ -414,6 +353,7 @@ async function main() {
         tags: p.tags,
         categoryId,
         isFeatured: p.isFeatured,
+        isActive: true,
       },
       create: {
         title: p.title,
@@ -427,31 +367,23 @@ async function main() {
       },
     });
 
-    // Seed variants for this product
-    // Sizes: A4 (₹70 -> 7000 paise) and A3 (₹120 -> 12000 paise)
-    // Finishes: GLOSS (default) and MATTE
-    // Paper: GSM_300
+    // Seed A4 (₹70 -> 7000 paise) and A3 (₹120 -> 12000 paise) variants in GLOSS finish
     const variantCombos = [
       { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 7000 },
-      { size: Size.A4, finish: Finish.MATTE, paper: Paper.GSM_300, pricePaise: 7000 },
       { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 12000 },
-      { size: Size.A3, finish: Finish.MATTE, paper: Paper.GSM_300, pricePaise: 12000 },
     ];
 
     for (const v of variantCombos) {
       const sku = `${product.slug}-${v.size}-${v.finish}-${v.paper}`.toUpperCase();
       await prisma.productVariant.upsert({
-        where: {
-          productId_size_finish_paper: {
-            productId: product.id,
-            size: v.size,
-            finish: v.finish,
-            paper: v.paper,
-          },
-        },
+        where: { sku },
         update: {
+          productId: product.id,
+          size: v.size,
+          finish: v.finish,
+          paper: v.paper,
           pricePaise: v.pricePaise,
-          stock: 40,
+          stock: 50,
         },
         create: {
           productId: product.id,
@@ -459,56 +391,53 @@ async function main() {
           finish: v.finish,
           paper: v.paper,
           pricePaise: v.pricePaise,
-          stock: 40,
+          stock: 50,
           sku,
         },
       });
     }
   }
-  console.log(`✓ Seeded ${productsData.length} catalog products with all variants`);
+  console.log(`✓ Seeded ${seededProductSlugs.length} posters across the 5 categories`);
 
-  // 4. Seed 1 "Custom Poster" product (isCustomBase = true)
-  const customCategory = categoryMap.get("minimal-art") || Array.from(categoryMap.values())[0];
+  // 6. Seed Custom Poster Base Product
+  const defaultCategoryId = categoryMap.get("anime") || categoryMap.get("sports")!;
   const customBaseProduct = await prisma.product.upsert({
-    where: { slug: "custom-poster" },
+    where: { slug: "custom" },
     update: {
+      title: "Custom Wall Poster",
+      description: "Upload any custom photo, illustration, or memory. Precision printed on archival 300 GSM stock.",
+      isActive: true,
       isCustomBase: true,
-      title: "Custom Printed Wall Poster",
-      description: "Upload your personal photo, digital illustration, or memory. Professionally cropped and printed on 300 GSM archival stock.",
+      categoryId: defaultCategoryId,
     },
     create: {
-      title: "Custom Printed Wall Poster",
-      slug: "custom-poster",
-      description: "Upload your personal photo, digital illustration, or memory. Professionally cropped and printed on 300 GSM archival stock.",
-      categoryId: customCategory,
+      title: "Custom Wall Poster",
+      slug: "custom",
+      description: "Upload any custom photo, illustration, or memory. Precision printed on archival 300 GSM stock.",
       images: [
         "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1000&auto=format&fit=crop&q=80",
       ],
-      tags: ["custom", "personalized", "print", "gift", "photo"],
-      isCustomBase: true,
+      tags: ["custom", "personalized", "print"],
+      categoryId: defaultCategoryId,
       isActive: true,
+      isCustomBase: true,
     },
   });
 
   const customVariants = [
     { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 7000 },
-    { size: Size.A4, finish: Finish.MATTE, paper: Paper.GSM_300, pricePaise: 7000 },
     { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 12000 },
-    { size: Size.A3, finish: Finish.MATTE, paper: Paper.GSM_300, pricePaise: 12000 },
   ];
 
   for (const v of customVariants) {
     const sku = `CUSTOM-${v.size}-${v.finish}-${v.paper}`.toUpperCase();
     await prisma.productVariant.upsert({
-      where: {
-        productId_size_finish_paper: {
-          productId: customBaseProduct.id,
-          size: v.size,
-          finish: v.finish,
-          paper: v.paper,
-        },
-      },
+      where: { sku },
       update: {
+        productId: customBaseProduct.id,
+        size: v.size,
+        finish: v.finish,
+        paper: v.paper,
         pricePaise: v.pricePaise,
         stock: 9999,
       },
@@ -523,9 +452,50 @@ async function main() {
       },
     });
   }
-  console.log(`✓ Seeded Custom Base product with all custom variants`);
+  console.log(`✓ Seeded Custom Base product`);
 
-  console.log("🎉 Seeding completed successfully!");
+  // 7. Remove any old products not in the new 5 categories
+  const allAllowedSlugs = [...seededProductSlugs, "custom"];
+  const oldProducts = await prisma.product.findMany({
+    where: {
+      slug: { notIn: allAllowedSlugs },
+    },
+    select: { id: true, slug: true },
+  });
+
+  if (oldProducts.length > 0) {
+    const oldProductIds = oldProducts.map((p) => p.id);
+    console.log(`Cleaning up ${oldProducts.length} old products not in the 5 categories...`);
+    // Delete variants first
+    await prisma.productVariant.deleteMany({
+      where: { productId: { in: oldProductIds } },
+    });
+    // Delete products
+    await prisma.product.deleteMany({
+      where: { id: { in: oldProductIds } },
+    });
+    console.log(`✓ Removed old products`);
+  }
+
+  // 8. Remove any old categories not in the 5 target categories
+  const oldCategories = await prisma.category.findMany({
+    where: {
+      slug: { notIn: targetSlugs },
+    },
+    select: { id: true, slug: true, name: true },
+  });
+
+  if (oldCategories.length > 0) {
+    console.log(`Removing ${oldCategories.length} deprecated categories: ${oldCategories.map((c) => c.slug).join(", ")}...`);
+    await prisma.category.deleteMany({
+      where: {
+        id: { in: oldCategories.map((c) => c.id) },
+      },
+    });
+    console.log(`✓ Deleted old categories from Supabase`);
+  }
+
+  console.log("🎉 Seeding completed successfully with only the 5 categories!");
 }
 
 main()

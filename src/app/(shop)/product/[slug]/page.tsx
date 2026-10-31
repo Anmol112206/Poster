@@ -19,12 +19,14 @@ export async function generateMetadata(props: ProductPageProps): Promise<Metadat
     };
   }
 
+  const printSummary = `${product.title} (${product.catalogCode || "Archival Print"}) — Premium A4 & A3 wall poster printed on 300 GSM stock.`;
+
   return {
-    title: `${product.title} — Camino Wall Poster Print`,
-    description: product.description,
+    title: `${product.title} (${product.catalogCode}) — Camino Wall Poster Print`,
+    description: printSummary,
     openGraph: {
-      title: `${product.title} (A4 & A3 Wall Posters)`,
-      description: product.description,
+      title: `${product.title} • ${product.catalogCode}`,
+      description: printSummary,
       images: [
         {
           url: product.images[0] || "",

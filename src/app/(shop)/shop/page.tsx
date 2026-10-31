@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { Suspense } from "react";
 import ProductCard from "@/components/product/ProductCard";
 import { getCatalogProducts } from "@/lib/products";
 import { shopQuerySchema } from "@/lib/validators/shop";
-import { Filter, Search, RotateCcw } from "lucide-react";
+import { RotateCcw, Package } from "lucide-react";
 
 interface ShopPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -11,28 +10,28 @@ interface ShopPageProps {
 
 const CATEGORIES = [
   { label: "All Categories", slug: "" },
-  { label: "Anime & Manga", slug: "anime" },
-  { label: "Cinema & Cult", slug: "movies" },
-  { label: "Minimalist Art", slug: "minimal-art" },
-  { label: "Motivational", slug: "motivational" },
-  { label: "Automotive", slug: "cars" },
-  { label: "Music & Albums", slug: "music" },
-  { label: "Travel & City", slug: "travel" },
-  { label: "Nature & Botanical", slug: "nature" },
+  { label: "Sports", slug: "sports" },
+  { label: "God", slug: "god" },
+  { label: "Anime", slug: "anime" },
+  { label: "Marvel", slug: "marvel" },
+  { label: "Motivation", slug: "motivation" },
 ];
 
 export default async function ShopPage(props: ShopPageProps) {
   const rawParams = await props.searchParams;
 
   const parsed = shopQuerySchema.safeParse({
-    q: typeof rawParams.q === "string" ? rawParams.q : "",
+    q: "",
     category: typeof rawParams.category === "string" ? rawParams.category : "",
-    size: typeof rawParams.size === "string" ? rawParams.size : "ALL",
-    sort: typeof rawParams.sort === "string" ? rawParams.sort : "newest",
+    size: "ALL",
+    sort: "newest",
     page: typeof rawParams.page === "string" ? Number(rawParams.page) : 1,
   });
 
-  const query = parsed.success ? parsed.data : { q: "", category: "", size: "ALL" as const, sort: "newest" as const, page: 1, minPrice: 0, maxPrice: 20000, finish: "ALL" as const };
+  const query = parsed.success
+    ? parsed.data
+    : { q: "", category: "", size: "ALL" as const, sort: "newest" as const, page: 1, minPrice: 0, maxPrice: 20000, finish: "ALL" as const };
+
   const products = await getCatalogProducts(query);
 
   return (
@@ -42,7 +41,7 @@ export default async function ShopPage(props: ShopPageProps) {
         <div className="text-xs text-[#6B665E] flex items-center gap-1.5 mb-2">
           <Link href="/" className="hover:text-[#1A1A1A]">Home</Link>
           <span>/</span>
-          <span className="text-[#1A1A1A] font-medium">Shop</span>
+          <Link href="/shop" className="hover:text-[#1A1A1A]">Shop</Link>
           {query.category && (
             <>
               <span>/</span>
@@ -62,21 +61,6 @@ export default async function ShopPage(props: ShopPageProps) {
               Showing {products.length} prints • A4 (₹70) & A3 (₹120) • Printed on 300 GSM Archival stock
             </p>
           </div>
-
-          {/* Search bar inside page header */}
-          <form method="GET" action="/shop" className="relative flex items-center max-w-xs w-full">
-            <input
-              type="text"
-              name="q"
-              defaultValue={query.q}
-              placeholder="Search by title, anime, movie..."
-              className="w-full rounded border border-[#DDD7CC] bg-white px-3.5 py-2 pr-9 text-xs text-[#1A1A1A] outline-none focus:border-[#C8501E]"
-            />
-            {query.category && <input type="hidden" name="category" value={query.category} />}
-            <button type="submit" className="absolute right-2.5 text-[#6B665E] hover:text-[#1A1A1A]" aria-label="Search">
-              <Search className="h-4 w-4" />
-            </button>
-          </form>
         </div>
       </div>
 
@@ -85,25 +69,18 @@ export default async function ShopPage(props: ShopPageProps) {
         {/* Sidebar Filters */}
         <aside className="lg:col-span-1 space-y-6">
           {/* Active Filter Chips */}
-          {(query.category || query.q || query.sort !== "newest") && (
+          {query.category && (
             <div className="rounded border border-[#DDD7CC] bg-white p-4">
               <div className="flex items-center justify-between text-xs font-semibold text-[#1A1A1A]">
-                <span>Active Filters</span>
+                <span>Active Filter</span>
                 <Link href="/shop" className="text-[#C8501E] hover:underline flex items-center gap-1">
                   <RotateCcw className="h-3 w-3" /> Reset
                 </Link>
               </div>
               <div className="mt-2 flex flex-wrap gap-1.5">
-                {query.category && (
-                  <span className="rounded bg-[#F6F3EE] border border-[#DDD7CC] px-2 py-0.5 text-[11px] text-[#1A1A1A]">
-                    Category: {query.category}
-                  </span>
-                )}
-                {query.q && (
-                  <span className="rounded bg-[#F6F3EE] border border-[#DDD7CC] px-2 py-0.5 text-[11px] text-[#1A1A1A]">
-                    Query: &quot;{query.q}&quot;
-                  </span>
-                )}
+                <span className="rounded bg-[#F6F3EE] border border-[#DDD7CC] px-2 py-0.5 text-[11px] text-[#1A1A1A]">
+                  Category: {query.category}
+                </span>
               </div>
             </div>
           )}
@@ -116,58 +93,19 @@ export default async function ShopPage(props: ShopPageProps) {
             <ul className="mt-3 space-y-1.5 text-xs">
               {CATEGORIES.map((cat) => {
                 const isActive = query.category === cat.slug;
-                const nextParams = new URLSearchParams();
-                if (cat.slug) nextParams.set("category", cat.slug);
-                if (query.q) nextParams.set("q", query.q);
-                if (query.sort && query.sort !== "newest") nextParams.set("sort", query.sort);
+                const href = cat.slug ? `/shop?category=${cat.slug}` : "/shop";
 
                 return (
                   <li key={cat.slug || "all"}>
                     <Link
-                      href={`/shop${nextParams.toString() ? `?${nextParams.toString()}` : ""}`}
-                      className={`flex items-center justify-between py-1.5 px-2 rounded transition-colors ${
+                      href={href}
+                      className={`flex items-center justify-between py-1.5 px-2.5 rounded transition-colors ${
                         isActive
                           ? "bg-[#1A1A1A] text-white font-medium"
                           : "text-[#6B665E] hover:bg-[#F6F3EE] hover:text-[#1A1A1A]"
                       }`}
                     >
                       <span>{cat.label}</span>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Sort Filter */}
-          <div className="rounded border border-[#DDD7CC] bg-white p-5">
-            <h3 className="font-serif text-sm font-semibold uppercase tracking-wider text-[#1A1A1A] border-b border-[#DDD7CC] pb-2">
-              Sort By
-            </h3>
-            <ul className="mt-3 space-y-1.5 text-xs">
-              {[
-                { label: "Newest Arrivals", val: "newest" },
-                { label: "Price: Low to High", val: "price_asc" },
-                { label: "Price: High to Low", val: "price_desc" },
-                { label: "Popular Picks", val: "popular" },
-              ].map((s) => {
-                const isSelected = query.sort === s.val;
-                const nextParams = new URLSearchParams();
-                if (query.category) nextParams.set("category", query.category);
-                if (query.q) nextParams.set("q", query.q);
-                nextParams.set("sort", s.val);
-
-                return (
-                  <li key={s.val}>
-                    <Link
-                      href={`/shop?${nextParams.toString()}`}
-                      className={`block py-1.5 px-2 rounded transition-colors ${
-                        isSelected
-                          ? "bg-[#1A1A1A] text-white font-medium"
-                          : "text-[#6B665E] hover:bg-[#F6F3EE] hover:text-[#1A1A1A]"
-                      }`}
-                    >
-                      {s.label}
                     </Link>
                   </li>
                 );
@@ -199,10 +137,10 @@ export default async function ShopPage(props: ShopPageProps) {
         <section className="lg:col-span-3">
           {products.length === 0 ? (
             <div className="rounded border border-[#DDD7CC] bg-white p-12 text-center">
-              <Search className="mx-auto h-12 w-12 text-[#DDD7CC]" />
+              <Package className="mx-auto h-12 w-12 text-[#DDD7CC]" />
               <h3 className="mt-4 font-serif text-xl font-bold text-[#1A1A1A]">No posters found</h3>
               <p className="mt-2 text-sm text-[#6B665E]">
-                We couldn&apos;t find any prints matching &quot;{query.q || query.category}&quot;.
+                We couldn&apos;t find any prints in this category.
               </p>
               <div className="mt-6 flex justify-center gap-3">
                 <Link

@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
  * Executes a database query with a fast timeout to prevent SSR rendering hangs
  * when the database is unreachable or offline during local dev.
  */
-export async function withDbTimeout<T>(promise: Promise<T>, ms: number = 1000): Promise<T> {
+export async function withDbTimeout<T>(promise: Promise<T>, ms: number = 4000): Promise<T> {
   let timer: NodeJS.Timeout;
   const timeoutPromise = new Promise<never>((_, reject) => {
     timer = setTimeout(() => reject(new Error("DB_TIMEOUT")), ms);

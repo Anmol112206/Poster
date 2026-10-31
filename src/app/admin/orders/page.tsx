@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { formatINR } from "@/lib/utils";
-import { ArrowLeft, Package, Truck, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Package, Truck, CheckCircle2, ExternalLink } from "lucide-react";
 
 export default async function AdminOrdersPage() {
   const session = await auth();
@@ -20,7 +20,7 @@ export default async function AdminOrdersPage() {
     paymentStatus: string;
     createdAt: Date;
     user: { name: string | null; email: string };
-    items: Array<{ id: string; productTitle: string; variantLabel: string; quantity: number }>;
+    items: Array<{ id: string; productTitle: string; variantLabel: string; quantity: number; imageUrl?: string | null }>;
   }> = [];
 
   try {
@@ -80,12 +80,32 @@ export default async function AdminOrdersPage() {
                 </div>
               </div>
 
-              <div className="mt-3 text-xs text-[#6B665E] space-y-1">
+              <div className="mt-3 text-xs text-[#6B665E] space-y-2">
                 {ord.items.map((i) => (
-                  <p key={i.id} className="text-[#1A1A1A]">
-                    • {i.productTitle} — <span className="text-[#6B665E]">{i.variantLabel}</span> ×{" "}
-                    {i.quantity}
-                  </p>
+                  <div key={i.id} className="flex items-center justify-between gap-3 p-2 rounded bg-[#FDFBF7] border border-[#DDD7CC]/60">
+                    <div className="flex items-center gap-3">
+                      {i.imageUrl && (
+                        <div className="relative h-12 w-9 rounded overflow-hidden border border-[#DDD7CC] bg-[#ECE7DE] shrink-0">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={i.imageUrl} alt={i.productTitle} className="h-full w-full object-cover" />
+                        </div>
+                      )}
+                      <div>
+                        <p className="font-medium text-[#1A1A1A]">{i.productTitle}</p>
+                        <p className="text-[11px] text-[#6B665E]">{i.variantLabel} × {i.quantity}</p>
+                      </div>
+                    </div>
+                    {i.imageUrl && (
+                      <a
+                        href={i.imageUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded bg-white px-2.5 py-1 text-[11px] font-medium text-[#C8501E] border border-[#DDD7CC] hover:border-[#C8501E] transition-colors"
+                      >
+                        <ExternalLink className="h-3 w-3" /> Full Print File
+                      </a>
+                    )}
+                  </div>
                 ))}
               </div>
 

@@ -11,6 +11,7 @@ export interface ProductCardProps {
   id: string;
   title: string;
   slug: string;
+  catalogCode?: string;
   categoryName?: string;
   categorySlug?: string;
   imageUrl: string;
@@ -27,6 +28,7 @@ export default function ProductCard({
   id,
   title,
   slug,
+  catalogCode,
   categoryName,
   imageUrl,
   secondaryImageUrl,
@@ -42,6 +44,7 @@ export default function ProductCard({
   const [isHovered, setIsHovered] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
 
+  const derivedCode = catalogCode || tags?.find((t) => /^cam-[a-z]{2}-\d{2}$/i.test(t))?.toUpperCase();
   const currentPrice = selectedSize === "A4" ? a4PricePaise : a3PricePaise;
   const currentVariantId = selectedSize === "A4" ? a4VariantId : a3VariantId;
 
@@ -65,7 +68,7 @@ export default function ProductCard({
 
     setTimeout(() => {
       setIsAdding(false);
-    }, 1200);
+    }, 600);
   };
 
   return (
@@ -84,14 +87,25 @@ export default function ProductCard({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
-        {isFeatured && (
-          <span className="absolute top-2.5 left-2.5 rounded bg-[#1A1A1A] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
-            Featured
-          </span>
-        )}
+        {/* Top Badges Overlay */}
+        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
+          {isFeatured ? (
+            <span className="rounded bg-[#1A1A1A] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white shadow-xs">
+              Featured
+            </span>
+          ) : (
+            <span />
+          )}
+
+          {derivedCode && (
+            <span className="rounded bg-[#1A1A1A]/85 backdrop-blur-xs px-2 py-0.5 font-mono text-[10px] font-bold text-white border border-white/20 shadow-xs">
+              {derivedCode}
+            </span>
+          )}
+        </div>
 
         {categoryName && (
-          <span className="absolute bottom-2.5 left-2.5 rounded bg-white/90 backdrop-blur-xs px-2 py-0.5 text-[10px] font-medium text-[#1A1A1A] border border-[#DDD7CC]">
+          <span className="absolute bottom-2.5 left-2.5 rounded bg-white/95 backdrop-blur-xs px-2 py-0.5 text-[10px] font-semibold tracking-wide text-[#1A1A1A] border border-[#DDD7CC]">
             {categoryName}
           </span>
         )}
@@ -100,11 +114,17 @@ export default function ProductCard({
       {/* Content */}
       <div className="flex flex-1 flex-col justify-between p-4">
         <div>
-          <Link href={`/product/${slug}`}>
-            <h3 className="font-serif text-base font-semibold text-[#1A1A1A] group-hover:text-[#C8501E] transition-colors line-clamp-1">
-              {title}
-            </h3>
-          </Link>
+          <div className="flex items-start justify-between gap-2">
+            <Link href={`/product/${slug}`} className="flex-1">
+              <h3 className="font-serif text-base font-semibold text-[#1A1A1A] group-hover:text-[#C8501E] transition-colors line-clamp-1">
+                {title}
+              </h3>
+            </Link>
+          </div>
+
+          <p className="mt-1 text-[11px] text-[#6B665E] font-medium">
+            300 GSM Archival • Vibrant Gloss
+          </p>
 
           {/* Size Pills */}
           <div className="mt-2.5 flex items-center justify-between text-xs">
