@@ -226,11 +226,6 @@ model OrderItem {
   @@index([orderId])
 }
 
-model Subscriber {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  createdAt DateTime @default(now())
-}
 
 model ContactMessage {
   id        String   @id @default(cuid())

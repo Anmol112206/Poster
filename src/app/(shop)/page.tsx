@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Palette, Layers, Box, CheckCircle2, Star, Sparkles } from "lucide-react";
-import NewsletterSection from "@/components/home/NewsletterSection";
 import HeroCategorySlider from "@/components/home/HeroCategorySlider";
 
 const categories = [
@@ -301,8 +300,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <NewsletterSection />
     </div>
   );
 }
