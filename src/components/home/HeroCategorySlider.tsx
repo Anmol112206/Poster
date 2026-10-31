@@ -66,12 +66,12 @@ export default function HeroCategorySlider() {
     setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
   }, [totalSlides]);
 
-  // Auto-play interval: 4 seconds
+  // Auto-play interval: 2 seconds
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
       nextSlide();
-    }, 4000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [isPaused, nextSlide]);
 
@@ -109,7 +109,7 @@ export default function HeroCategorySlider() {
           return (
             <div
               key={slide.categorySlug}
-              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
                 isActive ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
               }`}
             >
