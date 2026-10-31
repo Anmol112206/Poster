@@ -12,17 +12,6 @@ export const loginSchema = z.object({
   callbackUrl: z.string().optional(),
 });
 
-export const requestOtpSchema = z.object({
-  phone: z
-    .string()
-    .trim()
-    .regex(indianPhoneRegex, "Enter a valid 10-digit Indian mobile number (e.g. 9876543210)"),
-});
-
-export const verifyOtpSchema = z.object({
-  phone: z.string().trim().regex(indianPhoneRegex, "Valid 10-digit phone required"),
-  otp: z.string().trim().length(6, "OTP must be exactly 6 digits"),
-});
 
 export const signupSchema = z
   .object({
@@ -36,7 +25,6 @@ export const signupSchema = z
       .string()
       .trim()
       .regex(indianPhoneRegex, "Enter a valid 10-digit Indian mobile number starting with 6-9"),
-    otp: z.string().trim().length(6, "Please verify mobile with the 6-digit OTP"),
     password: z
       .string()
       .min(8, "Password must be at least 8 characters")
@@ -51,5 +39,3 @@ export const signupSchema = z
 
 export type LoginInput = z.infer<typeof loginSchema>;
 export type SignupInput = z.infer<typeof signupSchema>;
-export type RequestOtpInput = z.infer<typeof requestOtpSchema>;
-export type VerifyOtpInput = z.infer<typeof verifyOtpSchema>;

@@ -16,8 +16,8 @@ const FAQS = [
     a: "We print exclusively on heavyweight 300 GSM archival cardstock. It has a substantial, premium feel, does not curl easily, and reproduces deep ink density without bleeding.",
   },
   {
-    q: "What is the difference between Gloss and Matte finish?",
-    a: "Vibrant Gloss brings out maximum contrast, saturation, and deep cyber/neon black levels. Velvet Matte has an anti-glare, non-reflective finish best suited for brightly lit rooms or direct desk lamps.",
+    q: "What paper finish do you use?",
+    a: "All our posters feature our signature 300 GSM Vibrant Gloss archival finish. It brings out maximum contrast, brilliant color saturation, and deep obsidian black levels for stunning wall display.",
   },
   {
     q: "How does the custom poster tool work?",

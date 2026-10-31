@@ -23,12 +23,13 @@ export interface CartTotals {
   freeShippingRemainingPaise: number;
 }
 
-export const FREE_SHIPPING_THRESHOLD_PAISE = 69900; // ₹699
-export const FLAT_SHIPPING_PAISE = 4900; // ₹49
-export const COD_FEE_PAISE = 0; // ₹0 (Free COD for college startup demo)
+export const FREE_SHIPPING_THRESHOLD_PAISE = 0; // Always Free Shipping across India
+export const FLAT_SHIPPING_PAISE = 0; // Free delivery
+export const COD_FEE_PAISE = 0; // Free COD
 
 /**
  * Pure function to calculate subtotal, shipping, and total for a given cart.
+ * Delivery is always 100% free across India.
  */
 export function calculateCart({
   items,
@@ -38,24 +39,20 @@ export function calculateCart({
     return sum + Math.max(0, item.pricePaise) * Math.max(0, item.quantity);
   }, 0);
 
-  // Free shipping above ₹699 (69900 paise)
-  const shippingPaise = subtotalPaise >= FREE_SHIPPING_THRESHOLD_PAISE || subtotalPaise === 0
-    ? 0
-    : FLAT_SHIPPING_PAISE;
-
-  const codFeePaise = paymentMethod === "COD" ? COD_FEE_PAISE : 0;
+  // Free shipping on all orders
+  const shippingPaise = 0;
+  const codFeePaise = 0;
   const discountPaise = 0;
 
   const totalPaise = Math.max(0, subtotalPaise + shippingPaise + codFeePaise - discountPaise);
-  const freeShippingRemainingPaise = Math.max(0, FREE_SHIPPING_THRESHOLD_PAISE - subtotalPaise);
 
   return {
     subtotalPaise,
-    shippingPaise,
-    codFeePaise,
-    discountPaise,
+    shippingPaise: 0,
+    codFeePaise: 0,
+    discountPaise: 0,
     totalPaise,
-    freeShippingThresholdPaise: FREE_SHIPPING_THRESHOLD_PAISE,
-    freeShippingRemainingPaise,
+    freeShippingThresholdPaise: 0,
+    freeShippingRemainingPaise: 0,
   };
 }

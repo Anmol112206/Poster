@@ -96,6 +96,12 @@ export default function Footer() {
                 <span className="text-xs text-[#6B665E] block">Paper: 300 GSM Archival</span>
               </li>
               <li>
+                <span className="text-xs text-[#6B665E] block">Finish: Vibrant Gloss</span>
+              </li>
+              <li>
+                <span className="text-xs text-[#6B665E] block">Delivery: 100% Free Pan-India</span>
+              </li>
+              <li>
                 <span className="text-xs text-[#6B665E] block">Payment: Cash on Delivery</span>
               </li>
               <li className="pt-2">

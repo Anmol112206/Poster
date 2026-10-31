@@ -19,12 +19,14 @@ Built with **Next.js 16+ (App Router)**, **TypeScript**, **Tailwind CSS v4**, **
   - Real-time DPI quality check badge (>150 DPI recommended, warning when <150 DPI).
   - 3 instant 0-network CORS-safe vector sample presets for 1-click testing.
   - Wall preview mockup visualizer against desk silhouettes.
-- **Authentication & Roles**:
+- **Signature 300 GSM Archival Gloss Finish**: Vibrant gloss stock engineered for maximum ink saturation, contrast, and deep rich blacks.
+- **100% Free Express Delivery Across India**: Permanent free delivery on every order, with zero minimum purchase thresholds or hidden courier fees.
+- **Streamlined Authentication**:
   - Full JWT-based NextAuth v5 session flow.
   - Role-based authorization (`CUSTOMER` and `ADMIN`).
-  - Mobile phone OTP verification flow.
+  - Direct, fast sign-up and sign-in without OTP friction.
 - **Cart & Cash on Delivery (COD) Checkout**:
-  - Slide-out mini-cart drawer with free shipping progress bar.
+  - Slide-out mini-cart drawer with instant order summary.
   - Address collection with pincode validation.
   - Order placement with unique tracking numbers (`WP-YYYYMMDD-XXXX`).
 - **Resilient Offline Fallback**: Static catalogue and fast DB timeout wrappers prevent local development hangs when database connectivity is cold or starting.

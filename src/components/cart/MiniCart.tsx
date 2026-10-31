@@ -24,10 +24,6 @@ export default function MiniCart() {
 
   if (!isCartOpen) return null;
 
-  const FREE_SHIPPING_THRESHOLD_PAISE = 69900;
-  const differencePaise = FREE_SHIPPING_THRESHOLD_PAISE - subtotalPaise;
-  const freeShippingProgress = Math.min(100, Math.round((subtotalPaise / FREE_SHIPPING_THRESHOLD_PAISE) * 100));
-
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       {/* Backdrop */}
@@ -59,24 +55,13 @@ export default function MiniCart() {
           </button>
         </div>
 
-        {/* Free shipping progress bar */}
-        <div className="border-b border-[#DDD7CC] bg-[#EFECE5] px-6 py-3">
-          <div className="flex justify-between text-xs font-medium text-[#1A1A1A]">
-            {differencePaise > 0 ? (
-              <span>
-                Add <span className="font-semibold text-[#C8501E]">{formatINR(differencePaise)}</span> more for free delivery
-              </span>
-            ) : (
-              <span className="text-emerald-700 font-semibold">🎉 You have unlocked Free Shipping!</span>
-            )}
-            <span>{freeShippingProgress}%</span>
-          </div>
-          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[#DDD7CC]">
-            <div
-              className="h-full bg-[#C8501E] transition-all duration-300"
-              style={{ width: `${freeShippingProgress}%` }}
-            />
-          </div>
+        {/* Free shipping banner */}
+        <div className="border-b border-[#DDD7CC] bg-[#EAE5DC] px-6 py-2.5 flex items-center justify-between text-xs font-medium text-[#1A1A1A]">
+          <span className="text-emerald-800 font-semibold flex items-center gap-1.5">
+            <span className="inline-block h-2 w-2 rounded-full bg-emerald-600" />
+            100% Free Delivery on All Orders across India
+          </span>
+          <span className="text-[#6B665E] font-semibold">FREE</span>
         </div>
 
         {/* Items List */}
@@ -123,7 +108,7 @@ export default function MiniCart() {
                       </button>
                     </div>
                     <p className="mt-0.5 text-xs text-[#6B665E]">
-                      {item.size} • {item.finish} • 300 GSM
+                      {item.size} • Gloss Finish • 300 GSM
                       {item.customDesignId && " • Custom Print"}
                     </p>
                   </div>
@@ -164,7 +149,9 @@ export default function MiniCart() {
               <span>Subtotal</span>
               <span>{formatINR(subtotalPaise)}</span>
             </div>
-            <p className="text-xs text-[#6B665E]">Taxes included. Shipping calculated at checkout.</p>
+            <p className="text-xs text-emerald-700 font-medium flex items-center gap-1.5">
+              <span>✓</span> Free express courier delivery across India included.
+            </p>
 
             <div className="grid grid-cols-2 gap-3">
               <Link

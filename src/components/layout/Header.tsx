@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import {
   ShoppingBag,
   User,
-  Search,
   Menu,
   X,
   Palette,
@@ -19,24 +17,11 @@ import {
 import { useCart } from "@/context/CartContext";
 
 export default function Header() {
-  const router = useRouter();
   const { data: session } = useSession();
   const { itemCount, openCart } = useCart();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/shop?q=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchOpen(false);
-      setSearchQuery("");
-      setMobileMenuOpen(false);
-    }
-  };
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#DDD7CC] bg-[#F6F3EE]/95 backdrop-blur-md">
@@ -79,51 +64,8 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Right Actions: Search, Login / Account, Cart */}
+        {/* Right Actions: Login / Account, Cart */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Search Trigger */}
-          <div className="relative">
-            {searchOpen ? (
-              <form onSubmit={handleSearchSubmit} className="flex items-center">
-                <input
-                  id="header-search-input"
-                  type="text"
-                  autoFocus
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search posters, anime, cinema..."
-                  className="w-48 rounded border border-[#1A1A1A] bg-white px-3 py-1.5 text-xs text-[#1A1A1A] outline-none sm:w-64"
-                />
-                <button
-                  type="submit"
-                  className="ml-1 p-1.5 text-[#1A1A1A] hover:text-[#C8501E]"
-                  aria-label="Submit search"
-                >
-                  <Search className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSearchOpen(false)}
-                  className="p-1 text-[#6B665E] hover:text-[#1A1A1A]"
-                  aria-label="Close search"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </form>
-            ) : (
-              <button
-                id="header-search-btn"
-                type="button"
-                onClick={() => setSearchOpen(true)}
-                className="flex items-center gap-1.5 rounded p-2 text-[#1A1A1A] hover:bg-[#EAE5DC] transition-colors"
-                aria-label="Open search"
-                title="Search posters"
-              >
-                <Search className="h-5 w-5" />
-              </button>
-            )}
-          </div>
-
           {/* Account / Login */}
           {session?.user ? (
             <div className="relative">

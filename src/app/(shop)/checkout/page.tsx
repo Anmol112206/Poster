@@ -151,7 +151,7 @@ export default function CheckoutPage() {
           Complete Your Order
         </h1>
         <p className="mt-1 text-sm text-[#6B665E]">
-          Free delivery on orders over ₹699 • Cash on Delivery available across India
+          100% Free Express Delivery on All Orders • Cash on Delivery available across India
         </p>
       </div>
 
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
 
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#6B665E]">
-                  Mobile Number (For Delivery OTP)
+                  Mobile Number (For Courier Updates)
                 </label>
                 <div className="mt-1 flex items-center rounded border border-[#DDD7CC] bg-white px-3">
                   <span className="text-sm font-medium text-[#6B665E]">+91</span>
@@ -362,7 +362,7 @@ export default function CheckoutPage() {
                   <div className="flex-1 text-xs">
                     <p className="font-semibold text-[#1A1A1A] line-clamp-1">{item.productTitle}</p>
                     <p className="text-[#6B665E]">
-                      {item.size} • {item.finish} • Qty {item.quantity}
+                      {item.size} • Gloss Finish • Qty {item.quantity}
                     </p>
                   </div>
                   <span className="text-xs font-bold text-[#1A1A1A]">
@@ -380,13 +380,7 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between text-[#6B665E]">
                 <span>Shipping Fee</span>
-                <span>
-                  {totals.shippingPaise === 0 ? (
-                    <span className="text-emerald-700 font-semibold">FREE</span>
-                  ) : (
-                    <span className="text-[#1A1A1A] font-semibold">{formatINR(totals.shippingPaise)}</span>
-                  )}
-                </span>
+                <span className="text-emerald-700 font-semibold">FREE</span>
               </div>
               <div className="flex justify-between text-[#6B665E]">
                 <span>COD Handling Fee</span>

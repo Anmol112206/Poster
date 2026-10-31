@@ -43,11 +43,6 @@ export default function CartPage() {
     );
   }
 
-  const freeShippingProgress = Math.min(
-    100,
-    Math.round((totals.subtotalPaise / totals.freeShippingThresholdPaise) * 100)
-  );
-
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="border-b border-[#DDD7CC] pb-6">
@@ -63,29 +58,11 @@ export default function CartPage() {
         {/* Cart Items List */}
         <div className="lg:col-span-8 space-y-4">
           {/* Free Shipping Alert Bar */}
-          <div className="rounded border border-[#DDD7CC] bg-[#EFECE5] p-4">
-            <div className="flex justify-between text-xs font-medium text-[#1A1A1A]">
-              {totals.freeShippingRemainingPaise > 0 ? (
-                <span>
-                  Add{" "}
-                  <span className="font-semibold text-[#C8501E]">
-                    {formatINR(totals.freeShippingRemainingPaise)}
-                  </span>{" "}
-                  more of posters to unlock <span className="font-semibold">Free Delivery</span>
-                </span>
-              ) : (
-                <span className="text-emerald-700 font-semibold flex items-center gap-1.5">
-                  <Truck className="h-4 w-4" /> You have qualified for Free Shipping across India!
-                </span>
-              )}
-              <span>{freeShippingProgress}%</span>
-            </div>
-            <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[#DDD7CC]">
-              <div
-                className="h-full bg-[#C8501E] transition-all duration-300"
-                style={{ width: `${freeShippingProgress}%` }}
-              />
-            </div>
+          <div className="rounded border border-[#DDD7CC] bg-[#EFECE5] p-3.5 flex items-center justify-between text-xs text-[#1A1A1A]">
+            <span className="text-emerald-800 font-semibold flex items-center gap-1.5">
+              <Truck className="h-4 w-4 text-[#C8501E]" /> 100% Free Express Courier Delivery on All Orders
+            </span>
+            <span className="text-[#6B665E] hidden sm:inline">No minimum order required</span>
           </div>
 
           <div className="divide-y divide-[#DDD7CC] rounded border border-[#DDD7CC] bg-white">
@@ -114,7 +91,7 @@ export default function CartPage() {
                     </Link>
                     <p className="mt-1 text-xs text-[#6B665E]">
                       Size: <span className="font-medium text-[#1A1A1A]">{item.size}</span> (
-                      {item.size === "A4" ? "210×297mm" : "297×420mm"}) • Finish: {item.finish} • 300 GSM
+                      {item.size === "A4" ? "210×297mm" : "297×420mm"}) • Finish: Gloss • 300 GSM Archival
                       {item.customDesignId && " • Custom Memory Print"}
                     </p>
                     <p className="mt-1 text-xs text-[#6B665E]">
@@ -198,13 +175,7 @@ export default function CartPage() {
 
               <div className="flex justify-between text-[#6B665E]">
                 <span>Delivery Charges</span>
-                <span>
-                  {totals.shippingPaise === 0 ? (
-                    <span className="text-emerald-700 font-semibold">FREE</span>
-                  ) : (
-                    <span className="text-[#1A1A1A] font-medium">{formatINR(totals.shippingPaise)}</span>
-                  )}
-                </span>
+                <span className="text-emerald-700 font-semibold">FREE</span>
               </div>
 
               <div className="flex justify-between text-[#6B665E]">

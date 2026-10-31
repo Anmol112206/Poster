@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { Eye, EyeOff, Check, X, Shield, ArrowRight, Loader2, Smartphone } from "lucide-react";
+import { Eye, EyeOff, ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { sendMobileOtp, verifyMobileOtp, signUp } from "@/actions/auth";
+import { signUp } from "@/actions/auth";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -14,17 +14,10 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [otp, setOtp] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
-  const [otpVerified, setOtpVerified] = useState(false);
-  const [demoOtpHint, setDemoOtpHint] = useState<string | null>(null);
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const [sendingOtp, setSendingOtp] = useState(false);
-  const [verifyingOtp, setVerifyingOtp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -47,59 +40,14 @@ export default function SignupPage() {
 
   const strength = getStrengthLabel();
 
-  // Handle Send OTP
-  const handleSendOtp = async () => {
-    setErrorMsg(null);
-    if (!/^[6-9]\d{9}$/.test(phone)) {
-      setErrorMsg("Please enter a valid 10-digit Indian phone number starting with 6-9.");
-      return;
-    }
-
-    setSendingOtp(true);
-    const res = await sendMobileOtp(phone);
-    setSendingOtp(false);
-
-    if (res.success) {
-      setOtpSent(true);
-      if (res.data.devOtp) {
-        setDemoOtpHint(res.data.devOtp);
-      }
-      toast.success(res.data.message);
-    } else {
-      setErrorMsg(res.error.message);
-      toast.error(res.error.message);
-    }
-  };
-
-  // Handle Verify OTP
-  const handleVerifyOtp = async () => {
-    setErrorMsg(null);
-    if (otp.length !== 6) {
-      setErrorMsg("Please enter the 6-digit OTP received.");
-      return;
-    }
-
-    setVerifyingOtp(true);
-    const res = await verifyMobileOtp(phone, otp);
-    setVerifyingOtp(false);
-
-    if (res.success) {
-      setOtpVerified(true);
-      toast.success("Phone verified successfully!");
-    } else {
-      setErrorMsg(res.error.message);
-      toast.error(res.error.message);
-    }
-  };
-
-  // Handle Final Signup Submit
+  // Handle Signup Submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg(null);
 
-    if (!otpVerified) {
-      setErrorMsg("Please verify your mobile number with OTP first.");
-      toast.error("Mobile OTP verification required.");
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+      setErrorMsg("Please enter a valid 10-digit Indian mobile number starting with 6-9.");
+      toast.error("Valid 10-digit mobile number required.");
       return;
     }
 
@@ -118,7 +66,6 @@ export default function SignupPage() {
       name,
       email,
       phone,
-      otp,
       password,
       confirmPassword,
     });
@@ -201,77 +148,25 @@ export default function SignupPage() {
             />
           </div>
 
-          {/* Mobile Number & OTP Verification */}
+          {/* Mobile Number */}
           <div>
             <label className="block text-xs font-medium uppercase tracking-wider text-[#6B665E]" htmlFor="phone">
               Mobile Number (10 digits)
             </label>
-            <div className="mt-1 flex gap-2">
-              <div className="flex flex-1 items-center rounded border border-[#DDD7CC] bg-white px-3">
-                <span className="text-sm font-medium text-[#6B665E]">+91</span>
-                <input
-                  id="phone"
-                  type="tel"
-                  maxLength={10}
-                  required
-                  disabled={otpVerified}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
-                  placeholder="9876543210"
-                  className="w-full bg-transparent px-2 py-2.5 text-sm text-[#1A1A1A] outline-none disabled:text-[#6B665E]"
-                />
-              </div>
-
-              {!otpVerified ? (
-                <button
-                  type="button"
-                  onClick={handleSendOtp}
-                  disabled={sendingOtp || phone.length !== 10}
-                  className="rounded border border-[#1A1A1A] bg-transparent px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#1A1A1A] transition-colors duration-150 hover:bg-[#1A1A1A] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {sendingOtp ? <Loader2 className="h-4 w-4 animate-spin" /> : otpSent ? "Resend OTP" : "Send OTP"}
-                </button>
-              ) : (
-                <div className="flex items-center gap-1 rounded bg-emerald-50 px-3 text-xs font-medium text-emerald-700 border border-emerald-200">
-                  <Check className="h-4 w-4" /> Verified
-                </div>
-              )}
+            <div className="mt-1 flex items-center rounded border border-[#DDD7CC] bg-white px-3">
+              <span className="text-sm font-medium text-[#6B665E]">+91</span>
+              <input
+                id="phone"
+                type="tel"
+                maxLength={10}
+                required
+                value={phone}
+                onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
+                placeholder="9876543210"
+                className="w-full bg-transparent px-2 py-2.5 text-sm text-[#1A1A1A] outline-none"
+              />
             </div>
-
-            {demoOtpHint && !otpVerified && (
-              <p className="mt-1 text-xs text-[#C8501E]">
-                Test Hint: OTP is <span className="font-mono font-bold">{demoOtpHint}</span>
-              </p>
-            )}
           </div>
-
-          {/* OTP Input Field */}
-          {otpSent && !otpVerified && (
-            <div className="rounded border border-[#DDD7CC] bg-[#F6F3EE] p-3">
-              <label className="block text-xs font-medium uppercase tracking-wider text-[#6B665E]" htmlFor="otp">
-                Enter 6-digit OTP
-              </label>
-              <div className="mt-1 flex gap-2">
-                <input
-                  id="otp"
-                  type="text"
-                  maxLength={6}
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                  placeholder="123456"
-                  className="w-full rounded border border-[#DDD7CC] bg-white px-3 py-2 text-sm font-mono tracking-widest text-[#1A1A1A] outline-none focus:border-[#C8501E]"
-                />
-                <button
-                  type="button"
-                  onClick={handleVerifyOtp}
-                  disabled={verifyingOtp || otp.length !== 6}
-                  className="rounded bg-[#C8501E] px-4 py-2 text-xs font-semibold text-white hover:bg-[#B34416] disabled:opacity-50"
-                >
-                  {verifyingOtp ? <Loader2 className="h-4 w-4 animate-spin" /> : "Verify"}
-                </button>
-              </div>
-            </div>
-          )}
 
           {/* Password */}
           <div>
@@ -330,8 +225,9 @@ export default function SignupPage() {
           </div>
 
           <button
+            id="signup-submit-btn"
             type="submit"
-            disabled={submitting || !otpVerified}
+            disabled={submitting}
             className="mt-6 flex w-full items-center justify-center rounded bg-[#1A1A1A] px-4 py-3 text-sm font-medium text-white transition-colors duration-150 hover:bg-[#C8501E] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {submitting ? (

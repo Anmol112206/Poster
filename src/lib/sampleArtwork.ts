@@ -1,10 +1,10 @@
 /**
- * High-resolution embedded SVG data URLs for instant, 0-network, CORS-safe testing of custom poster cropper & builder.
+ * High-resolution embedded artwork templates for instant custom poster design.
  */
 export const SAMPLE_ARTWORKS = [
   {
     id: "ronin",
-    name: "Sample 1: Crimson Ronin (Art)",
+    name: "Crimson Ronin",
     width: 2400,
     height: 3400,
     dataUrl: `data:image/svg+xml;utf8,${encodeURIComponent(`
@@ -51,7 +51,7 @@ export const SAMPLE_ARTWORKS = [
   },
   {
     id: "interstellar",
-    name: "Sample 2: Cosmic Horizon (Sci-Fi)",
+    name: "Cosmic Horizon",
     width: 2400,
     height: 3400,
     dataUrl: `data:image/svg+xml;utf8,${encodeURIComponent(`
@@ -92,7 +92,7 @@ export const SAMPLE_ARTWORKS = [
   },
   {
     id: "bauhaus",
-    name: "Sample 3: Bauhaus Minimalist 1923",
+    name: "Bauhaus Minimalist",
     width: 2400,
     height: 3400,
     dataUrl: `data:image/svg+xml;utf8,${encodeURIComponent(`

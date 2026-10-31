@@ -25,7 +25,7 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
 
   const [selectedImage, setSelectedImage] = useState(product.images[0] || "");
   const [selectedSize, setSelectedSize] = useState<"A4" | "A3">("A4");
-  const [selectedFinish, setSelectedFinish] = useState<"GLOSS" | "MATTE">("GLOSS");
+  const selectedFinish = "GLOSS" as const;
   const [quantity, setQuantity] = useState(1);
   const [pincode, setPincode] = useState("");
   const [pincodeChecked, setPincodeChecked] = useState<boolean | null>(null);
@@ -220,34 +220,23 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
             </div>
           </div>
 
-          {/* Finish Selector */}
+          {/* Paper & Finish */}
           <div className="mt-6">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#1A1A1A]">
-              Finish Option
+              Paper & Finish
             </span>
-            <div className="mt-2.5 flex gap-3">
-              <button
-                type="button"
-                onClick={() => setSelectedFinish("GLOSS")}
-                className={`flex-1 rounded border py-2.5 text-xs font-medium transition-colors ${
-                  selectedFinish === "GLOSS"
-                    ? "border-2 border-[#1A1A1A] bg-white font-semibold text-[#1A1A1A]"
-                    : "border-[#DDD7CC] bg-[#F6F3EE] text-[#6B665E] hover:text-[#1A1A1A]"
-                }`}
-              >
-                Vibrant Gloss (Default)
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedFinish("MATTE")}
-                className={`flex-1 rounded border py-2.5 text-xs font-medium transition-colors ${
-                  selectedFinish === "MATTE"
-                    ? "border-2 border-[#1A1A1A] bg-white font-semibold text-[#1A1A1A]"
-                    : "border-[#DDD7CC] bg-[#F6F3EE] text-[#6B665E] hover:text-[#1A1A1A]"
-                }`}
-              >
-                Velvet Matte
-              </button>
+            <div className="mt-2.5 rounded border border-[#1A1A1A] bg-white p-3.5 flex items-center justify-between">
+              <div>
+                <span className="text-xs font-bold text-[#1A1A1A] block">
+                  Premium Vibrant Gloss Finish
+                </span>
+                <span className="text-[11px] text-[#6B665E]">
+                  Heavyweight 300 GSM Archival Cardstock • High-chroma saturated ink & deep blacks
+                </span>
+              </div>
+              <span className="rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1">
+                Included
+              </span>
             </div>
           </div>
 
@@ -322,7 +311,7 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
             </form>
             {pincodeChecked === true && (
               <p className="mt-2 text-xs text-emerald-700 flex items-center gap-1">
-                <Check className="h-3.5 w-3.5" /> Dispatch in 24 hours. Free delivery on orders over ₹699.
+                <Check className="h-3.5 w-3.5" /> Dispatch in 24 hours. 100% Free Express Delivery across India.
               </p>
             )}
           </div>

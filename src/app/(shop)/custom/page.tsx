@@ -42,7 +42,7 @@ export default function CustomPosterPage() {
 
   // Custom Options
   const [size, setSize] = useState<"A4" | "A3">("A4");
-  const [finish, setFinish] = useState<"GLOSS" | "MATTE">("GLOSS");
+  const finish = "GLOSS" as const;
   const [orientation, setOrientation] = useState<"portrait" | "landscape">("portrait");
   const [borderStyle, setBorderStyle] = useState<"none" | "thin" | "thick">("none");
   const [caption, setCaption] = useState("");
@@ -289,10 +289,10 @@ export default function CustomPosterPage() {
             </span>
           </label>
 
-          {/* Quick Demo Pre-selected Images for testing convenience */}
+          {/* Curated Starter Artworks */}
           <div className="mt-10 border-t border-[#DDD7CC] pt-8">
             <p className="text-xs font-semibold uppercase tracking-wider text-[#6B665E]">
-              Or test instantly with one of these high-res presets:
+              Or start customizing with one of our curated templates:
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-4">
               {SAMPLE_ARTWORKS.map((sample) => (
@@ -431,31 +431,14 @@ export default function CustomPosterPage() {
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#1A1A1A]">
                   Surface Finish
                 </label>
-                <div className="mt-2 flex gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setFinish("GLOSS")}
-                    className={`flex-1 rounded border p-3 text-left transition-colors ${
-                      finish === "GLOSS"
-                        ? "border-2 border-[#1A1A1A] bg-white font-semibold"
-                        : "border-[#DDD7CC] bg-[#F6F3EE] text-[#6B665E]"
-                    }`}
-                  >
-                    <p className="text-xs font-bold text-[#1A1A1A]">Vibrant Gloss</p>
-                    <p className="text-[11px] text-[#6B665E]">Richest black depths & color pop</p>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setFinish("MATTE")}
-                    className={`flex-1 rounded border p-3 text-left transition-colors ${
-                      finish === "MATTE"
-                        ? "border-2 border-[#1A1A1A] bg-white font-semibold"
-                        : "border-[#DDD7CC] bg-[#F6F3EE] text-[#6B665E]"
-                    }`}
-                  >
-                    <p className="text-xs font-bold text-[#1A1A1A]">Velvet Matte</p>
-                    <p className="text-[11px] text-[#6B665E]">Zero glare under direct lights</p>
-                  </button>
+                <div className="mt-2 rounded border border-[#1A1A1A] bg-white p-3 flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-bold text-[#1A1A1A]">Premium Vibrant Gloss</p>
+                    <p className="text-[11px] text-[#6B665E]">300 GSM Archival Cardstock • Richest black depths & color pop</p>
+                  </div>
+                  <span className="rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5">
+                    Included
+                  </span>
                 </div>
               </div>
 
@@ -590,7 +573,7 @@ export default function CustomPosterPage() {
 
                 <div className="text-xs text-[#6B665E] space-y-1">
                   <p>• Format: {size} ({size === "A4" ? "210×297mm" : "297×420mm"})</p>
-                  <p>• Finish: {finish === "GLOSS" ? "Vibrant Gloss" : "Velvet Matte"}</p>
+                  <p>• Finish: Vibrant Gloss (300 GSM Archival Stock)</p>
                   <p>• Paper: 300 GSM Archival Art Paper</p>
                   <p>• Effective DPI: {dpi} ({quality.label})</p>
                 </div>

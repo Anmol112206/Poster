@@ -52,8 +52,8 @@ export default function ShippingPage() {
             <h2 className="font-serif text-lg font-bold text-[#1A1A1A]">Shipping Rates & Free Delivery</h2>
           </div>
           <p className="mt-2 text-xs text-[#6B665E] leading-relaxed">
-            • Orders over ₹699 qualify for 100% Free Shipping anywhere in India.<br />
-            • Flat shipping of ₹49 applies for smaller orders below ₹699.
+            • 100% Free Express Courier Delivery on ALL orders anywhere in India. No minimum purchase required.<br />
+            • Zero handling or convenience charges.
           </p>
         </div>
 
