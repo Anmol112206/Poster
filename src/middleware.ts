@@ -32,7 +32,7 @@ export async function middleware(req: NextRequest) {
 
   // Redirect already authenticated users trying to access login/signup
   if (isLoggedIn && (pathname === "/login" || pathname === "/signup")) {
-    return NextResponse.redirect(new URL("/account/orders", req.nextUrl.origin));
+    return NextResponse.redirect(new URL("/", req.nextUrl.origin));
   }
 
   return NextResponse.next();

@@ -91,7 +91,7 @@ export default function SignupPage() {
     if (signInRes?.error) {
       window.location.href = "/login?registered=true";
     } else {
-      window.location.href = "/account/orders";
+      window.location.href = "/";
     }
   };
 

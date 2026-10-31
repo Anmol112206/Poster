@@ -10,7 +10,10 @@ import { toast } from "sonner";
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/account/orders";
+  const rawCallback = searchParams.get("callbackUrl");
+  const callbackUrl = (rawCallback && !rawCallback.startsWith("/login") && !rawCallback.startsWith("/signup"))
+    ? rawCallback
+    : "/";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
