@@ -5,7 +5,7 @@ import HeroCategorySlider from "@/components/home/HeroCategorySlider";
 
 const categories = [
   { name: "Sports", slug: "sports", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460181/msd.jpg" },
-  { name: "God", slug: "god", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460221/Untitled_design-84.jpg" },
+  { name: "God", slug: "god", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460217/Untitled_design_6.jpg" },
   { name: "Anime", slug: "anime", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459551/Untitled_design.jpg" },
   { name: "Marvel", slug: "marvel", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459827/Wanda_Maximoff__Scarlet_Witch_wallpaper.jpg" },
   { name: "Motivation", slug: "motivation", image: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793463267/Untitled_design_4.jpg" },
