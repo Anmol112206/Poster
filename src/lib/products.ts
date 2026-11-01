@@ -1437,11 +1437,12 @@ function extractCatalogCode(tags: string[]): string {
  * Pure synchronous filter of staticCatalog — zero DB/network overhead.
  * Used by the shop page for instant rendering.
  */
-export function getStaticCatalogProducts(params: Pick<ShopQueryParams, "category" | "q">): CatalogProduct[] {
+export function getStaticCatalogProducts(params: { category?: string; q?: string }): CatalogProduct[] {
   let products = staticCatalog.filter((p) => p.isActive && !p.isCustomBase);
 
-  if (params.category && params.category !== "ALL") {
-    products = products.filter((p) => p.categorySlug === params.category);
+  if (params.category && params.category !== 'ALL') {
+    const target = params.category.toLowerCase();
+    products = products.filter((p) => p.categorySlug.toLowerCase() === target);
   }
 
   if (params.q) {
@@ -1528,8 +1529,9 @@ export async function getCatalogProducts(params: ShopQueryParams): Promise<Catal
 
   // Fast offline / build fallback
   let products = [...staticCatalog];
-  if (params.category && params.category !== "ALL") {
-    products = products.filter((p) => p.categorySlug === params.category);
+  if (params.category && params.category !== 'ALL') {
+    const target = params.category.toLowerCase();
+    products = products.filter((p) => p.categorySlug.toLowerCase() === target);
   }
   if (params.q) {
     const q = params.q.toLowerCase();

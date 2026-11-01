@@ -4,9 +4,6 @@ import { getStaticCatalogProducts } from "@/lib/products";
 import { shopQuerySchema } from "@/lib/validators/shop";
 import { RotateCcw, Package } from "lucide-react";
 
-// Force static generation — zero DB calls, instant response.
-export const dynamic = "force-static";
-
 interface ShopPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
@@ -23,19 +20,34 @@ const CATEGORIES = [
 export default async function ShopPage(props: ShopPageProps) {
   const rawParams = await props.searchParams;
 
+  const rawCategory = Array.isArray(rawParams?.category)
+    ? rawParams.category[0]
+    : rawParams?.category;
+  const category = typeof rawCategory === "string" ? rawCategory.trim().toLowerCase() : "";
+
+  const rawQ = Array.isArray(rawParams?.q)
+    ? rawParams.q[0]
+    : rawParams?.q;
+  const q = typeof rawQ === "string" ? rawQ.trim() : "";
+
+  const rawPage = Array.isArray(rawParams?.page)
+    ? rawParams.page[0]
+    : rawParams?.page;
+  const page = typeof rawPage === "string" ? Number(rawPage) : 1;
+
   const parsed = shopQuerySchema.safeParse({
-    q: "",
-    category: typeof rawParams.category === "string" ? rawParams.category : "",
+    q,
+    category,
     size: "ALL",
     sort: "newest",
-    page: typeof rawParams.page === "string" ? Number(rawParams.page) : 1,
+    page,
   });
 
   const query = parsed.success
     ? parsed.data
-    : { q: "", category: "", size: "ALL" as const, sort: "newest" as const, page: 1, minPrice: 0, maxPrice: 20000, finish: "ALL" as const };
+    : { q, category, size: "ALL" as const, sort: "newest" as const, page: 1, minPrice: 0, maxPrice: 20000, finish: "ALL" as const };
 
-  // Synchronous — reads the in-memory staticCatalog, no DB/network call.
+  // Synchronous — reads the in-memory staticCatalog, instant response with real-time category filtering.
   const products = getStaticCatalogProducts({ category: query.category, q: query.q });
 
   return (
