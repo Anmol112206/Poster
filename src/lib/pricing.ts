@@ -1,5 +1,5 @@
 /**
- * Pure price calculation functions for Camino Wall Posters.
+ * Pure price calculation functions for Cammino Wall Posters.
  * All amounts are stored and calculated in integer PAISE (₹1 = 100 paise).
  */
 

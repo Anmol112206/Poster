@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Camino Issues Verification Suite", () => {
+test.describe("Cammino Issues Verification Suite", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:3000");
   });
@@ -10,7 +10,7 @@ test.describe("Camino Issues Verification Suite", () => {
     const footer = page.locator("footer");
     await expect(footer).toContainText("100% Free Pan-India");
 
-    // 2. Add an item (A4 for ₹70) to cart from shop page
+    // 2. Add an item (A4 for ₹49) to cart from shop page
     await page.goto("http://localhost:3000/shop");
     const addToCartBtn = page.locator("[id^='add-to-cart-btn-']").first();
     await addToCartBtn.click();
@@ -114,7 +114,7 @@ test.describe("Camino Issues Verification Suite", () => {
     // 1. Sign in
     await page.goto("http://localhost:3000/login");
     await page.fill("#email", "anmolagarwal0904@gmail.com");
-    await page.fill("#password", "Camino@2026!");
+    await page.fill("#password", "Cammino@2026!");
     await page.click("button[type='submit']");
     await page.waitForTimeout(1000);
 

@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { staticCatalog } from "@/lib/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.AUTH_URL || "https://camino.store";
+  const baseUrl = process.env.AUTH_URL || "https://cammino.store";
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${baseUrl}`, lastModified: new Date() },

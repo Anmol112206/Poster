@@ -36,10 +36,16 @@ export async function placeOrder(formData: unknown): Promise<ApiResponse<{ order
   try {
     const userId = session.user.id;
 
-    // Server-side price calculation: A4 = 7000 paise (₹70), A3 = 12000 paise (₹120)
+    // Server-side price calculation:
+    // Normal posters: A4 = 4900 paise (₹49), A3 = 9900 paise (₹99)
+    // Custom posters: A4 = 6900 paise (₹69), A3 = 12900 paise (₹129)
     // Server enforces the pricing, never trusting client totals!
     const verifiedItems = items.map((item) => {
-      const serverPricePaise = item.size === "A4" ? 7000 : 12000;
+      const isCustom = item.productSlug === "custom" || !!item.customDesignId || item.variantId?.startsWith("CUSTOM");
+      const serverPricePaise = isCustom
+        ? (item.size === "A4" ? 6900 : 12900)
+        : (item.size === "A4" ? 4900 : 9900);
+
       return {
         ...item,
         pricePaise: serverPricePaise,

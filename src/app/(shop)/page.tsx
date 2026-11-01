@@ -19,7 +19,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <span className="inline-block rounded border border-[#DDD7CC] bg-white px-3 py-1 text-xs font-semibold tracking-wide uppercase text-[#C8501E]">
-              Camino Print Editions
+              Cammino Print Editions
             </span>
             <h1 className="mt-4 font-serif text-4xl font-bold tracking-tight text-[#1A1A1A] sm:text-6xl sm:leading-[1.1]">
               Posters for the wall you actually look at.
@@ -49,11 +49,11 @@ export default function HomePage() {
             {/* Factual Highlights */}
             <div className="mt-12 grid grid-cols-3 gap-6 border-t border-[#DDD7CC] pt-8 text-left">
               <div>
-                <p className="font-serif text-2xl font-bold text-[#1A1A1A]">₹70</p>
+                <p className="font-serif text-2xl font-bold text-[#1A1A1A]">₹49</p>
                 <p className="text-xs uppercase tracking-wider text-[#6B665E]">A4 (210×297mm)</p>
               </div>
               <div>
-                <p className="font-serif text-2xl font-bold text-[#1A1A1A]">₹120</p>
+                <p className="font-serif text-2xl font-bold text-[#1A1A1A]">₹99</p>
                 <p className="text-xs uppercase tracking-wider text-[#6B665E]">A3 (297×420mm)</p>
               </div>
               <div>
@@ -147,7 +147,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-[#1A1A1A]">Printed on 300 GSM Archival Paper</h4>
-                    <p className="text-xs text-[#6B665E]">A4 at ₹70 and A3 at ₹120. Shipped rolled in kraft tubes.</p>
+                    <p className="text-xs text-[#6B665E]">A4 at ₹69 and A3 at ₹129. Shipped rolled in kraft tubes.</p>
                   </div>
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function HomePage() {
                   <span className="flex items-center gap-1.5 text-emerald-700 font-medium">
                     <CheckCircle2 className="h-4 w-4" /> 300 DPI Print-Ready Check Passed
                   </span>
-                  <span className="font-semibold text-[#1A1A1A]">₹120</span>
+                  <span className="font-semibold text-[#1A1A1A]">₹129</span>
                 </div>
               </div>
             </div>
@@ -230,7 +230,7 @@ export default function HomePage() {
             <div>
               <div className="flex justify-between items-center">
                 <span className="rounded bg-[#F6F3EE] px-2.5 py-1 text-xs font-bold text-[#1A1A1A]">A4 Format</span>
-                <span className="font-serif text-xl font-bold text-[#C8501E]">₹70</span>
+                <span className="font-serif text-xl font-bold text-[#C8501E]">₹49</span>
               </div>
               <h3 className="mt-4 font-serif text-2xl font-bold text-[#1A1A1A]">210 × 297 mm</h3>
               <p className="text-xs text-[#6B665E]">8.3 × 11.7 inches</p>
@@ -248,7 +248,7 @@ export default function HomePage() {
             <div>
               <div className="flex justify-between items-center">
                 <span className="rounded bg-[#1A1A1A] px-2.5 py-1 text-xs font-bold text-white">A3 Format (Double A4)</span>
-                <span className="font-serif text-xl font-bold text-[#C8501E]">₹120</span>
+                <span className="font-serif text-xl font-bold text-[#C8501E]">₹99</span>
               </div>
               <h3 className="mt-4 font-serif text-2xl font-bold text-[#1A1A1A]">297 × 420 mm</h3>
               <p className="text-xs text-[#6B665E]">11.7 × 16.5 inches</p>

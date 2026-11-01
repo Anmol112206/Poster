@@ -7,7 +7,7 @@ async function main() {
   console.log("🌱 Starting category & catalog reset...");
 
   // 1. Seed Users (Admin & Customer)
-  const passwordHash = await bcrypt.hash("Camino@2026!", 12);
+  const passwordHash = await bcrypt.hash("Cammino@2026!", 12);
 
   const admin = await prisma.user.upsert({
     where: { email: "agarwalanmol1212@gmail.com" },
@@ -367,10 +367,10 @@ async function main() {
       },
     });
 
-    // Seed A4 (₹70 -> 7000 paise) and A3 (₹120 -> 12000 paise) variants in GLOSS finish
+    // Seed A4 (₹49 -> 4900 paise) and A3 (₹99 -> 9900 paise) variants in GLOSS finish
     const variantCombos = [
-      { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 7000 },
-      { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 12000 },
+      { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 4900 },
+      { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 9900 },
     ];
 
     for (const v of variantCombos) {
@@ -425,8 +425,8 @@ async function main() {
   });
 
   const customVariants = [
-    { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 7000 },
-    { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 12000 },
+    { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 6900 },
+    { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 12900 },
   ];
 
   for (const v of customVariants) {

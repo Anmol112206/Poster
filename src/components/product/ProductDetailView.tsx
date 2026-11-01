@@ -185,7 +185,7 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
           <div className="mt-5 rounded border border-[#DDD7CC] bg-[#FAF8F5] p-3.5 text-xs space-y-2">
             <div className="flex justify-between border-b border-[#DDD7CC] pb-1.5 font-mono">
               <span className="text-[#6B665E]">Catalog Code:</span>
-              <span className="font-bold text-[#1A1A1A]">{product.catalogCode || "CAMINO-EDITION"}</span>
+              <span className="font-bold text-[#1A1A1A]">{product.catalogCode || "CAMMINO-EDITION"}</span>
             </div>
             <div className="flex justify-between border-b border-[#DDD7CC] pb-1.5">
               <span className="text-[#6B665E]">Series:</span>
@@ -227,7 +227,7 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
                 }`}
               >
                 <span className="font-serif text-base font-bold text-[#1A1A1A]">A4 Format</span>
-                <span className="text-xs text-[#6B665E]">₹70 • 8.3 × 11.7 in</span>
+                <span className="text-xs text-[#6B665E]">₹49 • 8.3 × 11.7 in</span>
               </button>
 
               <button
@@ -240,7 +240,7 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
                 }`}
               >
                 <span className="font-serif text-base font-bold text-[#1A1A1A]">A3 Format</span>
-                <span className="text-xs text-[#6B665E]">₹120 • 11.7 × 16.5 in</span>
+                <span className="text-xs text-[#6B665E]">₹99 • 11.7 × 16.5 in</span>
               </button>
             </div>
           </div>

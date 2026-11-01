@@ -49,7 +49,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
 
         // Reliable fallback for seeded demo accounts if DB is offline or cold starting
-        if (password === "Camino@2026!") {
+        if (password === "Cammino@2026!" || password === "Camino@2026!") {
           if (email.toLowerCase() === "agarwalanmol1212@gmail.com") {
             return {
               id: "admin_user_seed",

@@ -1,7 +1,7 @@
-# Camino Editions — A4 & A3 Wall Poster E-Commerce
+# Cammino Editions — A4 & A3 Wall Poster E-Commerce
 
 > **Posters for the wall you actually look at.**  
-> Curated and personalized art prints on heavyweight 300 GSM archival stock in exact A4 (₹70) and A3 (₹120) ISO 216 proportions.  
+> Curated and personalized art prints on heavyweight 300 GSM archival stock in exact A4 and A3 ISO 216 proportions.  
 > Printed and dispatched from **IIT Patna, Bihta, Bihar 801106**.
 
 Built with **Next.js 16+ (App Router)**, **TypeScript**, **Tailwind CSS v4**, **Prisma ORM**, **Auth.js (NextAuth v5)**, **Supabase PostgreSQL**, and **Cloudinary**.
@@ -11,8 +11,8 @@ Built with **Next.js 16+ (App Router)**, **TypeScript**, **Tailwind CSS v4**, **
 ## 🌟 Key Features
 
 - **Fixed A-Series Sizing & Pricing**:
-  - **A4 Format (210 × 297 mm)**: ₹70 (7,000 paise)
-  - **A3 Format (297 × 420 mm)**: ₹120 (12,000 paise)
+  - **Standard Prints**: A4 (210 × 297 mm) at ₹49, A3 (297 × 420 mm) at ₹99
+  - **Custom Prints**: A4 at ₹69, A3 at ₹129
 - **Interactive Size Toggle & Quick-Add**: Real-time price switching on product cards and detail pages without page reload.
 - **Interactive Custom Poster Builder**:
   - Precision cropper with fixed `1 : 1.414` aspect ratio locking.
@@ -118,13 +118,13 @@ DATABASE_URL="postgresql://postgres.[PROJECT-REF]:[YOUR-PASSWORD]@aws-0-[REGION]
 DIRECT_URL="postgresql://postgres.[PROJECT-REF]:[YOUR-PASSWORD]@aws-0-[REGION].pooler.supabase.com:5432/postgres?connect_timeout=10"
 
 # Local Fallback (if running local PostgreSQL):
-# DATABASE_URL="postgresql://postgres:postgres@localhost:5432/camino?schema=public&connect_timeout=2"
-# DIRECT_URL="postgresql://postgres:postgres@localhost:5432/camino?schema=public&connect_timeout=2"
+# DATABASE_URL="postgresql://postgres:postgres@localhost:5432/cammino?schema=public&connect_timeout=2"
+# DIRECT_URL="postgresql://postgres:postgres@localhost:5432/cammino?schema=public&connect_timeout=2"
 
 # ==========================================
 # 2. AUTHENTICATION (NextAuth / Auth.js)
 # ==========================================
-AUTH_SECRET="camino-dev-secret-key-must-be-at-least-32-chars-long"
+AUTH_SECRET="cammino-dev-secret-key-must-be-at-least-32-chars-long"
 AUTH_URL="http://localhost:3000"
 
 # ==========================================
@@ -187,13 +187,13 @@ You can test authentication, orders, and admin controls immediately using the se
 
 ### 1. Customer Account
 - **Email**: `anmolagarwal0904@gmail.com`
-- **Password**: `Camino@2026!`
+- **Password**: `Cammino@2026!`
 - **Role**: `CUSTOMER`
 - **Features**: Browse shop, add to cart, design custom posters, checkout with COD, and view orders at `/account/orders`.
 
 ### 2. Admin Account
 - **Email**: `agarwalanmol1212@gmail.com`
-- **Password**: `Camino@2026!`
+- **Password**: `Cammino@2026!`
 - **Role**: `ADMIN`
 - **Features**: Full access to the Admin Dashboard at `/admin` (overview metrics, order management, and product catalogue).
 
@@ -291,6 +291,6 @@ Or kill the process holding port 3000:
 
 ## 📜 License & Studio Attribution
 
-Developed for **Camino Editions**  
+Developed for **Cammino Editions**  
 **Location**: Indian Institute of Technology Patna (IIT Patna), Bihta, Patna, Bihar 801106  
-**Support**: `support@camino.store`
+**Support**: `support@cammino.store`

@@ -15,14 +15,14 @@ export async function generateMetadata(props: ProductPageProps): Promise<Metadat
 
   if (!product) {
     return {
-      title: "Poster Not Found — Camino",
+      title: "Poster Not Found — Cammino",
     };
   }
 
   const printSummary = `${product.title} (${product.catalogCode || "Archival Print"}) — Premium A4 & A3 wall poster printed on 300 GSM stock.`;
 
   return {
-    title: `${product.title} (${product.catalogCode}) — Camino Wall Poster Print`,
+    title: `${product.title} (${product.catalogCode}) — Cammino Wall Poster Print`,
     description: printSummary,
     openGraph: {
       title: `${product.title} • ${product.catalogCode}`,

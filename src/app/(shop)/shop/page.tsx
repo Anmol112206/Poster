@@ -58,7 +58,7 @@ export default async function ShopPage(props: ShopPageProps) {
                 : "All Wall Posters"}
             </h1>
             <p className="mt-1 text-sm text-[#6B665E]">
-              Showing {products.length} prints • A4 (₹70) & A3 (₹120) • Printed on 300 GSM Archival stock
+              Showing {products.length} prints • A4 (₹49) & A3 (₹99) • Printed on 300 GSM Archival stock
             </p>
           </div>
         </div>

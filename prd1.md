@@ -7,7 +7,7 @@
 # MASTER CONTEXT (paste this first, always keep it in context)
 
 ## 1. Product summary
-Build a full-stack e-commerce website called **"Camino"** that sells **A4 (210x297 mm)** and **A3 (297x420 mm)** wall posters. It is a startup-style store built as a college project, so it must be clean, working end to end, and deployable for free.
+Build a full-stack e-commerce website called **"Cammino"** that sells **A4 (210x297 mm)** and **A3 (297x420 mm)** wall posters. It is a startup-style store built as a college project, so it must be clean, working end to end, and deployable for free.
 
 Customers can: browse posters, filter and search, view a product, add to cart, sign up / sign in, place an order, and **upload their own image to create a custom poster**.
 

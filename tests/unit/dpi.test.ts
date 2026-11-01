@@ -24,8 +24,10 @@ describe("Print DPI and Formatting Utilities", () => {
   });
 
   it("formats integer paise to INR correctly", () => {
-    expect(formatINR(7000)).toBe("₹70");
-    expect(formatINR(12000)).toBe("₹120");
+    expect(formatINR(4900)).toBe("₹49");
+    expect(formatINR(9900)).toBe("₹99");
+    expect(formatINR(6900)).toBe("₹69");
+    expect(formatINR(12900)).toBe("₹129");
     expect(formatINR(69900)).toBe("₹699");
   });
 });

@@ -136,7 +136,7 @@ export default function CheckoutPage() {
           <Lock className="mx-auto h-10 w-10 text-[#C8501E]" />
           <h2 className="mt-4 font-serif text-2xl font-bold text-[#1A1A1A]">Sign in to Checkout</h2>
           <p className="mt-2 text-sm text-[#6B665E]">
-            Please sign in to your Camino account to confirm your delivery address and place your order.
+            Please sign in to your Cammino account to confirm your delivery address and place your order.
           </p>
           <div className="mt-6 space-y-3">
             <Link

@@ -37,7 +37,7 @@ export default function CustomPosterPage() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const pricePaise = size === "A4" ? 7000 : 12000;
+  const pricePaise = size === "A4" ? 6900 : 12900;
 
   // Process selected file
   const processFile = (file: File) => {
@@ -145,7 +145,7 @@ export default function CustomPosterPage() {
           Print Your Own Custom Poster
         </h1>
         <p className="mt-2 text-sm text-[#6B665E] max-w-xl mx-auto">
-          Upload any photo or illustration. Printed in rich high-chroma ink on 300 GSM archival stock in A4 (₹70) or A3 (₹120).
+          Upload any photo or illustration. Printed in rich high-chroma ink on 300 GSM archival stock in A4 (₹69) or A3 (₹129).
         </p>
       </div>
 
@@ -206,7 +206,7 @@ export default function CustomPosterPage() {
             </div>
             <div className="p-3">
               <p className="font-serif text-lg font-bold text-[#1A1A1A]">A4 & A3 Formats</p>
-              <p className="mt-0.5 text-xs text-[#6B665E]">A4 at ₹70 • A3 at ₹120 (COD available)</p>
+              <p className="mt-0.5 text-xs text-[#6B665E]">A4 at ₹69 • A3 at ₹129 (COD available)</p>
             </div>
             <div className="p-3">
               <p className="font-serif text-lg font-bold text-[#1A1A1A]">Cloudinary High-Res</p>
@@ -271,7 +271,7 @@ export default function CustomPosterPage() {
                   >
                     <span className="font-serif text-lg font-bold text-[#1A1A1A]">A4 Format</span>
                     <span className="text-xs text-[#6B665E] mt-0.5">210 × 297 mm • 8.3 × 11.7 in</span>
-                    <span className="mt-2 text-sm font-bold text-[#C8501E]">₹70</span>
+                    <span className="mt-2 text-sm font-bold text-[#C8501E]">₹69</span>
                   </button>
 
                   <button
@@ -285,7 +285,7 @@ export default function CustomPosterPage() {
                   >
                     <span className="font-serif text-lg font-bold text-[#1A1A1A]">A3 Format</span>
                     <span className="text-xs text-[#6B665E] mt-0.5">297 × 420 mm • 11.7 × 16.5 in</span>
-                    <span className="mt-2 text-sm font-bold text-[#C8501E]">₹120</span>
+                    <span className="mt-2 text-sm font-bold text-[#C8501E]">₹129</span>
                   </button>
                 </div>
               </div>

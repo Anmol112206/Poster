@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.AUTH_URL || "https://camino.store";
+  const baseUrl = process.env.AUTH_URL || "https://cammino.store";
   return {
     rules: {
       userAgent: "*",

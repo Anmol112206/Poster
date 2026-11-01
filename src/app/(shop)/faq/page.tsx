@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Frequently Asked Questions — Camino",
+  title: "Frequently Asked Questions — Cammino",
   description: "Answers to questions about paper quality, framing, custom poster uploads, and delivery.",
 };
 

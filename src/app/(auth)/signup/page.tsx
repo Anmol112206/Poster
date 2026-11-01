@@ -100,7 +100,7 @@ export default function SignupPage() {
       <div className="w-full max-w-lg rounded border border-[#DDD7CC] bg-white p-8 shadow-sm">
         <div className="text-center">
           <Link href="/" className="font-serif text-3xl font-bold tracking-tight text-[#1A1A1A]">
-            Camino
+            Cammino
           </Link>
           <h2 className="mt-4 font-serif text-2xl font-bold text-[#1A1A1A]">Create an account</h2>
           <p className="mt-2 text-sm text-[#6B665E]">

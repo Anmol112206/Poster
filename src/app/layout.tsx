@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Camino — Premium A4 & A3 Wall Posters",
+  title: "Cammino — Premium A4 & A3 Wall Posters",
   description: "Curated wall posters in A4 and A3 sizes printed on 300 GSM paper. Create your own custom posters with precision cropping.",
 };
 

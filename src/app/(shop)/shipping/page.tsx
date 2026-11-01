@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Truck, Package, ShieldCheck, Clock, ArrowLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Shipping & Packaging — Camino",
-  description: "Packaging standards, delivery timelines, and Cash on Delivery guidelines for Camino poster orders.",
+  title: "Shipping & Packaging — Cammino",
+  description: "Packaging standards, delivery timelines, and Cash on Delivery guidelines for Cammino poster orders.",
 };
 
 export default function ShippingPage() {

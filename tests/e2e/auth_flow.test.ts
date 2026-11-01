@@ -34,7 +34,7 @@ test.describe("Authentication Live Flow (Signup & Login)", () => {
 
     // Fill valid credentials
     await page.fill("#email", "anmolagarwal0904@gmail.com");
-    await page.fill("#password", "Camino@2026!");
+    await page.fill("#password", "Cammino@2026!");
 
     await page.click("button[type='submit']");
 
@@ -60,7 +60,7 @@ test.describe("Authentication Live Flow (Signup & Login)", () => {
     await page.goto("http://localhost:3000/login?callbackUrl=/admin/products");
 
     await page.fill("#email", "agarwalanmol1212@gmail.com");
-    await page.fill("#password", "Camino@2026!");
+    await page.fill("#password", "Cammino@2026!");
 
     await page.click("button[type='submit']");
 

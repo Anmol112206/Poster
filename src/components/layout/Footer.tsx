@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2">
             <Link href="/" className="font-serif text-2xl font-bold tracking-tight text-[#1A1A1A]">
-              Camino
+              Cammino
             </Link>
             <p className="mt-3 max-w-sm text-sm text-[#6B665E] leading-relaxed">
               Archival wall art and custom prints for desks, rooms, and studios.
@@ -120,7 +120,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-[#DDD7CC] pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#6B665E] gap-4">
-          <p>© {new Date().getFullYear()} Camino Editions. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Cammino Editions. All rights reserved.</p>
           <p className="flex items-center gap-3">
             <span>Prices in INR (₹)</span>
             <span>•</span>

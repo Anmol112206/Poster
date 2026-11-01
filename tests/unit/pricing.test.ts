@@ -4,25 +4,25 @@ import { calculateCart, FREE_SHIPPING_THRESHOLD_PAISE, FLAT_SHIPPING_PAISE } fro
 describe("Pricing and Cart Engine", () => {
   it("always provides free shipping for single item in paise", () => {
     const result = calculateCart({
-      items: [{ pricePaise: 7000, quantity: 2 }], // 2 x ₹70 = ₹140
+      items: [{ pricePaise: 4900, quantity: 2 }], // 2 x ₹49 = ₹98
       paymentMethod: "COD",
     });
 
-    expect(result.subtotalPaise).toBe(14000);
+    expect(result.subtotalPaise).toBe(9800);
     expect(result.shippingPaise).toBe(0); // Always free delivery
-    expect(result.totalPaise).toBe(14000);
+    expect(result.totalPaise).toBe(9800);
   });
 
   it("always provides free shipping regardless of order amount", () => {
     const result = calculateCart({
-      items: [{ pricePaise: 7000, quantity: 1 }], // 1 x A4 = ₹70
+      items: [{ pricePaise: 4900, quantity: 1 }], // 1 x A4 standard = ₹49
       paymentMethod: "COD",
     });
 
-    expect(result.subtotalPaise).toBe(7000);
+    expect(result.subtotalPaise).toBe(4900);
     expect(result.shippingPaise).toBe(0);
     expect(result.freeShippingRemainingPaise).toBe(0);
-    expect(result.totalPaise).toBe(7000);
+    expect(result.totalPaise).toBe(4900);
   });
 
   it("handles empty cart safely", () => {

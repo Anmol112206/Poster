@@ -26,7 +26,7 @@ export default function ContactPage() {
         toast.error(res.error.message || "Failed to send message. Please try again.");
       }
     } catch {
-      toast.error("Failed to connect to support server. Please email support@camino.store directly.");
+      toast.error("Failed to connect to support server. Please email support@cammino.store directly.");
     } finally {
       setLoading(false);
     }
@@ -42,7 +42,7 @@ export default function ContactPage() {
         Get in Touch
       </span>
       <h1 className="mt-1 font-serif text-3xl font-bold text-[#1A1A1A] sm:text-4xl">
-        Contact Camino Studio
+        Contact Cammino Studio
       </h1>
       <p className="mt-3 text-sm text-[#6B665E] leading-relaxed">
         Have questions regarding a custom image crop, bulk dorm order, or courier delivery? We are here to help.
@@ -137,7 +137,7 @@ export default function ContactPage() {
             <div className="flex items-start gap-3 text-xs text-[#6B665E]">
               <MapPin className="h-4 w-4 text-[#C8501E] shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-[#1A1A1A]">Camino Print Studio</p>
+                <p className="font-semibold text-[#1A1A1A]">Cammino Print Studio</p>
                 <p>Indian Institute of Technology Patna (IIT Patna)</p>
                 <p>Bihta, Patna, Bihar 801106</p>
               </div>
@@ -147,7 +147,7 @@ export default function ContactPage() {
               <Mail className="h-4 w-4 text-[#C8501E] shrink-0 mt-0.5" />
               <div>
                 <p className="font-semibold text-[#1A1A1A]">Email Enquiries</p>
-                <p>support@camino.store</p>
+                <p>support@cammino.store</p>
               </div>
             </div>
           </div>

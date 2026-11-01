@@ -19,35 +19,35 @@ const SLIDES: CategorySlide[] = [
     categorySlug: "sports",
     tagline: "Sports Collection",
     imageUrl: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460181/msd.jpg",
-    badge: "15 Prints Available",
+    badge: "",
   },
   {
     categoryName: "God",
     categorySlug: "god",
     tagline: "Devotional & Spiritual",
-    imageUrl: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460221/Untitled_design-84.jpg",
-    badge: "7 Prints Available",
+    imageUrl: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460217/Untitled_design_6.jpg",
+    badge: "",
   },
   {
     categoryName: "Anime",
     categorySlug: "anime",
     tagline: "Anime Art Editions",
     imageUrl: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459551/Untitled_design.jpg",
-    badge: "10 Prints Available",
+    badge: "",
   },
   {
     categoryName: "Marvel",
     categorySlug: "marvel",
     tagline: "Marvel Universe",
     imageUrl: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459827/Wanda_Maximoff__Scarlet_Witch_wallpaper.jpg",
-    badge: "17 Prints Available",
+    badge: "",
   },
   {
     categoryName: "Motivation",
     categorySlug: "motivation",
     tagline: "Founder & Mindset",
     imageUrl: "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793463267/Untitled_design_4.jpg",
-    badge: "5 Prints Available",
+    badge: "",
   },
 ];
 
@@ -125,22 +125,12 @@ export default function HeroCategorySlider() {
               {/* Gradient Scrim for text readability */}
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
-              {/* Top Category Badge */}
-              <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
-                <span className="rounded bg-[#1A1A1A]/90 backdrop-blur-xs px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-xs border border-white/10">
-                  {slide.categoryName}
-                </span>
-                <span className="rounded bg-white/90 backdrop-blur-xs px-2 py-0.5 text-[10px] font-medium text-[#1A1A1A] border border-[#DDD7CC]">
-                  {slide.badge}
-                </span>
-              </div>
-
               {/* Bottom Info Overlay */}
               <div className="absolute bottom-3 left-3 right-3 z-20 flex items-end justify-between gap-2 text-white">
                 <div>
                   <p className="text-xs font-semibold drop-shadow-sm">{slide.tagline}</p>
                   <p className="text-[11px] text-white/80 drop-shadow-sm">
-                    A4 (₹70) • A3 (₹120) • 300 GSM Archival
+                    A4 (₹49) • A3 (₹99) • 300 GSM Archival
                   </p>
                 </div>
 

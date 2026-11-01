@@ -178,7 +178,7 @@ export default function Header() {
           </button>
 
           <Link href="/" className="font-serif text-2xl font-bold tracking-tight text-[#1A1A1A] sm:text-3xl">
-            Camino
+            Cammino
           </Link>
 
           <Suspense
