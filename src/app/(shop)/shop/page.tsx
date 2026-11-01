@@ -1,8 +1,11 @@
 import Link from "next/link";
 import ProductCard from "@/components/product/ProductCard";
-import { getCatalogProducts } from "@/lib/products";
+import { getStaticCatalogProducts } from "@/lib/products";
 import { shopQuerySchema } from "@/lib/validators/shop";
 import { RotateCcw, Package } from "lucide-react";
+
+// Force static generation — zero DB calls, instant response.
+export const dynamic = "force-static";
 
 interface ShopPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -32,7 +35,8 @@ export default async function ShopPage(props: ShopPageProps) {
     ? parsed.data
     : { q: "", category: "", size: "ALL" as const, sort: "newest" as const, page: 1, minPrice: 0, maxPrice: 20000, finish: "ALL" as const };
 
-  const products = await getCatalogProducts(query);
+  // Synchronous — reads the in-memory staticCatalog, no DB/network call.
+  const products = getStaticCatalogProducts({ category: query.category, q: query.q });
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

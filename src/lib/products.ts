@@ -1434,6 +1434,30 @@ function extractCatalogCode(tags: string[]): string {
 }
 
 /**
+ * Pure synchronous filter of staticCatalog — zero DB/network overhead.
+ * Used by the shop page for instant rendering.
+ */
+export function getStaticCatalogProducts(params: Pick<ShopQueryParams, "category" | "q">): CatalogProduct[] {
+  let products = staticCatalog.filter((p) => p.isActive && !p.isCustomBase);
+
+  if (params.category && params.category !== "ALL") {
+    products = products.filter((p) => p.categorySlug === params.category);
+  }
+
+  if (params.q) {
+    const q = params.q.toLowerCase();
+    products = products.filter(
+      (p) =>
+        p.title.toLowerCase().includes(q) ||
+        p.catalogCode.toLowerCase().includes(q) ||
+        p.tags.some((t) => t.toLowerCase().includes(q))
+    );
+  }
+
+  return products;
+}
+
+/**
  * Retrieves catalog products from DB with fast fallback to static catalog.
  */
 export async function getCatalogProducts(params: ShopQueryParams): Promise<CatalogProduct[]> {
@@ -1563,7 +1587,12 @@ export async function getProductBySlug(slug: string): Promise<CatalogProduct | n
   return found || null;
 }
 
-export async function getRelatedProducts(slug: string, categorySlug: string): Promise<CatalogProduct[]> {
-  const all = await getCatalogProducts({ q: "", category: categorySlug, size: "ALL", finish: "ALL", sort: "popular", minPrice: 0, maxPrice: 50000, page: 1 });
-  return all.filter((p) => p.slug !== slug).slice(0, 4);
+/**
+ * Synchronous related-product lookup using in-memory staticCatalog.
+ * Zero DB/network overhead — called at build time from SSG product pages.
+ */
+export function getRelatedProducts(slug: string, categorySlug: string): CatalogProduct[] {
+  return staticCatalog
+    .filter((p) => p.isActive && !p.isCustomBase && p.categorySlug === categorySlug && p.slug !== slug)
+    .slice(0, 4);
 }
