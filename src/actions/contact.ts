@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { ApiResponse, successResponse, errorResponse } from "@/lib/result";
 import { z } from "zod";
 
-const contactSchema = z.object({
+export const contactSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters"),
   email: z.string().trim().toLowerCase().email("Please enter a valid email address"),
   message: z.string().trim().min(5, "Message must be at least 5 characters"),
@@ -31,7 +31,7 @@ export async function sendContactMessageAction(
     });
 
     return successResponse({ id: record.id });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[sendContactMessageAction] DB error:", error);
     return errorResponse("INTERNAL", "Failed to save message. Please try again or email us directly.");
   }

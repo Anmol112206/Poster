@@ -13,7 +13,7 @@ function LoginForm() {
   const rawCallback = searchParams.get("callbackUrl");
   const callbackUrl = (rawCallback && !rawCallback.startsWith("/login") && !rawCallback.startsWith("/signup"))
     ? rawCallback
-    : "/";
+    : "";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,8 +33,9 @@ function LoginForm() {
     setLoading(true);
 
     try {
+      const normalizedEmail = email.trim().toLowerCase();
       const res = await signIn("credentials", {
-        email: email.trim().toLowerCase(),
+        email: normalizedEmail,
         password,
         redirect: false,
       });
@@ -44,7 +45,9 @@ function LoginForm() {
         toast.error("Incorrect email or password.");
       } else {
         toast.success("Welcome back!");
-        window.location.href = callbackUrl;
+        const isAdmin = normalizedEmail === "agarwalanmol1212@gmail.com";
+        const destination = callbackUrl || (isAdmin ? "/admin/products" : "/account/orders");
+        window.location.href = destination;
       }
     } catch (err) {
       console.error(err);
@@ -144,7 +147,10 @@ function LoginForm() {
 
         <div className="mt-8 border-t border-[#DDD7CC] pt-6 text-center text-sm text-[#6B665E]">
           Don&apos;t have an account yet?{" "}
-          <Link href="/signup" className="font-semibold text-[#C8501E] hover:underline">
+          <Link
+            href={rawCallback ? `/signup?callbackUrl=${encodeURIComponent(rawCallback)}` : "/signup"}
+            className="font-semibold text-[#C8501E] hover:underline"
+          >
             Create an account
           </Link>
         </div>

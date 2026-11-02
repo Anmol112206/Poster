@@ -30,7 +30,7 @@ export async function getUserAddressesAction(): Promise<ApiResponse<UserAddress[
     });
 
     return successResponse(addresses);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[getUserAddressesAction] Error:", error);
     return errorResponse("INTERNAL", "Failed to load saved addresses.");
   }

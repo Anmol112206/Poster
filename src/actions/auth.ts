@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { signupSchema } from "@/lib/validators/auth";
 import { ApiResponse, successResponse, errorResponse, handleError } from "@/lib/result";
-import { auth, signIn, signOut } from "@/lib/auth";
+import { auth, signOut } from "@/lib/auth";
 
 /**
  * Registers a new customer account.

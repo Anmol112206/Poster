@@ -25,6 +25,7 @@ export default function CustomPosterPage() {
   const { addItem } = useCart();
 
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imageDims, setImageDims] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
   const [fileName, setFileName] = useState<string>("");
   const [isDragging, setIsDragging] = useState(false);
@@ -53,6 +54,7 @@ export default function CustomPosterPage() {
       return;
     }
 
+    setSelectedFile(file);
     setFileName(file.name);
 
     const reader = new FileReader();
@@ -78,12 +80,6 @@ export default function CustomPosterPage() {
 
   // Add Custom Poster to Cart (Uploads directly to Cloudinary)
   const handleAddToCart = async () => {
-    if (!session?.user) {
-      toast.error("Please sign in or create an account to order custom prints.");
-      router.push("/login?callbackUrl=/custom");
-      return;
-    }
-
     if (!imageSrc) {
       toast.error("Please select a photo first.");
       return;
@@ -98,18 +94,62 @@ export default function CustomPosterPage() {
     const toastId = toast.loading("Uploading photo to Cloudinary...");
 
     try {
-      // 1. Upload photo directly to Cloudinary
-      const uploadRes = await uploadCustomPosterAction(imageSrc);
-      if (!uploadRes.success) {
-        toast.error(uploadRes.error.message || "Failed to upload artwork to Cloudinary.", { id: toastId });
-        setIsUploading(false);
-        return;
+      let finalArtworkUrl = "";
+
+      // 1. Primary Strategy: Direct signed upload to Cloudinary (bypasses server payload limits)
+      try {
+        const signRes = await fetch("/api/upload-sign", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ folder: "camino/custom" }),
+        });
+
+        if (signRes.ok) {
+          const signData = await signRes.json();
+          const formData = new FormData();
+          if (selectedFile) {
+            formData.append("file", selectedFile);
+          } else {
+            formData.append("file", imageSrc);
+          }
+          formData.append("api_key", signData.apiKey);
+          formData.append("timestamp", String(signData.timestamp));
+          formData.append("signature", signData.signature);
+          formData.append("folder", signData.folder);
+
+          const cldRes = await fetch(
+            `https://api.cloudinary.com/v1_1/${signData.cloudName}/image/upload`,
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          if (cldRes.ok) {
+            const cldData = await cldRes.json();
+            if (cldData.secure_url) {
+              finalArtworkUrl = cldData.secure_url;
+            }
+          } else {
+            console.warn("Direct Cloudinary upload HTTP error, falling back to server upload");
+          }
+        }
+      } catch (directErr) {
+        console.warn("Direct Cloudinary upload failed, falling back to server action:", directErr);
       }
 
-      const finalArtworkUrl = uploadRes.data.url;
+      // 2. Fallback Strategy: Server action upload
+      if (!finalArtworkUrl) {
+        const uploadRes = await uploadCustomPosterAction(imageSrc);
+        if (!uploadRes.success) {
+          throw new Error(uploadRes.error.message || "Failed to upload artwork to Cloudinary.");
+        }
+        finalArtworkUrl = uploadRes.data.url;
+      }
+
       const customId = `custom_${Date.now()}`;
 
-      // 2. Add custom poster with Cloudinary URL to cart
+      // 3. Add custom poster with Cloudinary URL to cart
       addItem({
         variantId: `CUSTOM_${size}_${finish}_GSM300`,
         productId: "custom-poster",
@@ -127,8 +167,10 @@ export default function CustomPosterPage() {
 
       toast.success("Photo uploaded to Cloudinary & added to cart!", { id: toastId });
       router.push("/cart");
-    } catch (err: any) {
-      toast.error(err?.message || "Something went wrong while saving your poster.", { id: toastId });
+    } catch (err: unknown) {
+      console.error("[handleAddToCart] Error:", err);
+      const msg = err instanceof Error ? err.message : "Something went wrong while saving your poster.";
+      toast.error(msg, { id: toastId });
     } finally {
       setIsUploading(false);
     }
@@ -330,7 +372,7 @@ export default function CustomPosterPage() {
               {!session?.user && (
                 <div className="rounded bg-[#EFECE5] p-3 text-xs text-[#6B665E] flex items-center gap-2">
                   <Lock className="h-4 w-4 text-[#C8501E] shrink-0" />
-                  <span>You will be prompted to sign in when ordering your custom poster.</span>
+                  <span>You will be prompted to sign in during checkout.</span>
                 </div>
               )}
 

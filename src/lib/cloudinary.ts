@@ -44,14 +44,16 @@ export async function uploadToCloudinary(
     const result = await cloudinary.uploader.upload(fileUri, {
       folder,
       resource_type: "image",
+      timeout: 60000,
     });
 
     return {
       secureUrl: result.secure_url,
       publicId: result.public_id,
     };
-  } catch (error) {
-    console.error("Cloudinary upload failed:", error);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Cloudinary upload failed:", message);
     return null;
   }
 }

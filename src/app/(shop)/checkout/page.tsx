@@ -32,7 +32,7 @@ export default function CheckoutPage() {
 
   const [savedAddresses, setSavedAddresses] = useState<UserAddress[]>([]);
   const [selectedAddressId, setSelectedAddressId] = useState<string | "new">("new");
-  const [loadingAddresses, setLoadingAddresses] = useState(true);
+  const [loadingAddresses, setLoadingAddresses] = useState(false);
 
   const [address, setAddress] = useState<AddressInput>({
     fullName: session?.user?.name || "",
@@ -51,31 +51,34 @@ export default function CheckoutPage() {
 
   // Fetch saved addresses from Supabase on mount
   useEffect(() => {
-    if (status === "authenticated") {
-      getUserAddressesAction()
-        .then((res) => {
-          if (res.success && res.data.length > 0) {
-            setSavedAddresses(res.data);
-            const defaultAddr = res.data.find((a) => a.isDefault) || res.data[0];
-            setSelectedAddressId(defaultAddr.id);
-            setAddress({
-              fullName: defaultAddr.fullName,
-              phone: defaultAddr.phone,
-              line1: defaultAddr.line1,
-              line2: defaultAddr.line2 || "",
-              city: defaultAddr.city,
-              state: defaultAddr.state,
-              pincode: defaultAddr.pincode,
-              isDefault: defaultAddr.isDefault,
-            });
-          }
-        })
-        .finally(() => {
+    if (status !== "authenticated") return;
+    let isCancelled = false;
+    getUserAddressesAction()
+      .then((res) => {
+        if (!isCancelled && res.success && res.data.length > 0) {
+          setSavedAddresses(res.data);
+          const defaultAddr = res.data.find((a) => a.isDefault) || res.data[0];
+          setSelectedAddressId(defaultAddr.id);
+          setAddress({
+            fullName: defaultAddr.fullName,
+            phone: defaultAddr.phone,
+            line1: defaultAddr.line1,
+            line2: defaultAddr.line2 || "",
+            city: defaultAddr.city,
+            state: defaultAddr.state,
+            pincode: defaultAddr.pincode,
+            isDefault: defaultAddr.isDefault,
+          });
+        }
+      })
+      .finally(() => {
+        if (!isCancelled) {
           setLoadingAddresses(false);
-        });
-    } else if (status === "unauthenticated") {
-      setLoadingAddresses(false);
-    }
+        }
+      });
+    return () => {
+      isCancelled = true;
+    };
   }, [status]);
 
   const selectSavedAddress = (addr: UserAddress) => {
@@ -128,6 +131,16 @@ export default function CheckoutPage() {
     );
   }
 
+  // Loading state while session resolves
+  if (status === "loading") {
+    return (
+      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-3">
+        <Loader2 className="h-8 w-8 animate-spin text-[#C8501E]" />
+        <p className="text-xs uppercase tracking-wider text-[#6B665E]">Verifying session...</p>
+      </div>
+    );
+  }
+
   // If user is not logged in, prompt to log in first
   if (status === "unauthenticated") {
     return (
@@ -146,7 +159,7 @@ export default function CheckoutPage() {
               Sign In
             </Link>
             <Link
-              href="/signup"
+              href="/signup?callbackUrl=/checkout"
               className="block w-full rounded border border-[#DDD7CC] py-3 text-xs font-semibold uppercase tracking-wider text-[#1A1A1A] hover:bg-[#F6F3EE]"
             >
               Create Account

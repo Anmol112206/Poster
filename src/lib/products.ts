@@ -1,5 +1,6 @@
 import { prisma, withDbTimeout } from "@/lib/prisma";
 import { ShopQueryParams } from "@/lib/validators/shop";
+import { Prisma } from "@prisma/client";
 
 export interface CatalogProduct {
   id: string;
@@ -603,7 +604,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459551/Untitled_design.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544200/0115c7346b28bbb3a9eefe1447dae0d8.jpg"
     ],
     "tags": [
       "anime",
@@ -629,7 +630,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_10_-_Copy.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544197/06c0a1550c47859f8131020992ccb479.jpg"
     ],
     "tags": [
       "anime",
@@ -655,7 +656,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_13_-_Copy.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544200/089af24e91018ca4cc9498e1a48632b4.jpg"
     ],
     "tags": [
       "anime",
@@ -681,7 +682,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_30.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544191/0fbbfeef9100fe9a085a1ea5a0c348c5.jpg"
     ],
     "tags": [
       "anime",
@@ -707,7 +708,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_32.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544199/12d62d86cc61736de9b7eb4c8cc75938.jpg"
     ],
     "tags": [
       "anime",
@@ -733,7 +734,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_34.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544201/139e139166186af4ed64ed32771f4f8c.jpg"
     ],
     "tags": [
       "anime",
@@ -759,7 +760,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459549/Untitled_design_36.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544203/195ed28533727c88d6197307609551b8.jpg"
     ],
     "tags": [
       "anime",
@@ -785,7 +786,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459551/Untitled_design_37.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544194/1b877f18dfd4021f3f83a7c615afef3c.jpg"
     ],
     "tags": [
       "anime",
@@ -811,7 +812,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_8_-_Copy.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544194/1c5c2c9f796eac1320117ca96bd27778.jpg"
     ],
     "tags": [
       "anime",
@@ -837,7 +838,7 @@ export const staticCatalog: CatalogProduct[] = [
     "categorySlug": "anime",
     "description": "",
     "images": [
-      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_9.jpg"
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544204/24108bdce626d095728a118b1d44f726.jpg"
     ],
     "tags": [
       "anime",
@@ -850,6 +851,1618 @@ export const staticCatalog: CatalogProduct[] = [
     "isCustomBase": false,
     "a4VariantId": "cmvwn83c1005eumj4v88c4ofu",
     "a3VariantId": "cmvwn842c005gumj499s72w8b",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy2w35005iumw404xu7gus",
+    "title": "Anime Edition #11",
+    "slug": "anime-edition-11",
+    "catalogCode": "CAM-AN-11",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544195/2f1c2e3a39642257410ea73bbb7205c4.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-11",
+      "cam-an-11",
+      "#11"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy2wva005kumw49qekoouh",
+    "a3VariantId": "cmvxy2xii005mumw41tbw9vtd",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy2y66005oumw48x6hgekc",
+    "title": "Anime Edition #12",
+    "slug": "anime-edition-12",
+    "catalogCode": "CAM-AN-12",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544204/31526e61ac1a5e8c0064db44ddd12926.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-12",
+      "cam-an-12",
+      "#12"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy2yt7005qumw4713et8fb",
+    "a3VariantId": "cmvxy2zgd005sumw4fqmg7jos",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy303i005uumw48741eyyd",
+    "title": "Anime Edition #13",
+    "slug": "anime-edition-13",
+    "catalogCode": "CAM-AN-13",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544203/3288cb9982c02e0e1f8131615f05574d.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-13",
+      "cam-an-13",
+      "#13"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy30qt005wumw4l6joie76",
+    "a3VariantId": "cmvxy31fp005yumw41qazu0zl",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy322t0060umw4cx1pkzt3",
+    "title": "Anime Edition #14",
+    "slug": "anime-edition-14",
+    "catalogCode": "CAM-AN-14",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544203/332ded66919c3b4b092478ab4d8e138a.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-14",
+      "cam-an-14",
+      "#14"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy32qg0062umw464sa91wk",
+    "a3VariantId": "cmvxy33dh0064umw46n6vvn1t",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy343d0066umw4bwyo9wvw",
+    "title": "Anime Edition #15",
+    "slug": "anime-edition-15",
+    "catalogCode": "CAM-AN-15",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544206/35372b785e8f7e92c744295942d872da.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-15",
+      "cam-an-15",
+      "#15"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy34xi0068umw41i2xgz9p",
+    "a3VariantId": "cmvxy35kk006aumw4e8uz1eps",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy367r006cumw4frj68q6f",
+    "title": "Anime Edition #16",
+    "slug": "anime-edition-16",
+    "catalogCode": "CAM-AN-16",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544199/38f872962b35675c17b39a8a5a6bbf95.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-16",
+      "cam-an-16",
+      "#16"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy36vk006eumw4e04trbko",
+    "a3VariantId": "cmvxy37ja006gumw41l0oiksz",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy38c8006iumw4rvyyb72j",
+    "title": "Anime Edition #17",
+    "slug": "anime-edition-17",
+    "catalogCode": "CAM-AN-17",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544195/3da437e48ff89ef53a7387d2068ee406.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-17",
+      "cam-an-17",
+      "#17"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy393y006kumw4s6l18u8z",
+    "a3VariantId": "cmvxy39r3006mumw46l2n6adk",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3aed006oumw4zwm3siyo",
+    "title": "Anime Edition #18",
+    "slug": "anime-edition-18",
+    "catalogCode": "CAM-AN-18",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544195/3ece09d86f12595a65dddfa395723d52.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-18",
+      "cam-an-18",
+      "#18"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3b1g006qumw4hmb0yfna",
+    "a3VariantId": "cmvxy3bp0006sumw45mcb89gm",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3cdp006uumw48lgn8aob",
+    "title": "Anime Edition #19",
+    "slug": "anime-edition-19",
+    "catalogCode": "CAM-AN-19",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544207/408393a7c2fdb042ea910c32f10d7708.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-19",
+      "cam-an-19",
+      "#19"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3d0u006wumw4idl5f1iv",
+    "a3VariantId": "cmvxy3doi006yumw46hj6qy9q",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3ebq0070umw4okbwzksm",
+    "title": "Anime Edition #20",
+    "slug": "anime-edition-20",
+    "catalogCode": "CAM-AN-20",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544200/43c5335880cbf27282c06b9a1ad8a852.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-20",
+      "cam-an-20",
+      "#20"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3f0z0072umw4p2blyeq6",
+    "a3VariantId": "cmvxy3gbf0074umw49o36iaq0",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3iob0076umw4jlkrnp2e",
+    "title": "Anime Edition #21",
+    "slug": "anime-edition-21",
+    "catalogCode": "CAM-AN-21",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544207/471497bea7c230e039a57ee43aa6fbae.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-21",
+      "cam-an-21",
+      "#21"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3jbj0078umw4couqbtx3",
+    "a3VariantId": "cmvxy3k2d007aumw4w4wub3hm",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3mgx007cumw4losrt8wt",
+    "title": "Anime Edition #22",
+    "slug": "anime-edition-22",
+    "catalogCode": "CAM-AN-22",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544195/4d4d6826b1b430f9d730d22124c5ebdc.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-22",
+      "cam-an-22",
+      "#22"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3nki007eumw4qrloedzv",
+    "a3VariantId": "cmvxy3o9r007gumw4eenz275w",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3oxq007iumw4a9f4dt4o",
+    "title": "Anime Edition #23",
+    "slug": "anime-edition-23",
+    "catalogCode": "CAM-AN-23",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544187/53517e7e4c6590291b74fdee5abd7c3f.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-23",
+      "cam-an-23",
+      "#23"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3poq007kumw4yohh0kjg",
+    "a3VariantId": "cmvxy3qvc007mumw4zi3yuzx0",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3rwf007oumw4p2diexdr",
+    "title": "Anime Edition #24",
+    "slug": "anime-edition-24",
+    "catalogCode": "CAM-AN-24",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544186/548dbf1dfae269371dc4e0cfe012c082.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-24",
+      "cam-an-24",
+      "#24"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3sro007qumw4mtmi92a2",
+    "a3VariantId": "cmvxy3tk6007sumw4ggvq3pzi",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3ufh007uumw4uxzgmo65",
+    "title": "Anime Edition #25",
+    "slug": "anime-edition-25",
+    "catalogCode": "CAM-AN-25",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544182/55c436267f3495c4f2ed77b8b32f37f5.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-25",
+      "cam-an-25",
+      "#25"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3v7x007wumw4qa2xncgb",
+    "a3VariantId": "cmvxy3vx1007yumw4wuujcsm3",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3wkc0080umw4w4n07mdo",
+    "title": "Anime Edition #26",
+    "slug": "anime-edition-26",
+    "catalogCode": "CAM-AN-26",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544182/56f06fa97513a8d4854d36393a58742b.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-26",
+      "cam-an-26",
+      "#26"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3x7q0082umw4a43pizdh",
+    "a3VariantId": "cmvxy3xv00084umw4kp0tlkhk",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy3yn90086umw4h8jhxvp0",
+    "title": "Anime Edition #27",
+    "slug": "anime-edition-27",
+    "catalogCode": "CAM-AN-27",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544186/5885cc4d5596900cae2323caa4848d79.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-27",
+      "cam-an-27",
+      "#27"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy3zad0088umw41ue7x3am",
+    "a3VariantId": "cmvxy400o008aumw43vqa05a4",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy40nw008cumw43p1v6kjb",
+    "title": "Anime Edition #28",
+    "slug": "anime-edition-28",
+    "catalogCode": "CAM-AN-28",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544177/5acda39053aeaae70a0db3de3213b4b8.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-28",
+      "cam-an-28",
+      "#28"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy41bj008eumw48jtu0r99",
+    "a3VariantId": "cmvxy41za008gumw4thdnovc7",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy42mj008iumw4is7iq29c",
+    "title": "Anime Edition #29",
+    "slug": "anime-edition-29",
+    "catalogCode": "CAM-AN-29",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544178/5c8a35f59e865c5fd3ff7bc12e05f0c8.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-29",
+      "cam-an-29",
+      "#29"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy43fx008kumw4uhni9gm4",
+    "a3VariantId": "cmvxy4463008mumw4r8w25d2q",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy44wv008oumw4bbbofd66",
+    "title": "Anime Edition #30",
+    "slug": "anime-edition-30",
+    "catalogCode": "CAM-AN-30",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544183/60b2c4ac4fd25cc34d2eef5a0708f394.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-30",
+      "cam-an-30",
+      "#30"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy45lg008qumw416xclsek",
+    "a3VariantId": "cmvxy47oo008sumw4ryn31zzi",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy48cc008uumw4fyhzdlrw",
+    "title": "Anime Edition #31",
+    "slug": "anime-edition-31",
+    "catalogCode": "CAM-AN-31",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544188/64613e8d9d8c234ce4265ae13874b08d.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-31",
+      "cam-an-31",
+      "#31"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy497q008wumw48ljk4wyy",
+    "a3VariantId": "cmvxy49v1008yumw4jypl9pau",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy4amw0090umw4r5fm035u",
+    "title": "Anime Edition #32",
+    "slug": "anime-edition-32",
+    "catalogCode": "CAM-AN-32",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544191/6886923f72ca2996ad67467a286154a3.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-32",
+      "cam-an-32",
+      "#32"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy4bav0092umw4tti562zh",
+    "a3VariantId": "cmvxy4bzv0094umw4ho2vczzd",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy4cnh0096umw4fdfgbgt0",
+    "title": "Anime Edition #33",
+    "slug": "anime-edition-33",
+    "catalogCode": "CAM-AN-33",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544183/68df68026c035a6f0d2333c8baa6020c.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-33",
+      "cam-an-33",
+      "#33"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy4dbb0098umw4m3ulxt29",
+    "a3VariantId": "cmvxy4dz5009aumw4la0901fu",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy4emb009cumw4q01jb2jf",
+    "title": "Anime Edition #34",
+    "slug": "anime-edition-34",
+    "catalogCode": "CAM-AN-34",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544178/6fd806575247ed3a1f2ce2550c1ea11c.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-34",
+      "cam-an-34",
+      "#34"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy4fgr009eumw4rnvz7sjh",
+    "a3VariantId": "cmvxy4g9j009gumw452gj2yus",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy4gwk009iumw4mv9gehcr",
+    "title": "Anime Edition #35",
+    "slug": "anime-edition-35",
+    "catalogCode": "CAM-AN-35",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544190/78721df28fa45c178395c1f14bfac4ee.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-35",
+      "cam-an-35",
+      "#35"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy4hjr009kumw4lxt5pybd",
+    "a3VariantId": "cmvxy4i6w009mumw4cwghwt3z",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy4ivk009oumw4govi4dgy",
+    "title": "Anime Edition #36",
+    "slug": "anime-edition-36",
+    "catalogCode": "CAM-AN-36",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544178/7a3c8544d20520801914fbabc989af3b.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-36",
+      "cam-an-36",
+      "#36"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy4joh009qumw43p05fbdv",
+    "a3VariantId": "cmvxy4kbq009sumw4wlnt8xuh",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxy4kz4009uumw4r7hz46ok",
+    "title": "Anime Edition #37",
+    "slug": "anime-edition-37",
+    "catalogCode": "CAM-AN-37",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544181/7bcc1c6bf617c2881afe0a711a2a3851.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-37",
+      "cam-an-37",
+      "#37"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxy4lu7009wumw456xrujea",
+    "a3VariantId": "cmvxycwb9009yumm8usxhosfw",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxycwfi00a0umm8p08pdnhx",
+    "title": "Anime Edition #38",
+    "slug": "anime-edition-38",
+    "catalogCode": "CAM-AN-38",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544191/8007849db99702590fc24d56610c0dc3.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-38",
+      "cam-an-38",
+      "#38"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxycwjs00a2umm8i7ngc67u",
+    "a3VariantId": "cmvxycwnz00a4umm8q4eq7au7",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxycws700a6umm8hok321pm",
+    "title": "Anime Edition #39",
+    "slug": "anime-edition-39",
+    "catalogCode": "CAM-AN-39",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544190/83553ff6fd91eb6a40d846eda0a33a97.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-39",
+      "cam-an-39",
+      "#39"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxycwwi00a8umm8z9gm3rzb",
+    "a3VariantId": "cmvxycx0v00aaumm8lp5j9xm9",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxycx5300acumm8evdz1w9t",
+    "title": "Anime Edition #40",
+    "slug": "anime-edition-40",
+    "catalogCode": "CAM-AN-40",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544191/8596863db2d5df206e44c4a0b2afdcf2.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-40",
+      "cam-an-40",
+      "#40"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxycx9c00aeumm8lntxj3ow",
+    "a3VariantId": "cmvxycxdo00agumm82ypr9a0h",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxycxhx00aiumm8djsouu72",
+    "title": "Anime Edition #41",
+    "slug": "anime-edition-41",
+    "catalogCode": "CAM-AN-41",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544185/86c718578e9159499381d7393a7bd5df.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-41",
+      "cam-an-41",
+      "#41"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxycxm500akumm89begqvae",
+    "a3VariantId": "cmvxycxqd00amumm8lci1hxn4",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxycxum00aoumm8xq6pnuul",
+    "title": "Anime Edition #42",
+    "slug": "anime-edition-42",
+    "catalogCode": "CAM-AN-42",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544186/890a2c98a49b8c80a69ef1631f25fc60.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-42",
+      "cam-an-42",
+      "#42"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxycy0100aqumm8yjukmban",
+    "a3VariantId": "cmvxycy4a00asumm8hh6axrsh",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxycy8l00auumm87ijob3bl",
+    "title": "Anime Edition #43",
+    "slug": "anime-edition-43",
+    "catalogCode": "CAM-AN-43",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544186/9236cce25f245bbdc29d8ff6ffbe28e2.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-43",
+      "cam-an-43",
+      "#43"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxycycy00awumm82gxtd639",
+    "a3VariantId": "cmvxycyh900ayumm8jg6poo4w",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxycyll00b0umm8ppwsq4zz",
+    "title": "Anime Edition #44",
+    "slug": "anime-edition-44",
+    "catalogCode": "CAM-AN-44",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544170/9a06bf4d352e0577accf5f4d76b8b3c4.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-44",
+      "cam-an-44",
+      "#44"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxycypx00b2umm8xt2h0hxk",
+    "a3VariantId": "cmvxycyu700b4umm80xbv0eex",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxycyye00b6umm83glifv4c",
+    "title": "Anime Edition #45",
+    "slug": "anime-edition-45",
+    "catalogCode": "CAM-AN-45",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544169/9bbc7f040c74fd708c9ed1f436e34945.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-45",
+      "cam-an-45",
+      "#45"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxycz4i00b8umm8axhrm5zf",
+    "a3VariantId": "cmvxyczba00baumm8ctwp7v45",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyczh400bcumm8mv7j7nuw",
+    "title": "Anime Edition #46",
+    "slug": "anime-edition-46",
+    "catalogCode": "CAM-AN-46",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544169/9cda54126b6fd69f8f3c61859626574d.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-46",
+      "cam-an-46",
+      "#46"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyczmq00beumm8byv4grv5",
+    "a3VariantId": "cmvxyczsr00bgumm8g61i1t6r",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyczxd00biumm84yin969r",
+    "title": "Anime Edition #47",
+    "slug": "anime-edition-47",
+    "catalogCode": "CAM-AN-47",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544170/a356886f4077655254cacac79911a33f.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-47",
+      "cam-an-47",
+      "#47"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd03f00bkumm8bjkjgcgr",
+    "a3VariantId": "cmvxyd09j00bmumm80h3gy9bn",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd0fh00boumm87ttndf9s",
+    "title": "Anime Edition #48",
+    "slug": "anime-edition-48",
+    "catalogCode": "CAM-AN-48",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544170/a48ec10dc5da87d2ad24dc12587af7da.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-48",
+      "cam-an-48",
+      "#48"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd0kz00bqumm8x7ml22s1",
+    "a3VariantId": "cmvxyd0t600bsumm8qd6hhej5",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd0yy00buumm8ztc7etc6",
+    "title": "Anime Edition #49",
+    "slug": "anime-edition-49",
+    "catalogCode": "CAM-AN-49",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544170/a76d1b4cb791e54595c58e1a34be7666.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-49",
+      "cam-an-49",
+      "#49"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd13k00bwumm88ektkpm8",
+    "a3VariantId": "cmvxyd17x00byumm87984xgzm",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd1ca00c0umm89gbr09qj",
+    "title": "Anime Edition #50",
+    "slug": "anime-edition-50",
+    "catalogCode": "CAM-AN-50",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544169/b30d97bfe185514c18948aa7fe6ff585.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-50",
+      "cam-an-50",
+      "#50"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd1gn00c2umm8m6kvv30z",
+    "a3VariantId": "cmvxyd1l200c4umm82bgb49a2",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd1pc00c6umm8i27z9hkj",
+    "title": "Anime Edition #51",
+    "slug": "anime-edition-51",
+    "catalogCode": "CAM-AN-51",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544171/ba972f10a009e9d7a4d988ca63eaf9f8.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-51",
+      "cam-an-51",
+      "#51"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd1tl00c8umm8kco7u19b",
+    "a3VariantId": "cmvxyd1xv00caumm83c0uj4u8",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd22700ccumm8tdb9jv8m",
+    "title": "Anime Edition #52",
+    "slug": "anime-edition-52",
+    "catalogCode": "CAM-AN-52",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544171/c5023bc8509f42170c047cdda1524c8d.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-52",
+      "cam-an-52",
+      "#52"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd26i00ceumm8fvuux5e2",
+    "a3VariantId": "cmvxyd2at00cgumm8swaiaxmm",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd2f300ciumm8ubbkp2j6",
+    "title": "Anime Edition #53",
+    "slug": "anime-edition-53",
+    "catalogCode": "CAM-AN-53",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544170/c550e555e3b4f8a0bb2ce2858bf33356.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-53",
+      "cam-an-53",
+      "#53"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd2nj00ckumm83k179s4s",
+    "a3VariantId": "cmvxyd2rv00cmumm8sbzw8ike",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd2w400coumm8ml95h5hy",
+    "title": "Anime Edition #54",
+    "slug": "anime-edition-54",
+    "catalogCode": "CAM-AN-54",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544170/c5ddf8a10f26fde49b4594aef47fa488.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-54",
+      "cam-an-54",
+      "#54"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd30e00cqumm8c3iachpn",
+    "a3VariantId": "cmvxyd34m00csumm8yf59z14p",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd38y00cuumm8o3wq0iuh",
+    "title": "Anime Edition #55",
+    "slug": "anime-edition-55",
+    "catalogCode": "CAM-AN-55",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544171/d8d1a1c249c9519bf67d5d8dd969b363.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-55",
+      "cam-an-55",
+      "#55"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd3di00cwumm8444jdrcj",
+    "a3VariantId": "cmvxyd3hq00cyumm81z87ioom",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd3m000d0umm80bqok5gl",
+    "title": "Anime Edition #56",
+    "slug": "anime-edition-56",
+    "catalogCode": "CAM-AN-56",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544171/d8d846b7acf87e2e6c269d1bf4d1ee80.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-56",
+      "cam-an-56",
+      "#56"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd3qn00d2umm8fg0vmua3",
+    "a3VariantId": "cmvxyd3vb00d4umm8o6jkb5ok",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd3zk00d6umm8k4kt0ju5",
+    "title": "Anime Edition #57",
+    "slug": "anime-edition-57",
+    "catalogCode": "CAM-AN-57",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544171/db9532406aee85c2308b108506aa17ec.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-57",
+      "cam-an-57",
+      "#57"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd43w00d8umm820whr8tw",
+    "a3VariantId": "cmvxyd48300daumm8e1colply",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd4ce00dcumm8yu24v8qk",
+    "title": "Anime Edition #58",
+    "slug": "anime-edition-58",
+    "catalogCode": "CAM-AN-58",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544171/de58a6339c1fef7f3184b8c4a1c7916b.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-58",
+      "cam-an-58",
+      "#58"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd4gu00deumm8ts96cxtj",
+    "a3VariantId": "cmvxyd4m200dgumm8fvy8u682",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd4si00diumm8f3z6ibuw",
+    "title": "Anime Edition #59",
+    "slug": "anime-edition-59",
+    "catalogCode": "CAM-AN-59",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544172/download.png"
+    ],
+    "tags": [
+      "anime",
+      "edition-59",
+      "cam-an-59",
+      "#59"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd50100dkumm86whevu0c",
+    "a3VariantId": "cmvxyd54b00dmumm8si4gpxsw",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd58o00doumm8wnfchcc9",
+    "title": "Anime Edition #60",
+    "slug": "anime-edition-60",
+    "catalogCode": "CAM-AN-60",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544177/e40ea2aff37fe8138ff26b60bcae051b.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-60",
+      "cam-an-60",
+      "#60"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd5d100dqumm8wrtnfjsd",
+    "a3VariantId": "cmvxyd5h900dsumm8rmpuyp2e",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd5n700duumm8f127zyia",
+    "title": "Anime Edition #61",
+    "slug": "anime-edition-61",
+    "catalogCode": "CAM-AN-61",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544177/e49a0413a6a838522f604369fbf772d7.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-61",
+      "cam-an-61",
+      "#61"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd5sq00dwumm8jcnnage8",
+    "a3VariantId": "cmvxyd5yd00dyumm8tq0m7lj2",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd62t00e0umm84w6m82lh",
+    "title": "Anime Edition #62",
+    "slug": "anime-edition-62",
+    "catalogCode": "CAM-AN-62",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793544177/f8d96f7d1bce2bd1bac6017594c136d8.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-62",
+      "cam-an-62",
+      "#62"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd69w00e2umm8374ittjo",
+    "a3VariantId": "cmvxyd6fg00e4umm88kxd1bc2",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd6l900e6umm84u3fq2pd",
+    "title": "Anime Edition #63",
+    "slug": "anime-edition-63",
+    "catalogCode": "CAM-AN-63",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459551/Untitled_design.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-63",
+      "cam-an-63",
+      "#63"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd6qv00e8umm85725j4m6",
+    "a3VariantId": "cmvxyd6wm00eaumm8uonmbs99",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd71e00ecumm8d6myhgw3",
+    "title": "Anime Edition #64",
+    "slug": "anime-edition-64",
+    "catalogCode": "CAM-AN-64",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_10_-_Copy.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-64",
+      "cam-an-64",
+      "#64"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd75v00eeumm8e617ottq",
+    "a3VariantId": "cmvxyd7a300egumm8thpv2nlr",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd7ec00eiumm8mzd73r68",
+    "title": "Anime Edition #65",
+    "slug": "anime-edition-65",
+    "catalogCode": "CAM-AN-65",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_13_-_Copy.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-65",
+      "cam-an-65",
+      "#65"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd7il00ekumm8yo2sqtbp",
+    "a3VariantId": "cmvxyd7mv00emumm8ia7zs02g",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd7r400eoumm8rc6s6ggd",
+    "title": "Anime Edition #66",
+    "slug": "anime-edition-66",
+    "catalogCode": "CAM-AN-66",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_30.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-66",
+      "cam-an-66",
+      "#66"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd7vd00equmm854bolr4q",
+    "a3VariantId": "cmvxyd7zm00esumm8kgyrhhwe",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd83u00euumm89t1uiwgk",
+    "title": "Anime Edition #67",
+    "slug": "anime-edition-67",
+    "catalogCode": "CAM-AN-67",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_32.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-67",
+      "cam-an-67",
+      "#67"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd88700ewumm8jurv3u1x",
+    "a3VariantId": "cmvxyd8cj00eyumm86ozflxz4",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd8gu00f0umm8v4sd0don",
+    "title": "Anime Edition #68",
+    "slug": "anime-edition-68",
+    "catalogCode": "CAM-AN-68",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_34.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-68",
+      "cam-an-68",
+      "#68"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd8l400f2umm8n1sto876",
+    "a3VariantId": "cmvxyd8r900f4umm8t6jmzswb",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd8zg00f6umm8yvs6wf4z",
+    "title": "Anime Edition #69",
+    "slug": "anime-edition-69",
+    "catalogCode": "CAM-AN-69",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459549/Untitled_design_36.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-69",
+      "cam-an-69",
+      "#69"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd94600f8umm83pe8vy7t",
+    "a3VariantId": "cmvxyd98n00faumm8u3nyt8ux",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd9fn00fcumm8sykueiud",
+    "title": "Anime Edition #70",
+    "slug": "anime-edition-70",
+    "catalogCode": "CAM-AN-70",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459551/Untitled_design_37.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-70",
+      "cam-an-70",
+      "#70"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd9le00feumm862jwadah",
+    "a3VariantId": "cmvxyd9pm00fgumm8yr10zoe3",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxyd9v400fiumm8pbasgs8g",
+    "title": "Anime Edition #71",
+    "slug": "anime-edition-71",
+    "catalogCode": "CAM-AN-71",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_8_-_Copy.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-71",
+      "cam-an-71",
+      "#71"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxyd9zh00fkumm8wq1tb3qa",
+    "a3VariantId": "cmvxyda4d00fmumm8lskgn2m9",
+    "a4PricePaise": 4900,
+    "a3PricePaise": 9900,
+    "stock": 50
+  },
+  {
+    "id": "cmvxydaav00foumm8vo8w5j77",
+    "title": "Anime Edition #72",
+    "slug": "anime-edition-72",
+    "catalogCode": "CAM-AN-72",
+    "categoryName": "Anime",
+    "categorySlug": "anime",
+    "description": "",
+    "images": [
+      "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793459548/Untitled_design_9.jpg"
+    ],
+    "tags": [
+      "anime",
+      "edition-72",
+      "cam-an-72",
+      "#72"
+    ],
+    "isActive": true,
+    "isFeatured": false,
+    "isCustomBase": false,
+    "a4VariantId": "cmvxydahf00fqumm8u9vkxd11",
+    "a3VariantId": "cmvxydamn00fsumm83dgv4co3",
     "a4PricePaise": 4900,
     "a3PricePaise": 9900,
     "stock": 50
@@ -1428,11 +3041,6 @@ export const staticCatalog: CatalogProduct[] = [
   }
 ];
 
-function extractCatalogCode(tags: string[]): string {
-  const codeTag = tags.find((t) => /^cam-[a-z]{2}-\d{2}$/i.test(t));
-  return codeTag ? codeTag.toUpperCase() : "";
-}
-
 /**
  * Pure synchronous filter of staticCatalog — zero DB/network overhead.
  * Used by the shop page for instant rendering.
@@ -1440,7 +3048,7 @@ function extractCatalogCode(tags: string[]): string {
 export function getStaticCatalogProducts(params: { category?: string; q?: string }): CatalogProduct[] {
   let products = staticCatalog.filter((p) => p.isActive && !p.isCustomBase);
 
-  if (params.category && params.category !== 'ALL') {
+  if (params.category && params.category !== "ALL") {
     const target = params.category.toLowerCase();
     products = products.filter((p) => p.categorySlug.toLowerCase() === target);
   }
@@ -1458,12 +3066,17 @@ export function getStaticCatalogProducts(params: { category?: string; q?: string
   return products;
 }
 
+function extractCatalogCode(tags: string[]): string {
+  const codeTag = tags.find((t) => /^cam-[a-z]{2}-\d{2}$/i.test(t));
+  return codeTag ? codeTag.toUpperCase() : "";
+}
+
 /**
  * Retrieves catalog products from DB with fast fallback to static catalog.
  */
 export async function getCatalogProducts(params: ShopQueryParams): Promise<CatalogProduct[]> {
   try {
-    const whereClause: any = {
+    const whereClause: Prisma.ProductWhereInput = {
       isActive: true,
       isCustomBase: false,
     };
@@ -1481,7 +3094,7 @@ export async function getCatalogProducts(params: ShopQueryParams): Promise<Catal
       ];
     }
 
-    const orderBy: any = {};
+    const orderBy: Prisma.ProductOrderByWithRelationInput = {};
     if (params.sort === "price_asc") orderBy.createdAt = "asc";
     else if (params.sort === "price_desc") orderBy.createdAt = "desc";
     else orderBy.createdAt = "desc";
@@ -1529,7 +3142,7 @@ export async function getCatalogProducts(params: ShopQueryParams): Promise<Catal
 
   // Fast offline / build fallback
   let products = [...staticCatalog];
-  if (params.category && params.category !== 'ALL') {
+  if (params.category && params.category !== "ALL") {
     const target = params.category.toLowerCase();
     products = products.filter((p) => p.categorySlug.toLowerCase() === target);
   }
@@ -1589,12 +3202,7 @@ export async function getProductBySlug(slug: string): Promise<CatalogProduct | n
   return found || null;
 }
 
-/**
- * Synchronous related-product lookup using in-memory staticCatalog.
- * Zero DB/network overhead — called at build time from SSG product pages.
- */
-export function getRelatedProducts(slug: string, categorySlug: string): CatalogProduct[] {
-  return staticCatalog
-    .filter((p) => p.isActive && !p.isCustomBase && p.categorySlug === categorySlug && p.slug !== slug)
-    .slice(0, 4);
+export async function getRelatedProducts(slug: string, categorySlug: string): Promise<CatalogProduct[]> {
+  const all = await getCatalogProducts({ q: "", category: categorySlug, size: "ALL", finish: "ALL", sort: "popular", minPrice: 0, maxPrice: 50000, page: 1 });
+  return all.filter((p) => p.slug !== slug).slice(0, 4);
 }

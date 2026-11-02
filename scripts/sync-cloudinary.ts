@@ -11,7 +11,30 @@ cloudinary.config({
   secure: true,
 });
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: process.env.DIRECT_URL || process.env.DATABASE_URL,
+    },
+  },
+});
+
+async function withRetry<T>(fn: () => Promise<T>, retries = 5, delayMs = 1500): Promise<T> {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      return await fn();
+    } catch (err: unknown) {
+      lastError = err;
+      if (attempt < retries) {
+        const msg = err instanceof Error ? err.message : String(err);
+        console.warn(`[Retry ${attempt}/${retries}] Temporary DB issue, retrying in ${delayMs}ms... (${msg})`);
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+      }
+    }
+  }
+  throw lastError;
+}
 
 interface CloudinaryAsset {
   folder: string;
@@ -63,12 +86,19 @@ async function main() {
   // 1. Fetch all assets from Cloudinary Camino/*
   const res = await cloudinary.search
     .expression("folder:Camino/*")
-    .max_results(200)
+    .max_results(300)
     .execute();
 
-  const resources: CloudinaryAsset[] = res.resources
-    .filter((r: any) => r.asset_folder !== "Camino/custom") // exclude customer custom uploads
-    .map((r: any) => ({
+  interface CloudinaryRawResource {
+    asset_folder: string;
+    public_id: string;
+    secure_url: string;
+  }
+
+  const rawResources = res.resources as CloudinaryRawResource[];
+  const resources: CloudinaryAsset[] = rawResources
+    .filter((r) => r.asset_folder !== "Camino/custom") // exclude customer custom uploads
+    .map((r) => ({
       folder: r.asset_folder,
       id: r.public_id,
       url: r.secure_url,
@@ -79,15 +109,17 @@ async function main() {
   // 2. Ensure the 5 categories exist in Supabase (with empty description)
   const categoryDbMap = new Map<string, string>();
   for (const [, cat] of Object.entries(CATEGORY_MAP)) {
-    const record = await prisma.category.upsert({
-      where: { slug: cat.slug },
-      update: { name: cat.name, description: null },
-      create: {
-        name: cat.name,
-        slug: cat.slug,
-        description: null,
-      },
-    });
+    const record = await withRetry(() =>
+      prisma.category.upsert({
+        where: { slug: cat.slug },
+        update: { name: cat.name, description: null },
+        create: {
+          name: cat.name,
+          slug: cat.slug,
+          description: null,
+        },
+      })
+    );
     categoryDbMap.set(cat.slug, record.id);
   }
   console.log(`✓ Synced 5 categories in Supabase.`);
@@ -104,7 +136,7 @@ async function main() {
     productsByFolder[folder].sort((a, b) => a.id.localeCompare(b.id));
   }
 
-  const catalogProductsForCode: any[] = [];
+  const catalogProductsForCode: Array<Record<string, unknown>> = [];
   const seededProductSlugs: string[] = [];
 
   for (const [folderKey, catConfig] of Object.entries(CATEGORY_MAP)) {
@@ -118,29 +150,31 @@ async function main() {
 
       const categoryId = categoryDbMap.get(catConfig.slug)!;
 
-      // Upsert into Supabase DB - NO fabricated descriptions
-      const product = await prisma.product.upsert({
-        where: { slug: meta.slug },
-        update: {
-          title: meta.title,
-          description: "",
-          images: [asset.url],
-          tags: meta.tags,
-          categoryId,
-          isFeatured: itemIndex <= 3,
-          isActive: true,
-        },
-        create: {
-          title: meta.title,
-          slug: meta.slug,
-          description: "",
-          categoryId,
-          images: [asset.url],
-          tags: meta.tags,
-          isFeatured: itemIndex <= 3,
-          isActive: true,
-        },
-      });
+      // Upsert into Supabase DB
+      const product = await withRetry(() =>
+        prisma.product.upsert({
+          where: { slug: meta.slug },
+          update: {
+            title: meta.title,
+            description: "",
+            images: [asset.url],
+            tags: meta.tags,
+            categoryId,
+            isFeatured: itemIndex <= 3,
+            isActive: true,
+          },
+          create: {
+            title: meta.title,
+            slug: meta.slug,
+            description: "",
+            categoryId,
+            images: [asset.url],
+            tags: meta.tags,
+            isFeatured: itemIndex <= 3,
+            isActive: true,
+          },
+        })
+      );
 
       // Variants: A4 (₹49) & A3 (₹99)
       const variants = [
@@ -153,26 +187,28 @@ async function main() {
 
       for (const v of variants) {
         const sku = `${meta.catalogCode}-${v.size}-${v.finish}-GSM300`.toUpperCase();
-        const variantRecord = await prisma.productVariant.upsert({
-          where: { sku },
-          update: {
-            productId: product.id,
-            size: v.size,
-            finish: v.finish,
-            paper: v.paper,
-            pricePaise: v.pricePaise,
-            stock: 50,
-          },
-          create: {
-            productId: product.id,
-            size: v.size,
-            finish: v.finish,
-            paper: v.paper,
-            pricePaise: v.pricePaise,
-            stock: 50,
-            sku,
-          },
-        });
+        const variantRecord = await withRetry(() =>
+          prisma.productVariant.upsert({
+            where: { sku },
+            update: {
+              productId: product.id,
+              size: v.size,
+              finish: v.finish,
+              paper: v.paper,
+              pricePaise: v.pricePaise,
+              stock: 50,
+            },
+            create: {
+              productId: product.id,
+              size: v.size,
+              finish: v.finish,
+              paper: v.paper,
+              pricePaise: v.pricePaise,
+              stock: 50,
+              sku,
+            },
+          })
+        );
         if (v.size === Size.A4) a4VarId = variantRecord.id;
         if (v.size === Size.A3) a3VarId = variantRecord.id;
       }
@@ -204,28 +240,30 @@ async function main() {
 
   // 4. Upsert Custom Poster Base Product
   const defaultCatId = categoryDbMap.get("anime") || categoryDbMap.get("sports")!;
-  const customBase = await prisma.product.upsert({
-    where: { slug: "custom" },
-    update: {
-      title: "Custom Wall Poster",
-      description: "",
-      isActive: true,
-      isCustomBase: true,
-      categoryId: defaultCatId,
-    },
-    create: {
-      title: "Custom Wall Poster",
-      slug: "custom",
-      description: "",
-      images: [
-        "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460181/msd.jpg",
-      ],
-      tags: ["custom", "personalized", "print"],
-      categoryId: defaultCatId,
-      isActive: true,
-      isCustomBase: true,
-    },
-  });
+  const customBase = await withRetry(() =>
+    prisma.product.upsert({
+      where: { slug: "custom" },
+      update: {
+        title: "Custom Wall Poster",
+        description: "",
+        isActive: true,
+        isCustomBase: true,
+        categoryId: defaultCatId,
+      },
+      create: {
+        title: "Custom Wall Poster",
+        slug: "custom",
+        description: "",
+        images: [
+          "https://res.cloudinary.com/dv8sv8ayv/image/upload/v1793460181/msd.jpg",
+        ],
+        tags: ["custom", "personalized", "print"],
+        categoryId: defaultCatId,
+        isActive: true,
+        isCustomBase: true,
+      },
+    })
+  );
 
   const customVariants = [
     { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 6900 },
@@ -234,49 +272,57 @@ async function main() {
 
   for (const v of customVariants) {
     const sku = `CUSTOM-${v.size}-${v.finish}-GSM300`.toUpperCase();
-    const existing = await prisma.productVariant.findFirst({
-      where: {
-        productId: customBase.id,
-        size: v.size,
-        finish: v.finish,
-        paper: v.paper,
-      },
-    });
-
-    if (existing) {
-      await prisma.productVariant.update({
-        where: { id: existing.id },
-        data: { pricePaise: v.pricePaise, stock: 9999, sku },
-      });
-    } else {
-      await prisma.productVariant.create({
-        data: {
+    const existing = await withRetry(() =>
+      prisma.productVariant.findFirst({
+        where: {
           productId: customBase.id,
           size: v.size,
           finish: v.finish,
           paper: v.paper,
-          pricePaise: v.pricePaise,
-          stock: 9999,
-          sku,
         },
-      });
+      })
+    );
+
+    if (existing) {
+      await withRetry(() =>
+        prisma.productVariant.update({
+          where: { id: existing.id },
+          data: { pricePaise: v.pricePaise, stock: 9999, sku },
+        })
+      );
+    } else {
+      await withRetry(() =>
+        prisma.productVariant.create({
+          data: {
+            productId: customBase.id,
+            size: v.size,
+            finish: v.finish,
+            paper: v.paper,
+            pricePaise: v.pricePaise,
+            stock: 9999,
+            sku,
+          },
+        })
+      );
     }
   }
   console.log(`✓ Custom Base product configured.`);
 
   // 5. Clean up old products that had inaccurate names or descriptions
   const allowed = [...seededProductSlugs, "custom"];
-  const toDelete = await prisma.product.findMany({
-    where: { slug: { notIn: allowed } },
-    select: { id: true, slug: true },
-  });
+  const toDelete = await withRetry(() =>
+    prisma.product.findMany({
+      where: { slug: { notIn: allowed } },
+      select: { id: true, slug: true },
+    })
+  );
 
   if (toDelete.length > 0) {
-    console.log(`Cleaning up ${toDelete.length} old products with incorrect titles/descriptions...`);
+    console.log(`Cleaning up ${toDelete.length} old products...`);
     const ids = toDelete.map((p) => p.id);
-    await prisma.cartItem.deleteMany({ where: { variant: { productId: { in: ids } } } });
-    await prisma.productVariant.deleteMany({ where: { productId: { in: ids } } });
-    await prisma.product.deleteMany({ where: { id: { in: ids } } });
+    await withRetry(() => prisma.cartItem.deleteMany({ where: { variant: { productId: { in: ids } } } }));
+    await withRetry(() => prisma.productVariant.deleteMany({ where: { productId: { in: ids } } }));
+    await withRetry(() => prisma.product.deleteMany({ where: { id: { in: ids } } }));
     console.log(`✓ Cleaned up old products.`);
   }
 
@@ -305,6 +351,31 @@ export interface CatalogProduct {
 }
 
 export const staticCatalog: CatalogProduct[] = ${JSON.stringify(catalogProductsForCode, null, 2)};
+
+/**
+ * Pure synchronous filter of staticCatalog — zero DB/network overhead.
+ * Used by the shop page for instant rendering.
+ */
+export function getStaticCatalogProducts(params: { category?: string; q?: string }): CatalogProduct[] {
+  let products = staticCatalog.filter((p) => p.isActive && !p.isCustomBase);
+
+  if (params.category && params.category !== "ALL") {
+    const target = params.category.toLowerCase();
+    products = products.filter((p) => p.categorySlug.toLowerCase() === target);
+  }
+
+  if (params.q) {
+    const q = params.q.toLowerCase();
+    products = products.filter(
+      (p) =>
+        p.title.toLowerCase().includes(q) ||
+        p.catalogCode.toLowerCase().includes(q) ||
+        p.tags.some((t) => t.toLowerCase().includes(q))
+    );
+  }
+
+  return products;
+}
 
 function extractCatalogCode(tags: string[]): string {
   const codeTag = tags.find((t) => /^cam-[a-z]{2}-\\d{2}$/i.test(t));
@@ -383,7 +454,8 @@ export async function getCatalogProducts(params: ShopQueryParams): Promise<Catal
   // Fast offline / build fallback
   let products = [...staticCatalog];
   if (params.category && params.category !== "ALL") {
-    products = products.filter((p) => p.categorySlug === params.category);
+    const target = params.category.toLowerCase();
+    products = products.filter((p) => p.categorySlug.toLowerCase() === target);
   }
   if (params.q) {
     const q = params.q.toLowerCase();

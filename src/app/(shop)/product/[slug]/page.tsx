@@ -53,7 +53,7 @@ export default async function ProductPage(props: ProductPageProps) {
     notFound();
   }
 
-  const related = getRelatedProducts(product.slug, product.categorySlug);
+  const related = await getRelatedProducts(product.slug, product.categorySlug);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

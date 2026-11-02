@@ -1,15 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { Eye, EyeOff, ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { signUp } from "@/actions/auth";
 
-export default function SignupPage() {
+function SignupForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const rawCallback = searchParams.get("callbackUrl");
+  const callbackUrl = (rawCallback && !rawCallback.startsWith("/login") && !rawCallback.startsWith("/signup"))
+    ? rawCallback
+    : "";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -89,9 +94,11 @@ export default function SignupPage() {
     setSubmitting(false);
 
     if (signInRes?.error) {
-      window.location.href = "/login?registered=true";
+      const loginTarget = `/login?registered=true${callbackUrl ? `&callbackUrl=${encodeURIComponent(callbackUrl)}` : ""}`;
+      window.location.href = loginTarget;
     } else {
-      window.location.href = "/";
+      const destination = callbackUrl || "/account/orders";
+      window.location.href = destination;
     }
   };
 
@@ -245,11 +252,22 @@ export default function SignupPage() {
 
         <div className="mt-8 border-t border-[#DDD7CC] pt-6 text-center text-sm text-[#6B665E]">
           Already have an account?{" "}
-          <Link href="/login" className="font-semibold text-[#C8501E] hover:underline">
+          <Link
+            href={callbackUrl ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}` : "/login"}
+            className="font-semibold text-[#C8501E] hover:underline"
+          >
             Sign in
           </Link>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-[60vh] items-center justify-center"><Loader2 className="h-6 w-6 animate-spin text-[#6B665E]" /></div>}>
+      <SignupForm />
+    </Suspense>
   );
 }
