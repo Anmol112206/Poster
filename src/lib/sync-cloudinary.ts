@@ -88,6 +88,17 @@ export async function syncCloudinaryToDb(): Promise<SyncResult> {
   const categoryDbMap = new Map<string, string>(); // categorySlug -> DB category id
   let totalSynced = 0;
 
+  // Pre-fetch existing categories and products in 2 fast queries
+  const existingDbCategories = await prisma.category.findMany();
+  for (const c of existingDbCategories) {
+    categoryDbMap.set(c.slug, c.id);
+  }
+
+  const existingDbProducts = await prisma.product.findMany({
+    select: { id: true, slug: true, images: true },
+  });
+  const existingProductMap = new Map(existingDbProducts.map((p) => [p.slug, p]));
+
   // 3. For each folder, ensure category exists in Supabase
   for (const [folderPath, assets] of foldersMap.entries()) {
     // Extract category name: "Camino/anime" -> "Anime", "Camino/Sports" -> "Sports"
@@ -95,24 +106,27 @@ export async function syncCloudinaryToDb(): Promise<SyncResult> {
     const catName = cleanTitle(subName);
     const catSlug = slugify(subName);
 
-    const category = await prisma.category.upsert({
-      where: { slug: catSlug },
-      update: { name: catName },
-      create: {
-        name: catName,
-        slug: catSlug,
-        description: `${catName} wall posters printed on archival 300 GSM stock.`,
-      },
-    });
-
-    categoryDbMap.set(catSlug, category.id);
+    let categoryId = categoryDbMap.get(catSlug);
+    if (!categoryId) {
+      const category = await prisma.category.upsert({
+        where: { slug: catSlug },
+        update: { name: catName },
+        create: {
+          name: catName,
+          slug: catSlug,
+          description: `${catName} wall posters printed on archival 300 GSM stock.`,
+        },
+      });
+      categoryId = category.id;
+      categoryDbMap.set(catSlug, categoryId);
+    }
     categoriesSynced.push(catName);
 
     // Sort assets consistently by public_id
     assets.sort((a, b) => a.public_id.localeCompare(b.public_id));
 
-    // 4. Upsert each poster in the database in concurrent batches
-    const BATCH_SIZE = 6;
+    // 4. Upsert posters in concurrent batches of 4
+    const BATCH_SIZE = 4;
     for (let i = 0; i < assets.length; i += BATCH_SIZE) {
       const batch = assets.slice(i, i + BATCH_SIZE);
       await Promise.all(
@@ -130,13 +144,18 @@ export async function syncCloudinaryToDb(): Promise<SyncResult> {
           let slug: string;
 
           if (!isHexHash && !isPlainNumber && asset.public_id.length > 2) {
-            // e.g. "Wanda_Maximoff__Scarlet_Witch_wallpaper"
             title = cleanTitle(asset.public_id);
             slug = `${catSlug}-${slugify(title)}`;
           } else {
-            // e.g. "Anime Edition #01"
             title = `${catName} Edition #${numStr}`;
             slug = `${catSlug}-edition-${numStr}`;
+          }
+
+          // If already in database with the same image URL, skip expensive DB write
+          const existing = existingProductMap.get(slug);
+          if (existing && existing.images[0] === asset.secure_url) {
+            totalSynced++;
+            return;
           }
 
           const tags = [catSlug, `edition-${numStr}`, catalogCode.toLowerCase(), `#${numStr}`];
@@ -149,7 +168,7 @@ export async function syncCloudinaryToDb(): Promise<SyncResult> {
               description: "",
               images: [asset.secure_url],
               tags,
-              categoryId: category.id,
+              categoryId,
               isFeatured: itemIndex <= 3,
               isActive: true,
             },
@@ -157,7 +176,7 @@ export async function syncCloudinaryToDb(): Promise<SyncResult> {
               title,
               slug,
               description: "",
-              categoryId: category.id,
+              categoryId,
               images: [asset.secure_url],
               tags,
               isFeatured: itemIndex <= 3,
@@ -165,9 +184,7 @@ export async function syncCloudinaryToDb(): Promise<SyncResult> {
             },
           });
 
-          // Upsert standard variants with current prices:
-          // A4 = ₹39 (3900 paise)
-          // A3 = ₹79 (7900 paise)
+          // Standard variants: A4 = ₹39 (3900), A3 = ₹79 (7900)
           const variants = [
             { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: POSTER_PRICES.standard.A4 },
             { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: POSTER_PRICES.standard.A3 },
