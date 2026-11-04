@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
@@ -13,6 +13,7 @@ import {
   Package,
   LogOut,
   ShieldAlert,
+  Loader2,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
@@ -55,45 +56,64 @@ function useActiveNavigation() {
 
 function DesktopNav() {
   const { activeCategory, isShopAll, isCustom } = useActiveNavigation();
+  const [loadingNav, setLoadingNav] = useState<string | null>(null);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    setLoadingNav(null);
+  }, [pathname, searchParams]);
 
   return (
     <nav className="hidden items-center gap-1.5 text-sm font-medium text-[#1A1A1A] lg:flex">
       <Link
         href="/shop"
-        className={`px-3 py-1.5 rounded transition-all ${
+        onClick={() => setLoadingNav("shop")}
+        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded transition-all ${
           isShopAll
             ? "bg-[#1A1A1A] text-white font-semibold shadow-xs"
             : "text-[#1A1A1A] hover:text-[#C8501E] hover:bg-[#EAE5DC]"
         }`}
       >
-        Shop Posters
+        {loadingNav === "shop" && <Loader2 className="h-3.5 w-3.5 animate-spin text-[#C8501E]" />}
+        <span>Shop Posters</span>
       </Link>
 
       <Link
         href="/custom"
+        onClick={() => setLoadingNav("custom")}
         className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded transition-all font-semibold ${
           isCustom
             ? "bg-[#C8501E] text-white shadow-xs"
             : "text-[#C8501E] hover:bg-[#EAE5DC]"
         }`}
       >
-        <Palette className="h-4 w-4" />
-        Custom Poster
+        {loadingNav === "custom" ? (
+          <Loader2 className="h-4 w-4 animate-spin text-white" />
+        ) : (
+          <Palette className="h-4 w-4" />
+        )}
+        <span>Custom Poster</span>
       </Link>
 
       {CATEGORIES.map((cat) => {
         const isActive = activeCategory === cat.slug;
+        const isLoading = loadingNav === cat.slug;
         return (
           <Link
             key={cat.slug}
             href={`/shop?category=${cat.slug}`}
-            className={`px-3 py-1.5 rounded transition-all ${
+            onClick={() => setLoadingNav(cat.slug)}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded transition-all ${
               isActive
                 ? "bg-[#1A1A1A] text-white font-semibold shadow-xs"
                 : "text-[#1A1A1A] hover:text-[#C8501E] hover:bg-[#EAE5DC]"
             }`}
           >
-            {cat.name}
+            {isLoading && (
+              <Loader2 className={`h-3.5 w-3.5 animate-spin ${isActive ? "text-white" : "text-[#C8501E]"}`} />
+            )}
+            <span>{cat.name}</span>
           </Link>
         );
       })}
@@ -103,32 +123,43 @@ function DesktopNav() {
 
 function MobileCategoryNav({ onClose }: { onClose: () => void }) {
   const { activeCategory, isShopAll, isCustom } = useActiveNavigation();
+  const [loadingNav, setLoadingNav] = useState<string | null>(null);
+
+  const handleClick = (slug: string) => {
+    setLoadingNav(slug);
+    setTimeout(() => onClose(), 150);
+  };
 
   return (
     <div className="flex flex-col space-y-2">
       <Link
         href="/shop"
-        onClick={onClose}
-        className={`px-3 py-2 rounded text-sm transition-colors ${
+        onClick={() => handleClick("shop")}
+        className={`flex items-center gap-2 px-3 py-2 rounded text-sm transition-colors ${
           isShopAll
             ? "bg-[#1A1A1A] text-white font-semibold"
             : "text-[#1A1A1A] hover:bg-[#F6F3EE] hover:text-[#C8501E]"
         }`}
       >
-        All Wall Posters
+        {loadingNav === "shop" && <Loader2 className="h-4 w-4 animate-spin text-[#C8501E]" />}
+        <span>All Wall Posters</span>
       </Link>
 
       <Link
         href="/custom"
-        onClick={onClose}
+        onClick={() => handleClick("custom")}
         className={`flex items-center gap-2 px-3 py-2 rounded text-sm font-semibold transition-colors ${
           isCustom
             ? "bg-[#C8501E] text-white"
             : "text-[#C8501E] hover:bg-[#F6F3EE]"
         }`}
       >
-        <Palette className="h-4 w-4" />
-        Design Custom Poster
+        {loadingNav === "custom" ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <Palette className="h-4 w-4" />
+        )}
+        <span>Design Custom Poster</span>
       </Link>
 
       <div className="border-t border-[#DDD7CC] pt-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-[#6B665E]">
@@ -137,18 +168,22 @@ function MobileCategoryNav({ onClose }: { onClose: () => void }) {
 
       {CATEGORIES.map((cat) => {
         const isActive = activeCategory === cat.slug;
+        const isLoading = loadingNav === cat.slug;
         return (
           <Link
             key={cat.slug}
             href={`/shop?category=${cat.slug}`}
-            onClick={onClose}
-            className={`px-3 py-2 rounded text-sm transition-colors ${
+            onClick={() => handleClick(cat.slug)}
+            className={`flex items-center justify-between px-3 py-2 rounded text-sm transition-colors ${
               isActive
                 ? "bg-[#1A1A1A] text-white font-semibold"
                 : "text-[#1A1A1A] hover:bg-[#F6F3EE] hover:text-[#C8501E]"
             }`}
           >
-            {cat.name}
+            <span>{cat.name}</span>
+            {isLoading && (
+              <Loader2 className={`h-3.5 w-3.5 animate-spin ${isActive ? "text-white" : "text-[#C8501E]"}`} />
+            )}
           </Link>
         );
       })}

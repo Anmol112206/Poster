@@ -111,90 +111,99 @@ export async function syncCloudinaryToDb(): Promise<SyncResult> {
     // Sort assets consistently by public_id
     assets.sort((a, b) => a.public_id.localeCompare(b.public_id));
 
-    // 4. Upsert each poster in the database
-    let itemIndex = 1;
-    for (const asset of assets) {
-      const numStr = itemIndex.toString().padStart(2, "0");
-      const prefix = catSlug.slice(0, 3).toUpperCase();
-      const catalogCode = `CAM-${prefix}-${numStr}`;
+    // 4. Upsert each poster in the database in concurrent batches
+    const BATCH_SIZE = 6;
+    for (let i = 0; i < assets.length; i += BATCH_SIZE) {
+      const batch = assets.slice(i, i + BATCH_SIZE);
+      await Promise.all(
+        batch.map(async (asset, batchIdx) => {
+          const itemIndex = i + batchIdx + 1;
+          const numStr = itemIndex.toString().padStart(2, "0");
+          const prefix = catSlug.slice(0, 3).toUpperCase();
+          const catalogCode = `CAM-${prefix}-${numStr}`;
 
-      // If public_id looks like a meaningful title (not a 32-char hex hash), use it
-      const isHexHash = /^[a-f0-9]{32}$/i.test(asset.public_id);
-      const isPlainNumber = /^\d+$/.test(asset.public_id);
+          // If public_id looks like a meaningful title (not a 32-char hex hash), use it
+          const isHexHash = /^[a-f0-9]{32}$/i.test(asset.public_id);
+          const isPlainNumber = /^\d+$/.test(asset.public_id);
 
-      let title: string;
-      let slug: string;
+          let title: string;
+          let slug: string;
 
-      if (!isHexHash && !isPlainNumber && asset.public_id.length > 2) {
-        // e.g. "Wanda_Maximoff__Scarlet_Witch_wallpaper"
-        title = cleanTitle(asset.public_id);
-        slug = `${catSlug}-${slugify(title)}`;
-      } else {
-        // e.g. "Anime Edition #01"
-        title = `${catName} Edition #${numStr}`;
-        slug = `${catSlug}-edition-${numStr}`;
-      }
+          if (!isHexHash && !isPlainNumber && asset.public_id.length > 2) {
+            // e.g. "Wanda_Maximoff__Scarlet_Witch_wallpaper"
+            title = cleanTitle(asset.public_id);
+            slug = `${catSlug}-${slugify(title)}`;
+          } else {
+            // e.g. "Anime Edition #01"
+            title = `${catName} Edition #${numStr}`;
+            slug = `${catSlug}-edition-${numStr}`;
+          }
 
-      const tags = [catSlug, `edition-${numStr}`, catalogCode.toLowerCase(), `#${numStr}`];
+          const tags = [catSlug, `edition-${numStr}`, catalogCode.toLowerCase(), `#${numStr}`];
 
-      // Upsert product
-      const product = await prisma.product.upsert({
-        where: { slug },
-        update: {
-          title,
-          description: "",
-          images: [asset.secure_url],
-          tags,
-          categoryId: category.id,
-          isFeatured: itemIndex <= 3,
-          isActive: true,
-        },
-        create: {
-          title,
-          slug,
-          description: "",
-          categoryId: category.id,
-          images: [asset.secure_url],
-          tags,
-          isFeatured: itemIndex <= 3,
-          isActive: true,
-        },
-      });
+          // Upsert product
+          const product = await prisma.product.upsert({
+            where: { slug },
+            update: {
+              title,
+              description: "",
+              images: [asset.secure_url],
+              tags,
+              categoryId: category.id,
+              isFeatured: itemIndex <= 3,
+              isActive: true,
+            },
+            create: {
+              title,
+              slug,
+              description: "",
+              categoryId: category.id,
+              images: [asset.secure_url],
+              tags,
+              isFeatured: itemIndex <= 3,
+              isActive: true,
+            },
+          });
 
-      // Upsert standard variants with current prices:
-      // A4 = ₹39 (3900 paise)
-      // A3 = ₹79 (7900 paise)
-      const variants = [
-        { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: POSTER_PRICES.standard.A4 },
-        { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: POSTER_PRICES.standard.A3 },
-      ];
+          // Upsert standard variants with current prices:
+          // A4 = ₹39 (3900 paise)
+          // A3 = ₹79 (7900 paise)
+          const variants = [
+            { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: POSTER_PRICES.standard.A4 },
+            { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: POSTER_PRICES.standard.A3 },
+          ];
 
-      for (const v of variants) {
-        const sku = `${catalogCode}-${v.size}-${v.finish}-GSM300`.toUpperCase();
-        await prisma.productVariant.upsert({
-          where: { sku },
-          update: {
-            productId: product.id,
-            size: v.size,
-            finish: v.finish,
-            paper: v.paper,
-            pricePaise: v.pricePaise,
-            stock: 50,
-          },
-          create: {
-            productId: product.id,
-            size: v.size,
-            finish: v.finish,
-            paper: v.paper,
-            pricePaise: v.pricePaise,
-            stock: 50,
-            sku,
-          },
-        });
-      }
+          for (const v of variants) {
+            const sku = `${catalogCode}-${v.size}-${v.finish}-GSM300`.toUpperCase();
+            await prisma.productVariant.upsert({
+              where: {
+                productId_size_finish_paper: {
+                  productId: product.id,
+                  size: v.size,
+                  finish: v.finish,
+                  paper: v.paper,
+                },
+              },
+              update: {
+                pricePaise: v.pricePaise,
+                stock: 50,
+                sku,
+              },
+              create: {
+                productId: product.id,
+                size: v.size,
+                finish: v.finish,
+                paper: v.paper,
+                pricePaise: v.pricePaise,
+                stock: 50,
+                sku,
+              },
+            });
+          }
 
-      totalSynced++;
-      itemIndex++;
+          totalSynced++;
+        })
+      );
     }
   }
 

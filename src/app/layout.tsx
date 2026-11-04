@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Fraunces, DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
+import { Suspense } from "react";
 import AppProviders from "@/components/providers/AppProviders";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MiniCart from "@/components/cart/MiniCart";
+import NavigationProgressBar from "@/components/ui/NavigationProgressBar";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -33,6 +35,9 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
       <body className="min-h-screen flex flex-col bg-[#F6F3EE] text-[#1A1A1A] antialiased selection:bg-[#C8501E] selection:text-white">
         <AppProviders>
+          <Suspense fallback={null}>
+            <NavigationProgressBar />
+          </Suspense>
           <Header />
           <MiniCart />
           <div className="flex-1">{children}</div>

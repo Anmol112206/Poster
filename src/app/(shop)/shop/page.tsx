@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import ProductCard from "@/components/product/ProductCard";
+import ShopCategoryFilter from "@/components/shop/ShopCategoryFilter";
 import { getCatalogProducts } from "@/lib/products";
 import { prisma } from "@/lib/prisma";
 import { shopQuerySchema } from "@/lib/validators/shop";
@@ -116,27 +118,12 @@ export default async function ShopPage(props: ShopPageProps) {
             <h3 className="font-serif text-sm font-semibold uppercase tracking-wider text-[#1A1A1A] border-b border-[#DDD7CC] pb-2">
               Categories
             </h3>
-            <ul className="mt-3 space-y-1.5 text-xs">
-              {categories.map((cat) => {
-                const isActive = query.category.toLowerCase() === cat.slug.toLowerCase();
-                const href = cat.slug ? `/shop?category=${cat.slug}` : "/shop";
-
-                return (
-                  <li key={cat.slug || "all"}>
-                    <Link
-                      href={href}
-                      className={`flex items-center justify-between py-1.5 px-2.5 rounded transition-colors ${
-                        isActive
-                          ? "bg-[#1A1A1A] text-white font-medium"
-                          : "text-[#6B665E] hover:bg-[#F6F3EE] hover:text-[#1A1A1A]"
-                      }`}
-                    >
-                      <span>{cat.label}</span>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+            <Suspense fallback={<div className="h-24 bg-[#F6F3EE] rounded animate-pulse mt-3" />}>
+              <ShopCategoryFilter
+                categories={categories}
+                activeCategorySlug={query.category}
+              />
+            </Suspense>
           </div>
 
           {/* Custom Poster Banner Callout */}
