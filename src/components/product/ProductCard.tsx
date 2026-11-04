@@ -159,7 +159,7 @@ export default function ProductCard({
                     : "text-[#6B665E] hover:text-[#1A1A1A]"
                 }`}
               >
-                A3 (₹59)
+                A3 (₹79)
               </button>
             </div>
 

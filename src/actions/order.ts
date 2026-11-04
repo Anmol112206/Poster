@@ -37,7 +37,7 @@ export async function placeOrder(formData: unknown): Promise<ApiResponse<{ order
     const userId = session.user.id;
 
     // Server-side price calculation:
-    // Normal posters: A4 = 3900 paise (₹39), A3 = 5900 paise (₹59)
+    // Normal posters: A4 = 3900 paise (₹39), A3 = 7900 paise (₹79)
     // Custom posters: A4 = 4900 paise (₹49), A3 = 8900 paise (₹89)
     // Server enforces the pricing, never trusting client totals!
     const verifiedItems = items.map((item) => {

@@ -30,7 +30,7 @@ export const COD_FEE_PAISE = 0; // Free COD
 export const POSTER_PRICES = {
   standard: {
     A4: 3900, // ₹39
-    A3: 5900, // ₹59
+    A3: 7900, // ₹79
   },
   custom: {
     A4: 4900, // ₹49

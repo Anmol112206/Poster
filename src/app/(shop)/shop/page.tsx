@@ -84,7 +84,7 @@ export default async function ShopPage(props: ShopPageProps) {
               {activeCategory}
             </h1>
             <p className="mt-1 text-sm text-[#6B665E]">
-              Showing {products.length} prints • A4 (₹39) & A3 (₹59) • Printed on 300 GSM Archival stock
+              Showing {products.length} prints • A4 (₹39) & A3 (₹79) • Printed on 300 GSM Archival stock
             </p>
           </div>
         </div>

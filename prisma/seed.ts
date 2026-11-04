@@ -367,10 +367,10 @@ async function main() {
       },
     });
 
-    // Seed A4 (₹39 -> 3900 paise) and A3 (₹59 -> 5900 paise) variants in GLOSS finish
+    // Seed A4 (₹39 -> 3900 paise) and A3 (₹79 -> 7900 paise) variants in GLOSS finish
     const variantCombos = [
       { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 3900 },
-      { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 5900 },
+      { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 7900 },
     ];
 
     for (const v of variantCombos) {

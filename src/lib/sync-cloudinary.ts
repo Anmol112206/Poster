@@ -163,7 +163,7 @@ export async function syncCloudinaryToDb(): Promise<SyncResult> {
 
       // Upsert standard variants with current prices:
       // A4 = ₹39 (3900 paise)
-      // A3 = ₹59 (5900 paise)
+      // A3 = ₹79 (7900 paise)
       const variants = [
         { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: POSTER_PRICES.standard.A4 },
         { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: POSTER_PRICES.standard.A3 },

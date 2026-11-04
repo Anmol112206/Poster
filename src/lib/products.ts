@@ -46,7 +46,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn67n20008umj4vcmywm8l",
     "a3VariantId": "cmvwn68if000aumj41lzexqkv",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -72,7 +72,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6a35000eumj4f86syavo",
     "a3VariantId": "cmvwn6apo000gumj4fvbhl08n",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -98,7 +98,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6bwq000kumj4ghscdofy",
     "a3VariantId": "cmvwn6cp4000mumj4xnj6g4xq",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -124,7 +124,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6dzv000qumj4zbupno34",
     "a3VariantId": "cmvwn6ejy000sumj425qm63zs",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -150,7 +150,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6gd9000wumj4u11vr91q",
     "a3VariantId": "cmvwn6h54000yumj4nrbqingm",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -176,7 +176,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6igr0012umj4mvpovske",
     "a3VariantId": "cmvwn6j0z0014umj48ch544mq",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -202,7 +202,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6kd10018umj4ub1drwum",
     "a3VariantId": "cmvwn6l1d001aumj4k7old80j",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -228,7 +228,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6mqx001eumj4lljo5ngw",
     "a3VariantId": "cmvwn6nav001gumj40opl0egc",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -254,7 +254,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6of3001kumj40r2zslld",
     "a3VariantId": "cmvwn6ozg001mumj4lea07zho",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -280,7 +280,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6q7k001qumj468rotzhb",
     "a3VariantId": "cmvwn6r2s001sumj456rqnplf",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -306,7 +306,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6sd0001wumj4ytss82nc",
     "a3VariantId": "cmvwn6sx6001yumj4z0zedqqh",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -332,7 +332,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6uiv0022umj47byz13ss",
     "a3VariantId": "cmvwn6vdn0024umj4bt55yp22",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -358,7 +358,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6wwd0028umj4za3cg4fr",
     "a3VariantId": "cmvwn6xmv002aumj42qc3n1h9",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -384,7 +384,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn6zam002eumj4q7ibsdrt",
     "a3VariantId": "cmvwn7006002gumj4ta38pmdf",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -410,7 +410,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn71ib002kumj403ldzueq",
     "a3VariantId": "cmvwn727u002mumj4l2rlvj22",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -436,7 +436,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn73px002qumj44r451jww",
     "a3VariantId": "cmvwn74o2002sumj48ijltist",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -462,7 +462,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn76zj002wumj4gjr1s50w",
     "a3VariantId": "cmvwn77jy002yumj4yvlusoft",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -488,7 +488,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn78ph0032umj42j1066d0",
     "a3VariantId": "cmvwn79hj0034umj4my8j7so6",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -514,7 +514,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7b840038umj4dghwcq3m",
     "a3VariantId": "cmvwn7c0k003aumj4nskkttjn",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -540,7 +540,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7dlk003eumj4jbnq1imy",
     "a3VariantId": "cmvwn7edw003gumj4uak5z0km",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -566,7 +566,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7fyr003kumj4vlzfntiz",
     "a3VariantId": "cmvwn7gwv003mumj4sf1jeb91",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -592,7 +592,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7ihs003qumj4wrnas2ji",
     "a3VariantId": "cmvwn7jdt003sumj4spsar2qy",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -618,7 +618,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7kxz003wumj439l0pzkj",
     "a3VariantId": "cmvwn7lqd003yumj48ihqk395",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -644,7 +644,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7n4p0042umj4z8g1ohw0",
     "a3VariantId": "cmvwn7nor0044umj4kegh3skf",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -670,7 +670,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7p1n0048umj42dvd6824",
     "a3VariantId": "cmvwn7pqu004aumj4braaghb9",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -696,7 +696,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7quo004eumj45j6rzedb",
     "a3VariantId": "cmvwn7rgi004gumj4r3dzdmvo",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -722,7 +722,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7t2w004kumj47ea1qe3a",
     "a3VariantId": "cmvwn7tvd004mumj49h10jpzf",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -748,7 +748,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7vg9004qumj4dfr3hkwi",
     "a3VariantId": "cmvwn7wbg004sumj4pyf6xh1x",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -774,7 +774,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7y17004wumj4f5nbalpu",
     "a3VariantId": "cmvwn7yrq004yumj4rqbgi7le",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -800,7 +800,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn7zz90052umj496pj008h",
     "a3VariantId": "cmvwn80jv0054umj497bufhr7",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -826,7 +826,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn81nv0058umj4ou41ts7j",
     "a3VariantId": "cmvwn827t005aumj40wj09eot",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -852,7 +852,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn83c1005eumj4v88c4ofu",
     "a3VariantId": "cmvwn842c005gumj499s72w8b",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -878,7 +878,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy2wva005kumw49qekoouh",
     "a3VariantId": "cmvxy2xii005mumw41tbw9vtd",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -904,7 +904,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy2yt7005qumw4713et8fb",
     "a3VariantId": "cmvxy2zgd005sumw4fqmg7jos",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -930,7 +930,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy30qt005wumw4l6joie76",
     "a3VariantId": "cmvxy31fp005yumw41qazu0zl",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -956,7 +956,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy32qg0062umw464sa91wk",
     "a3VariantId": "cmvxy33dh0064umw46n6vvn1t",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -982,7 +982,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy34xi0068umw41i2xgz9p",
     "a3VariantId": "cmvxy35kk006aumw4e8uz1eps",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1008,7 +1008,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy36vk006eumw4e04trbko",
     "a3VariantId": "cmvxy37ja006gumw41l0oiksz",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1034,7 +1034,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy393y006kumw4s6l18u8z",
     "a3VariantId": "cmvxy39r3006mumw46l2n6adk",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1060,7 +1060,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3b1g006qumw4hmb0yfna",
     "a3VariantId": "cmvxy3bp0006sumw45mcb89gm",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1086,7 +1086,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3d0u006wumw4idl5f1iv",
     "a3VariantId": "cmvxy3doi006yumw46hj6qy9q",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1112,7 +1112,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3f0z0072umw4p2blyeq6",
     "a3VariantId": "cmvxy3gbf0074umw49o36iaq0",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1138,7 +1138,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3jbj0078umw4couqbtx3",
     "a3VariantId": "cmvxy3k2d007aumw4w4wub3hm",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1164,7 +1164,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3nki007eumw4qrloedzv",
     "a3VariantId": "cmvxy3o9r007gumw4eenz275w",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1190,7 +1190,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3poq007kumw4yohh0kjg",
     "a3VariantId": "cmvxy3qvc007mumw4zi3yuzx0",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1216,7 +1216,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3sro007qumw4mtmi92a2",
     "a3VariantId": "cmvxy3tk6007sumw4ggvq3pzi",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1242,7 +1242,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3v7x007wumw4qa2xncgb",
     "a3VariantId": "cmvxy3vx1007yumw4wuujcsm3",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1268,7 +1268,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3x7q0082umw4a43pizdh",
     "a3VariantId": "cmvxy3xv00084umw4kp0tlkhk",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1294,7 +1294,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy3zad0088umw41ue7x3am",
     "a3VariantId": "cmvxy400o008aumw43vqa05a4",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1320,7 +1320,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy41bj008eumw48jtu0r99",
     "a3VariantId": "cmvxy41za008gumw4thdnovc7",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1346,7 +1346,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy43fx008kumw4uhni9gm4",
     "a3VariantId": "cmvxy4463008mumw4r8w25d2q",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1372,7 +1372,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy45lg008qumw416xclsek",
     "a3VariantId": "cmvxy47oo008sumw4ryn31zzi",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1398,7 +1398,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy497q008wumw48ljk4wyy",
     "a3VariantId": "cmvxy49v1008yumw4jypl9pau",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1424,7 +1424,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy4bav0092umw4tti562zh",
     "a3VariantId": "cmvxy4bzv0094umw4ho2vczzd",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1450,7 +1450,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy4dbb0098umw4m3ulxt29",
     "a3VariantId": "cmvxy4dz5009aumw4la0901fu",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1476,7 +1476,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy4fgr009eumw4rnvz7sjh",
     "a3VariantId": "cmvxy4g9j009gumw452gj2yus",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1502,7 +1502,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy4hjr009kumw4lxt5pybd",
     "a3VariantId": "cmvxy4i6w009mumw4cwghwt3z",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1528,7 +1528,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy4joh009qumw43p05fbdv",
     "a3VariantId": "cmvxy4kbq009sumw4wlnt8xuh",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1554,7 +1554,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxy4lu7009wumw456xrujea",
     "a3VariantId": "cmvxycwb9009yumm8usxhosfw",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1580,7 +1580,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxycwjs00a2umm8i7ngc67u",
     "a3VariantId": "cmvxycwnz00a4umm8q4eq7au7",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1606,7 +1606,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxycwwi00a8umm8z9gm3rzb",
     "a3VariantId": "cmvxycx0v00aaumm8lp5j9xm9",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1632,7 +1632,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxycx9c00aeumm8lntxj3ow",
     "a3VariantId": "cmvxycxdo00agumm82ypr9a0h",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1658,7 +1658,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxycxm500akumm89begqvae",
     "a3VariantId": "cmvxycxqd00amumm8lci1hxn4",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1684,7 +1684,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxycy0100aqumm8yjukmban",
     "a3VariantId": "cmvxycy4a00asumm8hh6axrsh",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1710,7 +1710,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxycycy00awumm82gxtd639",
     "a3VariantId": "cmvxycyh900ayumm8jg6poo4w",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1736,7 +1736,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxycypx00b2umm8xt2h0hxk",
     "a3VariantId": "cmvxycyu700b4umm80xbv0eex",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1762,7 +1762,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxycz4i00b8umm8axhrm5zf",
     "a3VariantId": "cmvxyczba00baumm8ctwp7v45",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1788,7 +1788,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyczmq00beumm8byv4grv5",
     "a3VariantId": "cmvxyczsr00bgumm8g61i1t6r",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1814,7 +1814,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd03f00bkumm8bjkjgcgr",
     "a3VariantId": "cmvxyd09j00bmumm80h3gy9bn",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1840,7 +1840,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd0kz00bqumm8x7ml22s1",
     "a3VariantId": "cmvxyd0t600bsumm8qd6hhej5",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1866,7 +1866,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd13k00bwumm88ektkpm8",
     "a3VariantId": "cmvxyd17x00byumm87984xgzm",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1892,7 +1892,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd1gn00c2umm8m6kvv30z",
     "a3VariantId": "cmvxyd1l200c4umm82bgb49a2",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1918,7 +1918,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd1tl00c8umm8kco7u19b",
     "a3VariantId": "cmvxyd1xv00caumm83c0uj4u8",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1944,7 +1944,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd26i00ceumm8fvuux5e2",
     "a3VariantId": "cmvxyd2at00cgumm8swaiaxmm",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1970,7 +1970,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd2nj00ckumm83k179s4s",
     "a3VariantId": "cmvxyd2rv00cmumm8sbzw8ike",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -1996,7 +1996,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd30e00cqumm8c3iachpn",
     "a3VariantId": "cmvxyd34m00csumm8yf59z14p",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2022,7 +2022,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd3di00cwumm8444jdrcj",
     "a3VariantId": "cmvxyd3hq00cyumm81z87ioom",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2048,7 +2048,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd3qn00d2umm8fg0vmua3",
     "a3VariantId": "cmvxyd3vb00d4umm8o6jkb5ok",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2074,7 +2074,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd43w00d8umm820whr8tw",
     "a3VariantId": "cmvxyd48300daumm8e1colply",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2100,7 +2100,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd4gu00deumm8ts96cxtj",
     "a3VariantId": "cmvxyd4m200dgumm8fvy8u682",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2126,7 +2126,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd50100dkumm86whevu0c",
     "a3VariantId": "cmvxyd54b00dmumm8si4gpxsw",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2152,7 +2152,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd5d100dqumm8wrtnfjsd",
     "a3VariantId": "cmvxyd5h900dsumm8rmpuyp2e",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2178,7 +2178,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd5sq00dwumm8jcnnage8",
     "a3VariantId": "cmvxyd5yd00dyumm8tq0m7lj2",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2204,7 +2204,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd69w00e2umm8374ittjo",
     "a3VariantId": "cmvxyd6fg00e4umm88kxd1bc2",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2230,7 +2230,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd6qv00e8umm85725j4m6",
     "a3VariantId": "cmvxyd6wm00eaumm8uonmbs99",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2256,7 +2256,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd75v00eeumm8e617ottq",
     "a3VariantId": "cmvxyd7a300egumm8thpv2nlr",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2282,7 +2282,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd7il00ekumm8yo2sqtbp",
     "a3VariantId": "cmvxyd7mv00emumm8ia7zs02g",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2308,7 +2308,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd7vd00equmm854bolr4q",
     "a3VariantId": "cmvxyd7zm00esumm8kgyrhhwe",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2334,7 +2334,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd88700ewumm8jurv3u1x",
     "a3VariantId": "cmvxyd8cj00eyumm86ozflxz4",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2360,7 +2360,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd8l400f2umm8n1sto876",
     "a3VariantId": "cmvxyd8r900f4umm8t6jmzswb",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2386,7 +2386,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd94600f8umm83pe8vy7t",
     "a3VariantId": "cmvxyd98n00faumm8u3nyt8ux",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2412,7 +2412,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd9le00feumm862jwadah",
     "a3VariantId": "cmvxyd9pm00fgumm8yr10zoe3",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2438,7 +2438,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxyd9zh00fkumm8wq1tb3qa",
     "a3VariantId": "cmvxyda4d00fmumm8lskgn2m9",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2464,7 +2464,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvxydahf00fqumm8u9vkxd11",
     "a3VariantId": "cmvxydamn00fsumm83dgv4co3",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2490,7 +2490,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn85fj005kumj4fz9au5u9",
     "a3VariantId": "cmvwn85zl005mumj4k358kjr0",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2516,7 +2516,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8748005qumj4xln1ezvl",
     "a3VariantId": "cmvwn87nz005sumj4ie0mftcs",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2542,7 +2542,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn891g005wumj4khou0sd0",
     "a3VariantId": "cmvwn89ym005yumj4ou2h97dm",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2568,7 +2568,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8bsi0062umj4t6li5q6z",
     "a3VariantId": "cmvwn8cd00064umj4zbpqgw43",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2594,7 +2594,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8dgt0068umj4mrruiols",
     "a3VariantId": "cmvwn8e0t006aumj4te938a2u",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2620,7 +2620,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8fgg006eumj4k9wricdj",
     "a3VariantId": "cmvwn8gbe006gumj4m0nuxv2n",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2646,7 +2646,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8hw4006kumj4xxp7lsj3",
     "a3VariantId": "cmvwn8ion006mumj4h3aoc2u6",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2672,7 +2672,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8jwj006qumj4il0skv8g",
     "a3VariantId": "cmvwn8kgx006sumj4je1mc6cu",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2698,7 +2698,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8lo8006wumj43u26fezn",
     "a3VariantId": "cmvwn8m85006yumj4umkxiffx",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2724,7 +2724,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8nca0072umj46znifomb",
     "a3VariantId": "cmvwn8nwe0074umj4lm8w8mrj",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2750,7 +2750,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8p8k0078umj44a2wn9v2",
     "a3VariantId": "cmvwn8psz007aumj4sml68gnw",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2776,7 +2776,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8qx9007eumj42ktmdtbh",
     "a3VariantId": "cmvwn8rh9007gumj43v5hfvx1",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2802,7 +2802,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8sll007kumj4mhjapb3e",
     "a3VariantId": "cmvwn8ti6007mumj42niuq9f7",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2828,7 +2828,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8vko007qumj4jx6vlt5o",
     "a3VariantId": "cmvwn8w6j007sumj4o6itidji",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2854,7 +2854,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn8xgf007wumj4o7b6y2vm",
     "a3VariantId": "cmvwn8y69007yumj4xn02l65z",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2880,7 +2880,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn90fk0082umj4e1mb5fn2",
     "a3VariantId": "cmvwn90zl0084umj49amg8di8",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2906,7 +2906,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn927d0088umj4uwrtowju",
     "a3VariantId": "cmvwn932e008aumj4xa2t8cb3",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2932,7 +2932,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn94n8008eumj492tuti91",
     "a3VariantId": "cmvwn95ld008gumj453cayevx",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2958,7 +2958,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn976b008kumj4idou4g60",
     "a3VariantId": "cmvwn97yr008mumj46hixp7gu",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -2984,7 +2984,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn99gv008qumj4ltogifc4",
     "a3VariantId": "cmvwn9ac1008sumj4iiy6zlvi",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -3010,7 +3010,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn9bwx008wumj49fwva4ou",
     "a3VariantId": "cmvwn9cpe008yumj4kf8q2y0c",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   },
   {
@@ -3036,7 +3036,7 @@ export const staticCatalog: CatalogProduct[] = [
     "a4VariantId": "cmvwn9e7h0092umj4fgx3rf3e",
     "a3VariantId": "cmvwn9ezx0094umj41pmt8f8q",
     "a4PricePaise": 3900,
-    "a3PricePaise": 5900,
+    "a3PricePaise": 7900,
     "stock": 50
   }
 ];
@@ -3131,7 +3131,7 @@ export async function getCatalogProducts(params: ShopQueryParams): Promise<Catal
           a4VariantId: a4Var ? a4Var.id : `a4_${p.id}`,
           a3VariantId: a3Var ? a3Var.id : `a3_${p.id}`,
           a4PricePaise: a4Var ? a4Var.pricePaise : 3900,
-          a3PricePaise: a3Var ? a3Var.pricePaise : 5900,
+          a3PricePaise: a3Var ? a3Var.pricePaise : 7900,
           stock: a4Var ? a4Var.stock : 50,
         };
       });
@@ -3190,7 +3190,7 @@ export async function getProductBySlug(slug: string): Promise<CatalogProduct | n
         a4VariantId: a4Var ? a4Var.id : `a4_${p.id}`,
         a3VariantId: a3Var ? a3Var.id : `a3_${p.id}`,
         a4PricePaise: a4Var ? a4Var.pricePaise : 3900,
-        a3PricePaise: a3Var ? a3Var.pricePaise : 5900,
+        a3PricePaise: a3Var ? a3Var.pricePaise : 7900,
         stock: a4Var ? a4Var.stock : 50,
       };
     }

@@ -240,7 +240,7 @@ export default function ProductDetailView({ product }: { product: CatalogProduct
                 }`}
               >
                 <span className="font-serif text-base font-bold text-[#1A1A1A]">A3 Format</span>
-                <span className="text-xs text-[#6B665E]">₹59 • 11.7 × 16.5 in</span>
+                <span className="text-xs text-[#6B665E]">₹79 • 11.7 × 16.5 in</span>
               </button>
             </div>
           </div>

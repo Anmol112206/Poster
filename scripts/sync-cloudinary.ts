@@ -176,10 +176,10 @@ async function main() {
         })
       );
 
-      // Variants: A4 (₹39) & A3 (₹59)
+      // Variants: A4 (₹39) & A3 (₹79)
       const variants = [
         { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 3900 },
-        { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 5900 },
+        { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 7900 },
       ];
 
       let a4VarId = `var_${product.id}_a4`;
@@ -230,7 +230,7 @@ async function main() {
         a4VariantId: a4VarId,
         a3VariantId: a3VarId,
         a4PricePaise: 3900,
-        a3PricePaise: 5900,
+        a3PricePaise: 7900,
         stock: 50,
       });
 

@@ -53,7 +53,7 @@ export default function HomePage() {
                 <p className="text-xs uppercase tracking-wider text-[#6B665E]">A4 (210×297mm)</p>
               </div>
               <div>
-                <p className="font-serif text-2xl font-bold text-[#1A1A1A]">₹59</p>
+                <p className="font-serif text-2xl font-bold text-[#1A1A1A]">₹79</p>
                 <p className="text-xs uppercase tracking-wider text-[#6B665E]">A3 (297×420mm)</p>
               </div>
               <div>
@@ -248,7 +248,7 @@ export default function HomePage() {
             <div>
               <div className="flex justify-between items-center">
                 <span className="rounded bg-[#1A1A1A] px-2.5 py-1 text-xs font-bold text-white">A3 Format (Double A4)</span>
-                <span className="font-serif text-xl font-bold text-[#C8501E]">₹59</span>
+                <span className="font-serif text-xl font-bold text-[#C8501E]">₹79</span>
               </div>
               <h3 className="mt-4 font-serif text-2xl font-bold text-[#1A1A1A]">297 × 420 mm</h3>
               <p className="text-xs text-[#6B665E]">11.7 × 16.5 inches</p>

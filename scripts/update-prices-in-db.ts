@@ -32,17 +32,17 @@ async function main() {
   });
   console.log(`✓ Updated ${stdA4.count} standard A4 variants to ₹39 (3900 paise).`);
 
-  // A3 = 5900 paise (₹59)
+  // A3 = 7900 paise (₹79)
   const stdA3 = await prisma.productVariant.updateMany({
     where: {
       size: Size.A3,
       productId: { notIn: customProductIds },
     },
     data: {
-      pricePaise: 5900,
+      pricePaise: 7900,
     },
   });
-  console.log(`✓ Updated ${stdA3.count} standard A3 variants to ₹59 (5900 paise).`);
+  console.log(`✓ Updated ${stdA3.count} standard A3 variants to ₹79 (7900 paise).`);
 
   // 3. Update Custom Posters:
   // A4 = 4900 paise (₹49)

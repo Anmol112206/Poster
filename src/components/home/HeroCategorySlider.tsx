@@ -130,7 +130,7 @@ export default function HeroCategorySlider() {
                 <div>
                   <p className="text-xs font-semibold drop-shadow-sm">{slide.tagline}</p>
                   <p className="text-[11px] text-white/80 drop-shadow-sm">
-                    A4 (₹39) • A3 (₹59) • 300 GSM Archival
+                    A4 (₹39) • A3 (₹79) • 300 GSM Archival
                   </p>
                 </div>
 
