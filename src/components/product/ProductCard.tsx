@@ -143,7 +143,7 @@ export default function ProductCard({
                     : "text-[#6B665E] hover:text-[#1A1A1A]"
                 }`}
               >
-                A4 (₹49)
+                A4 (₹39)
               </button>
               <button
                 id={`size-toggle-a3-${id}`}
@@ -159,7 +159,7 @@ export default function ProductCard({
                     : "text-[#6B665E] hover:text-[#1A1A1A]"
                 }`}
               >
-                A3 (₹99)
+                A3 (₹59)
               </button>
             </div>
 

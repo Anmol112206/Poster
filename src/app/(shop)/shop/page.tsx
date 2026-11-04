@@ -1,21 +1,13 @@
 import Link from "next/link";
 import ProductCard from "@/components/product/ProductCard";
-import { getStaticCatalogProducts } from "@/lib/products";
+import { getCatalogProducts } from "@/lib/products";
+import { prisma } from "@/lib/prisma";
 import { shopQuerySchema } from "@/lib/validators/shop";
 import { RotateCcw, Package } from "lucide-react";
 
 interface ShopPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
-
-const CATEGORIES = [
-  { label: "All Categories", slug: "" },
-  { label: "Sports", slug: "sports" },
-  { label: "God", slug: "god" },
-  { label: "Anime", slug: "anime" },
-  { label: "Marvel", slug: "marvel" },
-  { label: "Motivation", slug: "motivation" },
-];
 
 export default async function ShopPage(props: ShopPageProps) {
   const rawParams = await props.searchParams;
@@ -47,8 +39,28 @@ export default async function ShopPage(props: ShopPageProps) {
     ? parsed.data
     : { q, category, size: "ALL" as const, sort: "newest" as const, page: 1, minPrice: 0, maxPrice: 20000, finish: "ALL" as const };
 
-  // Synchronous — reads the in-memory staticCatalog, instant response with real-time category filtering.
-  const products = getStaticCatalogProducts({ category: query.category, q: query.q });
+  // Fetch categories dynamically from database
+  let dbCategories: { name: string; slug: string }[] = [];
+  try {
+    dbCategories = await prisma.category.findMany({
+      orderBy: { name: "asc" },
+      select: { name: true, slug: true },
+    });
+  } catch {
+    dbCategories = [];
+  }
+
+  const categories = [
+    { label: "All Categories", slug: "" },
+    ...dbCategories.map((c) => ({ label: c.name, slug: c.slug })),
+  ];
+
+  // Fetch products dynamically from database with timeout/fallback
+  const products = await getCatalogProducts(query);
+
+  const activeCategory = query.category
+    ? categories.find((c) => c.slug.toLowerCase() === query.category.toLowerCase())?.label || query.category
+    : "All Wall Posters";
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -69,12 +81,10 @@ export default async function ShopPage(props: ShopPageProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="font-serif text-3xl font-bold tracking-tight text-[#1A1A1A] sm:text-4xl">
-              {query.category
-                ? CATEGORIES.find((c) => c.slug === query.category)?.label || "Curated Prints"
-                : "All Wall Posters"}
+              {activeCategory}
             </h1>
             <p className="mt-1 text-sm text-[#6B665E]">
-              Showing {products.length} prints • A4 (₹49) & A3 (₹99) • Printed on 300 GSM Archival stock
+              Showing {products.length} prints • A4 (₹39) & A3 (₹59) • Printed on 300 GSM Archival stock
             </p>
           </div>
         </div>
@@ -107,8 +117,8 @@ export default async function ShopPage(props: ShopPageProps) {
               Categories
             </h3>
             <ul className="mt-3 space-y-1.5 text-xs">
-              {CATEGORIES.map((cat) => {
-                const isActive = query.category === cat.slug;
+              {categories.map((cat) => {
+                const isActive = query.category.toLowerCase() === cat.slug.toLowerCase();
                 const href = cat.slug ? `/shop?category=${cat.slug}` : "/shop";
 
                 return (

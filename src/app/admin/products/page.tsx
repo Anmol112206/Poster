@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { getCatalogProducts } from "@/lib/products";
 import { formatINR } from "@/lib/utils";
+import SyncCloudinaryButton from "@/components/admin/SyncCloudinaryButton";
 import { ArrowLeft, Package, Plus, Check } from "lucide-react";
 
 export default async function AdminProductsPage() {
@@ -39,12 +40,15 @@ export default async function AdminProductsPage() {
           </h1>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex items-center gap-1.5 rounded bg-[#1A1A1A] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#C8501E]"
-        >
-          <Plus className="h-4 w-4" /> Add New Poster
-        </button>
+        <div className="flex items-center gap-3">
+          <SyncCloudinaryButton />
+          <button
+            type="button"
+            className="inline-flex items-center gap-1.5 rounded bg-[#1A1A1A] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#C8501E]"
+          >
+            <Plus className="h-4 w-4" /> Add New Poster
+          </button>
+        </div>
       </div>
 
       {/* Products Table */}

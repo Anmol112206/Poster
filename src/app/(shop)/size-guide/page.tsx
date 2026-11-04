@@ -30,7 +30,7 @@ export default function SizeGuidePage() {
             <span className="rounded bg-[#F6F3EE] px-2.5 py-1 text-xs font-bold text-[#1A1A1A]">
               Compact & Cluster
             </span>
-            <span className="font-serif text-2xl font-bold text-[#C8501E]">₹49</span>
+            <span className="font-serif text-2xl font-bold text-[#C8501E]">₹39</span>
           </div>
 
           <h2 className="font-serif text-2xl font-bold text-[#1A1A1A]">A4 Format</h2>
@@ -58,7 +58,7 @@ export default function SizeGuidePage() {
             <span className="rounded bg-[#1A1A1A] text-white px-2.5 py-1 text-xs font-bold">
               Statement Piece
             </span>
-            <span className="font-serif text-2xl font-bold text-[#C8501E]">₹99</span>
+            <span className="font-serif text-2xl font-bold text-[#C8501E]">₹59</span>
           </div>
 
           <h2 className="font-serif text-2xl font-bold text-[#1A1A1A]">A3 Format</h2>

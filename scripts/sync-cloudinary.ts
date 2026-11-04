@@ -176,10 +176,10 @@ async function main() {
         })
       );
 
-      // Variants: A4 (₹49) & A3 (₹99)
+      // Variants: A4 (₹39) & A3 (₹59)
       const variants = [
-        { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 4900 },
-        { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 9900 },
+        { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 3900 },
+        { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 5900 },
       ];
 
       let a4VarId = `var_${product.id}_a4`;
@@ -229,8 +229,8 @@ async function main() {
         isCustomBase: false,
         a4VariantId: a4VarId,
         a3VariantId: a3VarId,
-        a4PricePaise: 4900,
-        a3PricePaise: 9900,
+        a4PricePaise: 3900,
+        a3PricePaise: 5900,
         stock: 50,
       });
 
@@ -266,8 +266,8 @@ async function main() {
   );
 
   const customVariants = [
-    { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 6900 },
-    { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 12900 },
+    { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 4900 },
+    { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 8900 },
   ];
 
   for (const v of customVariants) {
@@ -441,8 +441,8 @@ export async function getCatalogProducts(params: ShopQueryParams): Promise<Catal
           isCustomBase: p.isCustomBase,
           a4VariantId: a4Var ? a4Var.id : \`a4_\${p.id}\`,
           a3VariantId: a3Var ? a3Var.id : \`a3_\${p.id}\`,
-          a4PricePaise: a4Var ? a4Var.pricePaise : 4900,
-          a3PricePaise: a3Var ? a3Var.pricePaise : 9900,
+          a4PricePaise: a4Var ? a4Var.pricePaise : 3900,
+          a3PricePaise: a3Var ? a3Var.pricePaise : 5900,
           stock: a4Var ? a4Var.stock : 50,
         };
       });
@@ -500,8 +500,8 @@ export async function getProductBySlug(slug: string): Promise<CatalogProduct | n
         isCustomBase: p.isCustomBase,
         a4VariantId: a4Var ? a4Var.id : \`a4_\${p.id}\`,
         a3VariantId: a3Var ? a3Var.id : \`a3_\${p.id}\`,
-        a4PricePaise: a4Var ? a4Var.pricePaise : 4900,
-        a3PricePaise: a3Var ? a3Var.pricePaise : 9900,
+        a4PricePaise: a4Var ? a4Var.pricePaise : 3900,
+        a3PricePaise: a3Var ? a3Var.pricePaise : 5900,
         stock: a4Var ? a4Var.stock : 50,
       };
     }

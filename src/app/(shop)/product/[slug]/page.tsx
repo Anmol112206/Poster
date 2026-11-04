@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 import ProductDetailView from "@/components/product/ProductDetailView";
 import ProductCard from "@/components/product/ProductCard";
 import { getProductBySlug, getRelatedProducts, staticCatalog } from "@/lib/products";
+import { prisma } from "@/lib/prisma";
+
+export const dynamicParams = true;
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -40,6 +43,19 @@ export async function generateMetadata(props: ProductPageProps): Promise<Metadat
 }
 
 export async function generateStaticParams() {
+  try {
+    const products = await prisma.product.findMany({
+      where: { isActive: true },
+      select: { slug: true },
+      take: 200,
+    });
+    if (products.length > 0) {
+      return products.map((p) => ({ slug: p.slug }));
+    }
+  } catch {
+    // fallback
+  }
+
   return staticCatalog.map((p) => ({
     slug: p.slug,
   }));

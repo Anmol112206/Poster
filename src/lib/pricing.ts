@@ -27,6 +27,17 @@ export const FREE_SHIPPING_THRESHOLD_PAISE = 0; // Always Free Shipping across I
 export const FLAT_SHIPPING_PAISE = 0; // Free delivery
 export const COD_FEE_PAISE = 0; // Free COD
 
+export const POSTER_PRICES = {
+  standard: {
+    A4: 3900, // ₹39
+    A3: 5900, // ₹59
+  },
+  custom: {
+    A4: 4900, // ₹49
+    A3: 8900, // ₹89
+  },
+} as const;
+
 /**
  * Pure function to calculate subtotal, shipping, and total for a given cart.
  * Delivery is always 100% free across India.

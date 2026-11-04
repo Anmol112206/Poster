@@ -367,10 +367,10 @@ async function main() {
       },
     });
 
-    // Seed A4 (₹49 -> 4900 paise) and A3 (₹99 -> 9900 paise) variants in GLOSS finish
+    // Seed A4 (₹39 -> 3900 paise) and A3 (₹59 -> 5900 paise) variants in GLOSS finish
     const variantCombos = [
-      { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 4900 },
-      { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 9900 },
+      { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 3900 },
+      { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 5900 },
     ];
 
     for (const v of variantCombos) {
@@ -425,8 +425,8 @@ async function main() {
   });
 
   const customVariants = [
-    { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 6900 },
-    { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 12900 },
+    { size: Size.A4, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 4900 },
+    { size: Size.A3, finish: Finish.GLOSS, paper: Paper.GSM_300, pricePaise: 8900 },
   ];
 
   for (const v of customVariants) {

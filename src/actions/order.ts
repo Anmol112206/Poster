@@ -3,7 +3,7 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { placeOrderSchema } from "@/lib/validators/order";
-import { calculateCart } from "@/lib/pricing";
+import { calculateCart, POSTER_PRICES } from "@/lib/pricing";
 import { ApiResponse, successResponse, errorResponse, handleError } from "@/lib/result";
 import { OrderStatus, PaymentMethod, PaymentStatus } from "@prisma/client";
 
@@ -37,14 +37,14 @@ export async function placeOrder(formData: unknown): Promise<ApiResponse<{ order
     const userId = session.user.id;
 
     // Server-side price calculation:
-    // Normal posters: A4 = 4900 paise (₹49), A3 = 9900 paise (₹99)
-    // Custom posters: A4 = 6900 paise (₹69), A3 = 12900 paise (₹129)
+    // Normal posters: A4 = 3900 paise (₹39), A3 = 5900 paise (₹59)
+    // Custom posters: A4 = 4900 paise (₹49), A3 = 8900 paise (₹89)
     // Server enforces the pricing, never trusting client totals!
     const verifiedItems = items.map((item) => {
       const isCustom = item.productSlug === "custom" || !!item.customDesignId || item.variantId?.startsWith("CUSTOM");
       const serverPricePaise = isCustom
-        ? (item.size === "A4" ? 6900 : 12900)
-        : (item.size === "A4" ? 4900 : 9900);
+        ? (item.size === "A4" ? POSTER_PRICES.custom.A4 : POSTER_PRICES.custom.A3)
+        : (item.size === "A4" ? POSTER_PRICES.standard.A4 : POSTER_PRICES.standard.A3);
 
       return {
         ...item,
